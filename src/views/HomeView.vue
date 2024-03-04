@@ -1,0 +1,199 @@
+<template>
+    <div>
+   <navbar/>
+        <!--First page-->
+        <div class="hero h-screen bg-cover bg-no-repeat bg-center brightness-65" style="background-image: url('../assets/imgs/bg1.png');">
+    <div class="hero flex justify-center items-center flex-col"> <!-- Added flex-col -->
+        <a href="#" class="text-white border-2 border-white text-3xl px-10 py-2 bg-opacity-25 hover:bg-opacity-50" style="background-color: rgba(0, 0, 0, 0.237);">EXPLORE</a>
+    </div>
+</div>
+
+         <!--second page-->
+         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 mx-10 my-10">
+    <!-- Right side (text) -->
+    <div class="flex items-center justify-center text-center sm:order-2"> <!-- Swap order for small screens -->
+        <div class="p-8">
+            <h2 class="header md:text-[80px] text-[50px] ">The world of Higher gravity</h2>
+            <a href="/newin" class="text-black border-2 border-black text-3xl px-10 py-2 inline-block mt-5" style="background-color: rgba(255, 255, 255, 0.237);">NEW IN</a>
+        </div>
+    </div>
+    <!-- Left side (image) -->
+    <div class="flex items-center justify-center"> <!-- Swap order for small screens -->
+        <swiper :navigation="true" :modules="modules" class="mySwiper">
+            <swiper-slide><img src="../assets/imgs/slide1.png" class="max-w-full h-auto"></swiper-slide>
+            <swiper-slide><img src="../assets/imgs/slider2.png" class="max-w-full h-auto"></swiper-slide>
+            <swiper-slide><img src="../assets/imgs/slider3.png" class="max-w-full h-auto"></swiper-slide>
+        </swiper>
+    </div>
+</div>
+ <!--third page-->
+ <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 mx-10 my-10">
+    <!-- Right side (text) -->
+    <div class="flex items-center justify-center text-center">
+        <div class="p-8">
+            <h2 class="header md:text-[80px] text-[50px] ">Clothes on Cloud Nins9</h2>
+            <a href="/shirts" class="text-black border-2 border-black text-3xl px-10 py-2 inline-block mt-5" style="background-color: rgba(255, 255, 255, 0.237);">T-SHIRTS</a>
+        </div>
+    </div>
+    <!-- Left side (image) -->
+    <div class="flex items-center justify-center">
+        <swiper :navigation="true" :modules="modules" class="mySwiper">
+            <swiper-slide><img src="../assets/imgs/slide4.png" class="max-w-full h-auto"></swiper-slide>
+            <swiper-slide><img src="../assets/imgs/slider5.png" class="max-w-full h-auto"></swiper-slide>
+            <swiper-slide><img src="../assets/imgs/slider6.png" class="max-w-full h-auto"></swiper-slide>
+        </swiper>
+    </div>
+</div>
+
+<!-- Fourth Page -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 mx-10 my-10">
+  
+    <!-- Left side (image) -->
+    <div class="flex items-center justify-center">
+        <swiper :navigation="true" :modules="modules" class="mySwiper">
+            <swiper-slide><img src="../assets/imgs/slider7.png" class="max-w-full h-auto"></swiper-slide>
+            <swiper-slide><img src="../assets/imgs/slider8.png" class="max-w-full h-auto"></swiper-slide>
+            <swiper-slide><img src="../assets/imgs/slider9.png" class="max-w-full h-auto"></swiper-slide>
+        </swiper>
+    </div>
+      <!-- Right side (text) -->
+      <div class="flex items-center justify-center text-center">
+        <div class="p-8">
+            <h2 class="header md:text-[80px] text-[50px] ">Unleash your Style’s Potential</h2>
+            <p class="py-5 text-2xl" style="font-family: Zabal; letter-spacing:5px; color:#A0A0A0"> Take your closet to the highest level</p>
+            <a href="/pants" class="text-black border-2 border-black text-3xl px-10 py-2 inline-block mt-5" style="background-color: rgba(255, 255, 255, 0.237);">Pants</a>
+        </div>
+    </div>
+</div>
+<!-- FAQ -->
+<div class="FAQ">
+  <div class="text-center text-white">
+  <h1 class="md:text-8xl">Frequently Asked Questions</h1>
+  <p class="my-3 text-2xl">
+    Dive into the most asked questions about our stellar clothing line, Higher Gravity, and discover the secrets behind our elevated style!
+  </p>
+  </div>
+  
+
+</div>
+<!--Footer-->
+      <img src="../assets/imgs/young-women-wearing-2000s-fashion 1.png" class="max-w-full h-auto my-28 block mx-auto">
+      <footing/>
+</div>
+ 
+</template>
+
+<script>
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Navigation } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import navbar from '../components/navbar.vue'
+import footing from '../components/footing.vue'
+export default {
+    components: {
+      Swiper,SwiperSlide,
+      navbar, footing,
+    },
+    setup() {
+      return {
+        modules: [Navigation],
+      };
+    },  
+
+
+}
+</script>
+
+<style>
+    body{
+        background-color: white ;
+    }
+    li{
+        font-family: Zabal;
+    }
+    @font-face {
+        font-family: Zabal;
+        src: url(../assets/fonts/ZabalDEMO-Regular.otf);
+    }
+    @font-face {
+       font-family: Anger;
+       src: url(../assets/fonts/AngerStyles.ttf)
+    }
+   
+     .hero{
+        height: 100vh;
+        background-image: url('../assets/imgs/bg1.png');
+        background-size: cover ;
+        background-repeat: no-repeat;
+        filter: brightness(65%);
+    }
+    @media (max-width: 1000px) {
+  .hero {
+    height: 50vh; /* Adjust height for smaller screens */
+    background-size: cover;
+    background-position: center; /* Change background size for smaller screens if needed */
+    filter: brightness(65%); /* Adjust brightness for smaller screens if needed */
+  }
+ }
+    .header{
+        font-family: Anger;
+
+        letter-spacing: 2px;
+        
+    }
+    .FAQ{
+      height: 100vh;
+     
+      background-image: url('../assets/imgs/FAQ.png');
+      background-position: center;
+      background-repeat: no-repeat;
+      font-family: Zabal;
+    }
+    .swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.swiper-button-next,
+          .swiper-button-prev {
+            background-color: rgba(255, 255, 255, 0.772);
+            background-position: center;
+           
+            background-repeat: no-repeat;
+            padding: 25px;
+            border-radius: 100%;
+            
+            color: red;
+          }
+          .swiper-button-prev {
+            background-image: url("../assets/icons/left-arrow.png");
+          }
+
+          .swiper-button-next {
+            background-image: url("../assets/icons/right-arrow.png");
+          }
+
+          .swiper-button-next::after,
+          .swiper-button-prev::after {
+            content: "";
+          }
+ 
+</style>
