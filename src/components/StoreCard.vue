@@ -13,46 +13,48 @@
   </template>
   
   <script>
-  export default {
-    props: {
-      cardImage: String,
-      hoverImage: String,
-      cardDesc: String,
-      cardPrice: String,
+export default {
+  props: {
+    cardImage: String,
+    hoverImage: String,
+    cardDesc: String,
+    cardPrice: String,
+  },
+  data() {
+    return {
+      currentImage: this.cardImage,
+      imageOpacity: 1 
+    };
+  },
+  methods: {
+    changeImage() {
+      this.imageOpacity = 0;
+      setTimeout(() => {
+        this.currentImage = this.hoverImage;
+        this.imageOpacity = 1;
+      }, 200); 
     },
-    data() {
-      return {
-        currentImage: this.cardImage,
-        imageOpacity: 1 
-      };
+    restoreImage() {
+      this.imageOpacity = 0;
+      setTimeout(() => {
+        this.currentImage = this.cardImage;
+        this.imageOpacity = 1;
+      }, 200);
     },
-    methods: {
-      changeImage() {
-        this.imageOpacity = 0;
-        setTimeout(() => {
-          this.currentImage = this.hoverImage;
-          this.imageOpacity = 1;
-        }, 200); 
-      },
-
-      restoreImage() {
-        this.imageOpacity = 0;
-        setTimeout(() => {
-          this.currentImage = this.cardImage;
-          this.imageOpacity = 1;
-        }, 200);
-      },
-
-      handleClick(){
-        this.$emit('imageClicked', this.cardImage, this.cardDesc, this.cardPrice);
-      },
-    }
+    handleClick() {
+      this.$store.dispatch('selectCardDetails', {
+        image: this.cardImage,
+        description: this.cardDesc,
+        price: this.cardPrice
+      });
+    },
   }
-  </script>
-  
-  <style>
-  img {
-    transition: opacity 0.3s ease-in;
-  }
-  </style>
+};
+</script>
+
+<style>
+img {
+  transition: opacity 0.3s ease-in;
+}
+</style>
   

@@ -6,7 +6,7 @@
             alt="T-shirt with graphic"
             class="w-[300px] h-[400px] object-cover bigimg"
             height="400"
-            src=""
+            :src="selectedCardDetails.image"
             width="300"
           />
           <div class="grid grid-cols-4 gap-2">
@@ -45,14 +45,14 @@
           </div>
         </div>
         <div class="flex flex-col pl-8">
-          <h1 class="text-3xl font-bold">{{ DetailDesc }}</h1>
+          <h1 class="text-3xl font-bold">{{ selectedCardDetails.description }}</h1>
           <p class="mt-4 text-sm text-gray-600">
             Semi-oversized fit, screen printed graphic and embroidery detail at front. Cinder label with HIGHERGRAVITY
             zigzag embroidery.
           </p>
           <div class="mt-4">
             <p class="text-lg font-semibold">Price:</p>
-            <p class="text-lg">{{ DetailPrice }}</p>
+            <p class="text-lg">{{ selectedCardDetails.price }}</p>
           </div>
           <div class="mt-4">
             <p class="text-lg font-semibold">Select Size:</p>
@@ -103,39 +103,13 @@
 </template>
 
 <script>
-import StoreCard from '@/components/StoreCard.vue'
 export default {
-components: {
-    StoreCard
-},
-data() {
-      return {
-        DetailImage:'',
-        DetailDesc:'',
-        DetailPrice:'',
-       
-        count:1
-      }
+  computed: {
+    selectedCardDetails() {
+      return this.$store.getters.selectedCardDetails;
     },
-methods: {
-    increment() {
-          if (this.count < 15) {
-            this.count++;
-          }
-        },
-        decrement() {
-          if (this.count > 1) {
-            this.count--;
-          }
-        },
-        handleImageClicked(cardImage, cardDesc, cardPrice) {
-          this.DetailDesc = cardDesc,
-          this.DetailPrice = cardPrice,
-          this.DetailImage = cardImage
-      },
-      
- }
- }
+  },
+};
 </script>
 
 <style>

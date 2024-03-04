@@ -47,24 +47,24 @@
 
 <!-- Fourth Page -->
 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 mx-10 my-10">
-  
+    <!-- Right side (text) -->
+    <div class="flex items-center justify-center text-center md:order-2">
+        <div class="p-8">
+            <h2 class="header md:text-[80px] text-[50px] ">Unleash your Style’s Potential</h2>
+            <p class="py-5 text-2xl" style="font-family: Zabal; letter-spacing:5px; color:#A0A0A0"> Take your closet to the highest level</p>
+            <HGButton href="/pants">Pants</HGButton>
+        </div>
+    </div>
     <!-- Left side (image) -->
-    <div class="flex items-center justify-center">
+    <div class="flex items-center justify-center md:order-1">
         <swiper :navigation="true" :modules="modules" class="mySwiper">
             <swiper-slide><img src="../assets/imgs/slider7.png" class="max-w-full h-auto"></swiper-slide>
             <swiper-slide><img src="../assets/imgs/slider8.png" class="max-w-full h-auto"></swiper-slide>
             <swiper-slide><img src="../assets/imgs/slider9.png" class="max-w-full h-auto"></swiper-slide>
         </swiper>
     </div>
-      <!-- Right side (text) -->
-      <div class="flex items-center justify-center text-center">
-        <div class="p-8">
-            <h2 class="header md:text-[80px] text-[50px] ">Unleash your Style’s Potential</h2>
-            <p class="py-5 text-2xl" style="font-family: Zabal; letter-spacing:5px; color:#A0A0A0"> Take your closet to the highest level</p>
-           <HGButton href="/pants">Pants</HGButton>
-        </div>
-    </div>
 </div>
+
 <!-- FAQ -->
 <div class="FAQ">
   <div class="text-center text-white">
