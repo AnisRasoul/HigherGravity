@@ -4,7 +4,7 @@
         <!--First page-->
         <div class="hero h-screen bg-cover bg-no-repeat bg-center brightness-65" style="background-image: url('../assets/imgs/bg1.png');">
     <div class="hero flex justify-center items-center flex-col"> <!-- Added flex-col -->
-        <a href="#" class="text-white border-2 border-white text-3xl px-10 py-2 bg-opacity-25 hover:bg-opacity-50" style="background-color: rgba(0, 0, 0, 0.237);">EXPLORE</a>
+        <a href="#" class="text-white border-2 border-white text-3xl px-10 py-3 bg-opacity-50 bg-black hover:text-black hover:bg-white hover:border-black hover:bg-opacity-40">EXPLORE</a>
     </div>
 </div>
 
@@ -14,7 +14,7 @@
     <div class="flex items-center justify-center text-center sm:order-2"> <!-- Swap order for small screens -->
         <div class="p-8">
             <h2 class="header md:text-[80px] text-[50px] ">The world of Higher gravity</h2>
-            <a href="/newin" class="text-black border-2 border-black text-3xl px-10 py-2 inline-block mt-5" style="background-color: rgba(255, 255, 255, 0.237);">NEW IN</a>
+            <HGButton href="/newin">new in</HGButton>
         </div>
     </div>
     <!-- Left side (image) -->
@@ -32,7 +32,7 @@
     <div class="flex items-center justify-center text-center">
         <div class="p-8">
             <h2 class="header md:text-[80px] text-[50px] ">Clothes on Cloud Nins9</h2>
-            <a href="/shirts" class="text-black border-2 border-black text-3xl px-10 py-2 inline-block mt-5" style="background-color: rgba(255, 255, 255, 0.237);">T-SHIRTS</a>
+            <HGButton href="/shirts">T-SHIRTS</HGButton>
         </div>
     </div>
     <!-- Left side (image) -->
@@ -61,7 +61,7 @@
         <div class="p-8">
             <h2 class="header md:text-[80px] text-[50px] ">Unleash your Style’s Potential</h2>
             <p class="py-5 text-2xl" style="font-family: Zabal; letter-spacing:5px; color:#A0A0A0"> Take your closet to the highest level</p>
-            <a href="/pants" class="text-black border-2 border-black text-3xl px-10 py-2 inline-block mt-5" style="background-color: rgba(255, 255, 255, 0.237);">Pants</a>
+           <HGButton href="/pants">Pants</HGButton>
         </div>
     </div>
 </div>
@@ -90,10 +90,11 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import navbar from '../components/navbar.vue'
 import footing from '../components/footing.vue'
+import HGButton from '@/components/ui/HGButton.vue';
 export default {
     components: {
       Swiper,SwiperSlide,
-      navbar, footing,
+      navbar, footing,HGButton
     },
     setup() {
       return {
@@ -196,4 +197,4 @@ export default {
             content: "";
           }
  
-</style>
+</style>../components/ui/HG-Button.vue
