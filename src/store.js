@@ -36,6 +36,14 @@ const store = createStore({
       { id: "2", cardImage:"https://i.imgur.com/t6Iakck.png", hoverImage: "https://i.imgur.com/HGxFEfE.png", cardDesc: "HigherGravity dark blue ocean jersey.", cardPrice: "$25.00 USD", },
       { id: "3", cardImage:"https://i.imgur.com/MONyixl.png", hoverImage: "https://i.imgur.com/sb6AqDJ.png", cardDesc: "HigherGravity Retro Sport Beige Shirt.", cardPrice: "$25.00 USD", },
       ],
+      selectedCard:[
+        {
+          selectedcardImage:'',
+          selectedCardcardDesc:'',
+          selectedCardPrice:'',
+
+        }
+      ]
 
 
   },

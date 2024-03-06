@@ -28,10 +28,11 @@ const router = createRouter({
       component: Pants
     },
     {
-      path: '/productdetails',
+      path: '/details',
       name: 'productdetails',
       component: ProductDetails
     },
+
   ]
 })
 

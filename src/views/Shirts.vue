@@ -10,6 +10,7 @@
             :hover-image="shirt.hoverImage" 
             :card-desc="shirt.cardDesc"
             :card-price="shirt.cardPrice"
+            @click="goToProductPage"
             class="mx-5 my-5 sm:w-1/2 lg:w-1/3"
           />
         </div>
@@ -23,6 +24,7 @@
   import footing from '@/components/footing.vue';
   import StoreCard from '@/components/StoreCard.vue';
   import StoreTitle from '@/components/StoreTitle.vue';
+
   
   export default {
     components: {
@@ -41,7 +43,8 @@
       shirts(){
         return this.$store.state.shirts
       }
-    }
+    },
+
   }
   </script>
   

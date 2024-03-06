@@ -1,7 +1,7 @@
 <template>
   <div>
     <navbar/>
-    <CardDetails class="my-20" @imageClicked="handleImageClicked"/>
+    <CardDetails class="my-20"/>
     <footing/>
   </div>
 </template>
@@ -10,16 +10,15 @@
 import navbar from '@/components/navbar.vue';
 import footing from '@/components/footing.vue';
 import CardDetails from '@/components/CardDetails.vue';
+import StoreCard from '../components/StoreCard.vue'
 
 export default {
 components: {
-    navbar,footing,CardDetails,
+    navbar,footing,CardDetails,StoreCard,
 },
+
+
 
 
 }
 </script>
-
-<style>
-
-</style>

@@ -1,6 +1,6 @@
 <template>
     <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md md:shadow-lg dark:bg-gray-800 dark:border-gray-700">
-      <a href="/productdetails" @click="handleClick" >
+      <a>
         <img class="w-full" :src="currentImage" alt="Card Image" @mouseenter="changeImage" @mouseleave="restoreImage" :style="{ opacity: imageOpacity }">
       </a>
       <div class="p-5">
@@ -13,6 +13,7 @@
   </template>
   
   <script>
+
 export default {
   props: {
     cardImage: String,
@@ -40,13 +41,6 @@ export default {
         this.currentImage = this.cardImage;
         this.imageOpacity = 1;
       }, 200);
-    },
-    handleClick() {
-      this.$store.dispatch('selectCardDetails', {
-        image: this.cardImage,
-        description: this.cardDesc,
-        price: this.cardPrice
-      });
     },
   }
 };
