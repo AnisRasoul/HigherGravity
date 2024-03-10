@@ -42,6 +42,7 @@ export default {
         this.imageOpacity = 1;
       }, 200);
     },
+ 
   }
 };
 </script>

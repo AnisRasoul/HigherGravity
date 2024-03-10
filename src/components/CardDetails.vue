@@ -41,14 +41,14 @@
 
         </div>
         <div class="flex flex-col pl-8">
-          <h1 class="text-3xl font-bold">{{  }}</h1>
+          <h1 class="text-3xl font-bold">{{ cardDesc }}</h1>
           <p class="mt-4 text-sm text-gray-600">
             Semi-oversized fit, screen printed graphic and embroidery detail at front. Cinder label with HIGHERGRAVITY
             zigzag embroidery.
           </p>
           <div class="mt-4">
             <p class="text-lg font-semibold">Price:</p>
-            <p class="text-lg">{{ }}</p>
+            <p class="text-lg">{{ cardPrice}}</p>
           </div>
           <div class="mt-4">
             <p class="text-lg font-semibold">Select Size:</p>
@@ -64,12 +64,7 @@
           <div class="mt-4">
             <p class="text-lg font-semibold">Quantity:</p>
             <div class="flex items-center space-x-10">
-                <div class="flex space-x-5 items-center bg-white text-black py-2 border border-black font-extrabold">
-
-                    <button @click="decrement" class="text-black p-2 px-5 rounded">-</button>
-                     <p class="text-lg">{{ count }}</p>
-                    <button @click="increment" class="text-black p-2 px-5 rounded">+</button>
-                </div>
+                <CounterButton/>
               <Button class="bg-white text-black md:px-16 px-8 md:py-2 py-3 border border-black font-extrabold"> <span class="mdi mdi-cart-outline mr-3 text-lg"></span>Add to Cart</Button>
             </div>
           </div>
@@ -100,15 +95,15 @@
 
 <script>
 import StoreCard from '../components/StoreCard.vue'
+import CounterButton from '../components/ui/CounterButton.vue'
 export default {
 
   components:{
-    StoreCard
+    StoreCard, CounterButton
   },
 
 data() {
   return {
-    count: 1,
     cards:[
       { id: "1", cardImage:"https://i.imgur.com/4VIBsSW.png", hoverImage: "https://i.imgur.com/IR7GgQx.png", cardDesc: "HigherGravity classy light blue shirt.", cardPrice: "$29.99 USD", },
       { id: "2", cardImage:"https://i.imgur.com/t6Iakck.png", hoverImage: "https://i.imgur.com/HGxFEfE.png", cardDesc: "HigherGravity dark blue ocean jersey.", cardPrice: "$25.00 USD", },
@@ -117,26 +112,7 @@ data() {
   }
 },
 
-  methods:{
-    increment() {
-          if (this.count < 15) {
-            this.count++;
-          }
-        },
-        decrement() {
-          if (this.count > 1) {
-            this.count--;
-          }
-        },
-        handleImageClicked(cardImage, cardDesc, cardPrice) {
-          this.DetailDesc = cardDesc,
-          this.DetailPrice = cardPrice,
-          this.DetailImage = cardImage
-      },
 
-      
-     
-    }
   }
 
 </script>
