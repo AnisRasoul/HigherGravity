@@ -10,6 +10,7 @@
             :hover-image="pant.hoverImage" 
             :card-desc="pant.cardDesc"
             :card-price="pant.cardPrice"
+            @click="goToProductPage(pant.id)"
             class="mx-5 my-5 sm:w-1/2 lg:w-1/3"
           />
         </div>
@@ -23,6 +24,7 @@
   import footing from '@/components/footing.vue';
   import StoreCard from '@/components/StoreCard.vue';
   import StoreTitle from '@/components/StoreTitle.vue';
+  import router from '@/router';
   
   export default {
     components: {
@@ -41,6 +43,11 @@
     computed:{
       pants(){
         return this.$store.state.pants
+      }
+    },
+    methods: {
+      goToProductPage(id) {
+        router.push({ name: 'productdetails', params: { id } })
       }
     }
   }

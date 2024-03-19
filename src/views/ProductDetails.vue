@@ -16,6 +16,11 @@ export default {
 components: {
     navbar,footing,CardDetails,StoreCard,
 },
+computed: {
+  selectedShirt(){
+        return store.shirts((item) => item.id === Number(route.params.id))
+      }
+}
 
 
 

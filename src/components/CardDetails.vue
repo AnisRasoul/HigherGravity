@@ -3,7 +3,7 @@
       <div class="md:flex max-w-4xl mx-auto items-center">
         <div class="flex flex-col space-y-4 items-center">
 
-          <img alt="T-shirt with graphic" class="md:w-[530px] md:h-[300px" src="https://i.imgur.com/kNz04e9.png" width="300" />
+          <img alt="T-shirt with graphic" class="md:w-[530px] md:h-[300px" :src="cardImage" width="300" />
           <div class="md:grid grid-cols-4 gap-2 hidden">
             <img
               alt="T-shirt thumbnail"
@@ -43,8 +43,7 @@
         <div class="flex flex-col pl-8">
           <h1 class="text-3xl font-bold">{{ cardDesc }}</h1>
           <p class="mt-4 text-sm text-gray-600">
-            Semi-oversized fit, screen printed graphic and embroidery detail at front. Cinder label with HIGHERGRAVITY
-            zigzag embroidery.
+          
           </p>
           <div class="mt-4">
             <p class="text-lg font-semibold">Price:</p>
@@ -111,6 +110,7 @@ data() {
       ],
   }
 },
+
 
 
   }

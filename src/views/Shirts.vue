@@ -10,7 +10,7 @@
             :hover-image="shirt.hoverImage" 
             :card-desc="shirt.cardDesc"
             :card-price="shirt.cardPrice"
-            @click="goToProductPage"
+            @click="goToProductPage(shirt.id)"
             class="mx-5 my-5 sm:w-1/2 lg:w-1/3"
           />
         </div>
@@ -24,6 +24,7 @@
   import footing from '@/components/footing.vue';
   import StoreCard from '@/components/StoreCard.vue';
   import StoreTitle from '@/components/StoreTitle.vue';
+  import router from '@/router';
 
   
   export default {
@@ -42,9 +43,13 @@
     computed:{
       shirts(){
         return this.$store.state.shirts
-      }
+      },
     },
-
+    methods: {
+      goToProductPage(id) {
+        router.push({ name: 'productdetails', params: { id } })
+      }
+    }
   }
   </script>
   
