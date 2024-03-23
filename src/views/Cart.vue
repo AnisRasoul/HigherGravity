@@ -1,6 +1,7 @@
 <template>
     <div>
   <navbar/>
+  
   <div class="flex justify-between mx-14 my-14 items-center">
 
   <div class="text-center sm:text-left">
@@ -9,10 +10,10 @@
   </div>
   <a href="#" class="underline font-semibold text-[#5E5E5E]">Continue Shopping</a>
   </div>
-  <div class="flex justify-around mx-14 items-center">
+  <div class="grid grid-cols-3 justify-items-center gap-24">
     <h1 class="uppercase text-[#5E5E5E] font-bold ">Product</h1>
-    <h1 class="uppercase text-[#5E5E5E] font-bold ">quantity</h1>
-    <h1 class="uppercase text-[#5E5E5E] font-bold ">total</h1>
+    <h1 class="uppercase text-[#5E5E5E] font-bold ml-80 ">quantity</h1>
+    <h1 class="uppercase text-[#5E5E5E] font-bold ml-20 ">total</h1>
   </div>
   <div>
     <CartItem/>

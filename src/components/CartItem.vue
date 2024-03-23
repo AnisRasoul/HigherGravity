@@ -1,9 +1,9 @@
 <template>
   <div class="flex justify-around items-center">
     <div>
-        <div class="flex items-center">
+        <div class="flex space-x-6 items-center">
             <div>
-                <img src="https://i.imgur.com/gwutwO9.png">
+                <img src="https://i.imgur.com/gwutwO9.png" class="w-50 h-56">
             </div>
 
             <div>
@@ -16,8 +16,10 @@
         </div>
 
     </div>
-    
+        <div class="flex space-x-6">
        <CounterButton/>
+       <button><span class="mdi mdi-trash-can-outline text-2xl"></span></button>
+        </div>
   
     <div>
         <h1 class="font-extrabold">$35.50 USD</h1>

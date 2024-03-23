@@ -11,6 +11,7 @@
   "dependencies": {
     "@coreui/vue": "^4.10.2",
     "@dafcoe/vue-collapsible-panel": "^0.2.0",
+    "@formkit/auto-animate": "^0.8.1",
     "swiper": "^11.0.6",
     "vue": "^3.4.15",
     "vue-faq-accordion": "^1.6.2",
