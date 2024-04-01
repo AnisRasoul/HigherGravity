@@ -10,17 +10,13 @@
 import navbar from '@/components/navbar.vue';
 import footing from '@/components/footing.vue';
 import CardDetails from '@/components/CardDetails.vue';
-import StoreCard from '../components/StoreCard.vue'
+import StoreCard from '../components/ui/StoreCard.vue'
 
 export default {
 components: {
     navbar,footing,CardDetails,StoreCard,
 },
-computed: {
-  selectedShirt(){
-        return store.shirts((item) => item.id === Number(route.params.id))
-      }
-}
+
 
 
 

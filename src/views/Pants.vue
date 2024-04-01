@@ -5,7 +5,7 @@
         <StoreTitle :title="pageTitle" :description="pageDescription"/>
   
         <div class="flex justify-center items-center my-20 flex-wrap">
-          <StoreCard v-for="pant in pants" :key="pant.id"
+          <StoreCard v-for="pant in $store.state.pants" :key="pant.id"
             :card-image="pant.cardImage"
             :hover-image="pant.hoverImage" 
             :card-desc="pant.cardDesc"
@@ -22,7 +22,7 @@
   <script>
   import navbar from '@/components/navbar.vue';
   import footing from '@/components/footing.vue';
-  import StoreCard from '@/components/StoreCard.vue';
+  import StoreCard from '@/components/ui/StoreCard.vue';
   import StoreTitle from '@/components/StoreTitle.vue';
   import router from '@/router';
   
@@ -40,11 +40,7 @@
         pageDescription: "Get ready to turn heads with our show-stopping JEANS!"
       }
     },
-    computed:{
-      pants(){
-        return this.$store.state.pants
-      }
-    },
+
     methods: {
       goToProductPage(id) {
         router.push({ name: 'productdetails', params: { id } })

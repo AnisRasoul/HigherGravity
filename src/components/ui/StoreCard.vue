@@ -16,6 +16,7 @@
 
 export default {
   props: {
+    id: Number,
     cardImage: String,
     hoverImage: String,
     cardDesc: String,

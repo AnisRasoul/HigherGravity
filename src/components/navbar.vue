@@ -35,8 +35,8 @@
       <!--Search input-->
 
       <div class="text-white md:px-4 md:py-2 h-10 mb-2 md:mb-0 w-20"><img src="../assets/icons/Combined-Shape.svg" alt=""></div>
-      <div class="text-white md:px-4 md:py-2 mr-8 mb-2 md:mb-0 h-10 w-20"><img src="../assets/icons/PROFIL ICON.svg" alt=""></div>
-    </div>
+     <a href="/cart" class="text-white md:px-4 md:py-2 mr-8 mb-2 md:mb-0 h-10 w-20"><img src="../assets/icons/PROFIL ICON.svg" alt=""></a>
+     </div>
   </nav>
   </div>
 </template>
