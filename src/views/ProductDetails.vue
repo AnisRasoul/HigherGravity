@@ -9,8 +9,8 @@
 <script>
 import navbar from '@/components/navbar.vue';
 import footing from '@/components/footing.vue';
-import CardDetails from '@/components/CardDetails.vue';
-import StoreCard from '../components/ui/StoreCard.vue'
+import CardDetails from '@/components/Cards/CardDetails.vue';
+import StoreCard from '../components/Cards/StoreCard.vue'
 
 export default {
 components: {

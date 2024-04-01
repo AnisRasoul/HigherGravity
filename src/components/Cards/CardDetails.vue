@@ -3,42 +3,13 @@
     <div class="md:flex max-w-4xl mx-auto items-center">
       <div class="flex flex-col space-y-4 items-center">
 
-        <img alt="T-shirt with graphic" class="md:w-[530px] md:h-[300px" :src="selectedShirt.cardImage" width="300" />
+      <img alt="T-shirt with graphic" class="md:w-[530px] md:h-[300px" :src="selectedShirt.cardImage" width="300" />
         <div class="md:grid grid-cols-4 gap-2 hidden">
-          <img
-            alt="T-shirt thumbnail"
-            class="w-[75px] h-[100px] object-cover smallimg"
-            height="100"
-            src=""
-           
-            width="75"
-          />
-          <img
-            alt="T-shirt thumbnail"
-            class="w-[75px] h-[100px] object-cover"
-            height="100"
-            src=""
-          
-            width="75"
-          />
-          <img
-            alt="T-shirt thumbnail"
-            class="w-[75px] h-[100px] object-cover"
-            height="100"
-            src=""
-           
-            width="75"
-          />
-          <img
-            alt="T-shirt thumbnail"
-            class="w-[75px] h-[100px] object-cover"
-            height="100"
-            src=""
-          
-            width="75"
-          />
+          <img alt="T-shirt thumbnail" class="w-[75px] h-[100px] object-cover smallimg" height="100" src="" width="75"/>
+          <img alt="T-shirt thumbnail" class="w-[75px] h-[100px] object-cover" height="100" src="" width="75"/>
+          <img alt="T-shirt thumbnail" class="w-[75px] h-[100px] object-cover" height="100" src="" width="75"/>
+          <img alt="T-shirt thumbnail" class="w-[75px] h-[100px] object-cover" height="100" src="" width="75"/>
         </div>
-
       </div>
       <div class="flex flex-col pl-8">
         <h1 class="text-3xl font-bold">{{ selectedShirt.cardDesc }}</h1>
@@ -94,8 +65,8 @@
 
 <script>
 import store from '@/store'
-import StoreCard from '../components/ui/StoreCard.vue'
-import CounterButton from '../components/ui/CounterButton.vue'
+import StoreCard from '@/components/Cards/StoreCard.vue'
+import CounterButton from '../ui/CounterButton.vue'
 
 export default {
   components:{

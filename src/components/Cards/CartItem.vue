@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import CounterButton from '../components/ui/CounterButton.vue'
+import CounterButton from '../ui/CounterButton.vue';
 export default {
     components: {
         CounterButton

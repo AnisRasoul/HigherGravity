@@ -20,7 +20,7 @@
 <script>
 import navbar from '@/components/navbar.vue';
 import footing from '@/components/footing.vue';
-import StoreCard from '@/components/ui/StoreCard.vue';
+import StoreCard from '@/components/Cards/StoreCard.vue';
 import StoreTitle from '@/components/StoreTitle.vue';
 
 export default {

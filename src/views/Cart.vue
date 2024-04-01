@@ -26,7 +26,7 @@
 import navbar from '@/components/navbar.vue';
 import footing from '@/components/footing.vue';
 import CounterButton from '../components/ui/CounterButton.vue'
-import CartItem from '../components/CartItem.vue'
+import CartItem from '@/components/Cards/CartItem.vue';
 
 export default {
 components: {
