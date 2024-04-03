@@ -3,7 +3,7 @@
     <div class="md:flex max-w-4xl mx-auto items-center">
       <div class="flex flex-col space-y-4 items-center">
 
-      <img alt="T-shirt with graphic" class="md:w-[530px] md:h-[300px" :src="selectedShirt.cardImage" width="300" />
+      <img alt="T-shirt with graphic" class="md:w-[530px] md:h-[300px" :src="selectedProduct.cardImage" width="300" />
         <div class="md:grid grid-cols-4 gap-2 hidden">
           <img alt="T-shirt thumbnail" class="w-[75px] h-[100px] object-cover smallimg" height="100" src="" width="75"/>
           <img alt="T-shirt thumbnail" class="w-[75px] h-[100px] object-cover" height="100" src="" width="75"/>
@@ -12,13 +12,13 @@
         </div>
       </div>
       <div class="flex flex-col pl-8">
-        <h1 class="text-3xl font-bold">{{ selectedShirt.cardDesc }}</h1>
+        <h1 class="text-3xl font-bold">{{ selectedProduct.cardDesc }}</h1>
         <p class="mt-4 text-sm text-gray-600">
         
         </p>
         <div class="mt-4">
           <p class="text-lg font-semibold">Price:</p>
-          <p class="text-lg">{{ selectedShirt.cardPrice}}</p>
+          <p class="text-lg">{{ selectedProduct.cardPrice}}</p>
         </div>
         <div class="mt-4">
           <p class="text-lg font-semibold">Select Size:</p>
@@ -82,10 +82,19 @@ export default {
     }
   },
   computed: {
-    selectedShirt(){
-      return store.state.shirts.find((item) => item.id === Number(this.$route.params.id));
+  selectedProduct() {
+  const id = Number(this.$route.params.id);
+  for (const category of store.state.products) { // loop through the catergories of product
+    for (const item of category.items) { // loop in the items
+      if (item.id === id) { // if you find the id return the item's data
+        return item; 
+      }
     }
-  },
+  }
+}
+
+}
+
   
 }
 </script>
