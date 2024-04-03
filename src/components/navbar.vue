@@ -14,7 +14,7 @@
   <span @click="showMenu = !showMenu" class="absolute md:hidden right-2 top-24 cursor-pointer text-white text-5xl">
     <i class="mdi mdi-menu"></i>
   </span>
-  <a class="text-white px-6 py-1 mr-9" href="/"> <!-- Added md:ml-4 -->
+  <a class="text-white px-6 py-1 mr-9" href="/"> 
     <img src="../assets/HG logo.svg" alt="">
   </a>
   <ul class="md:flex" :class="showMenu ? '' : 'hidden'"> 
@@ -34,8 +34,8 @@
       </div>
       <!--Search input-->
 
-      <div class="text-white md:px-4 md:py-2 h-10 mb-2 md:mb-0 w-20"><img src="../assets/icons/Combined-Shape.svg" alt=""></div>
-     <a href="/cart" class="text-white md:px-4 md:py-2 mr-8 mb-2 md:mb-0 h-10 w-20"><img src="../assets/icons/PROFIL ICON.svg" alt=""></a>
+      <a href="/cart" class="text-white md:px-4 md:py-2 h-10 mb-2 md:mb-0 w-20"><img src="../assets/icons/Combined-Shape.svg" alt=""></a>
+     <a href="/" class="text-white md:px-4 md:py-2 mr-8 mb-2 md:mb-0 h-10 w-20"><img src="../assets/icons/PROFIL ICON.svg" alt=""></a>
      </div>
   </nav>
   </div>

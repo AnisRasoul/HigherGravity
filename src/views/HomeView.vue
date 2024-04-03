@@ -65,18 +65,8 @@
     </div>
 </div>
 
-<!-- FAQ -->
-<div class="FAQ">
-  <div class="text-center text-white">
-  <h1 class="md:text-8xl">Frequently Asked Questions</h1>
-  <p class="my-3 text-2xl">
-    Dive into the most asked questions about our stellar clothing line, Higher Gravity, and discover the secrets behind our elevated style!
-  </p>
-  </div>
-  
-
-</div>
 <!--Footer-->
+  <h1 class="text-center md:text-9xl text-5xl md:my-40 my-20 font-[Anger] font-medium md:tracking-[4rem] tracking-[9px]">Higher gravity</h1>
       <img src="../assets/imgs/young-women-wearing-2000s-fashion 1.png" class="max-w-full h-auto my-28 block mx-auto">
       <footing/>
 </div>

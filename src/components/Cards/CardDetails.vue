@@ -18,7 +18,7 @@
         </p>
         <div class="mt-4">
           <p class="text-lg font-semibold">Price:</p>
-          <p class="text-lg">{{ selectedProduct.cardPrice}}</p>
+          <p class="text-lg">${{ selectedProduct.cardPrice}}</p>
         </div>
         <div class="mt-4">
           <p class="text-lg font-semibold">Select Size:</p>

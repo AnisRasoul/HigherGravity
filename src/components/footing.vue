@@ -1,23 +1,23 @@
 <template>
  <div>
-   <div class="flex justify-around items-center">
+   <div class="md:flex md:justify-around md:items-center">
      <!-- input -->
       <div>
-      <h2 class="text-lg font-semibold">Subscribe to our emails:</h2>
-      <div class="mt-4 flex border-b border-black">
+      <h2 class="text-lg font-semibold text-center">Subscribe to our emails:</h2>
+      <div class="mt-4 flex border-b border-black ml-20">
         <Input class="border-r-0 outline-none" placeholder="Email" type="email" />
         <Button><span class="mdi mdi-arrow-right-circle-outline text-2xl"></span></Button>
       </div>
     </div>
     <!-- icons -->
-    <div class="flex justify-center mb-8 md:mt-0 mt-20">
-       <a href=""> <span class="mdi mdi-instagram text-3xl mx-1  md:mx-2"></span></a> 
-        <a href=""><span class="mdi mdi-pinterest text-3xl mx-1  md:mx-2"></span></a> 
-        <a href=""><span class="mdi mdi-twitter text-3xl   mx-1  md:mx-2"></span></a>  
-        <a href=""><span class="mdi mdi-snapchat text-3xl  mx-1  md:mx-2"></span></a> 
+    <div class="flex justify-center mb-8 mt-5 md:mt-20">
+       <a href=""> <span class="mdi mdi-instagram text-3xl mx-4  md:mx-3"></span></a> 
+        <a href=""><span class="mdi mdi-pinterest text-3xl mx-4  md:mx-3"></span></a> 
+        <a href=""><span class="mdi mdi-twitter text-3xl   mx-4  md:mx-3"></span></a>  
+        <a href=""><span class="mdi mdi-snapchat text-3xl  mx-4  md:mx-3"></span></a> 
     </div  >
        </div  >
-       <div class="border-b border-black w-full my-10"></div>
+       <div class="md:border-b md:border-black md:w-full md:my-10 hidden"></div>
          <!-- Payment -->
        <div class="flex justify-center items-center">
        
