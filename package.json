@@ -9,7 +9,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "lucide-vue-next": "^0.368.0",
+    "radix-vue": "^1.7.0",
     "swiper": "^11.0.6",
+    "tailwind-merge": "^2.2.2",
+    "tailwindcss-animate": "^1.0.7",
     "vue": "^3.4.15",
     "vue-router": "^4.2.5",
     "vuex": "^4.1.0"
