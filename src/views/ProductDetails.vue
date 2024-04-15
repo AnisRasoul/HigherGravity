@@ -28,7 +28,7 @@
         'bg-black text-white': selectedSize === size.value,
         'bg-white text-dark': selectedSize !== size.value
       }"
-      class="p-2 md:px-5 px-3 border border-black rounded hover:bg-black hover:text-white"
+      class="p-2 md:px-4 px-2 border border-black rounded hover:bg-black hover:text-white"
       @click="selectSize(size.value)"
     >
       {{ size.label }}
@@ -40,7 +40,7 @@
           <p class="text-lg font-semibold">Quantity:</p>
           <div class="flex items-center space-x-10">
               <CounterButton/>
-            <Button  @click="addToCart" class="bg-white text-black md:px-16 px-8 md:py-2 py-3 border border-black font-extrabold"> <span class="mdi mdi-cart-outline mr-3 text-lg"></span>Add to Cart</Button>
+            <Button @click="addToCart" class="bg-white text-black md:px-16 px-8 md:py-2 py-3 border border-black font-extrabold"> <span class="mdi mdi-cart-outline mr-3 text-lg"></span>Add to Cart</Button>
           </div>
         </div>
         <div class="flex space-x-4 mt-4">
@@ -74,14 +74,13 @@ import CounterButton from '../components/ui/CounterButton.vue'
 import router from '@/router'
 import navbar from '@/components/navbar.vue';
 import footing from '@/components/footing.vue';
-
 export default {
   components: {
     StoreCard,
     CounterButton,
     navbar,
     footing,
-  
+     
   },
   data() {
     return {

@@ -5,6 +5,7 @@ import Shirts from '../views/Shirts.vue'
 import Pants from '../views/Pants.vue'
 import ProductDetails from '../views/ProductDetails.vue'
 import Cart from '@/views/Cart.vue'
+import Payment from '../views/Payment.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -39,6 +40,13 @@ const router = createRouter({
       name: 'cart',
       component: Cart
     },
+    {
+      path: '/payment',
+      name: 'payment',
+      component: Payment
+    },
+
+    
 
   ]
 })
