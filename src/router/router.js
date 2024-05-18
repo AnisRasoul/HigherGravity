@@ -6,6 +6,7 @@ import Pants from '../views/Pants.vue'
 import ProductDetails from '../views/ProductDetails.vue'
 import Cart from '@/views/Cart.vue'
 import Payment from '../views/Payment.vue'
+import Login from '@/views/userAuth/Login.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -44,6 +45,16 @@ const router = createRouter({
       path: '/payment',
       name: 'payment',
       component: Payment
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
+    },
+    {
+      path: '/register',
+      name: 'Register',
+      component: () => import('@/views/userAuth/Register.vue')
     },
 
     

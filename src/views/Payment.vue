@@ -142,7 +142,7 @@
 </div>
 <div v-else>
   <div>
-    <CartItem v-for="item in cartProduct" class="my-16"
+    <CartItem v-for="item in cartProduct" class="my-16 ml-10"
     :key="item.id" 
     :item="item" 
     :cardImage="item.cardImage"
@@ -179,7 +179,7 @@
 </template>
 
 <script>
-  import { Home } from 'lucide-vue-next';
+import { Home } from 'lucide-vue-next';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import navbar from '../components/navbar.vue'
 import footing from '../components/footing.vue'

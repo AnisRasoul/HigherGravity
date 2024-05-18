@@ -71,7 +71,7 @@
 import store from '@/store'
 import StoreCard from '@/components/Cards/StoreCard.vue'
 import CounterButton from '../components/ui/CounterButton.vue'
-import router from '@/router'
+import router from '@/router/router'
 import navbar from '@/components/navbar.vue';
 import footing from '@/components/footing.vue';
 export default {

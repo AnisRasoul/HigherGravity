@@ -24,7 +24,7 @@ import navbar from '@/components/navbar.vue';
 import footing from '@/components/footing.vue';
 import StoreCard from '@/components/Cards/StoreCard.vue';
 import StoreTitle from '@/components/StoreTitle.vue';
-import router from '@/router';
+import router from '@/router/router';
 import { mapState } from 'vuex';
 
 export default {
