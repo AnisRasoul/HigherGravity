@@ -14,14 +14,14 @@
       <a class="text-white px-6 py-1 mx-auto my-4" href="/"> 
         <img src="@/assets/HG logo.svg" class="w-28">
       </a>
-      <h2 class="text-5xl md:w-[70%] mb-3 mx-auto text-primary uppercase text-center font-[Anger] tracking-[8px]">CREATE An Account</h2>
+      <h2 class="text-5xl md:w-[70%] mb-3 mx-auto text-primary uppercase text-center font-[Anger] tracking-[8px]">Login to your account</h2>
       <DynamicForm :schema="formSchema" :on-submit="onSubmit">
   <template #submit-button>
     <Button class="bg-black text-white w-full text-xl font-semibold" type="submit">Sign in</Button>
   </template>
 </DynamicForm>
 
-      <div class="flex md:mx-[10%] mx-[9%] space-x-1 items-center">
+      <div class="flex md:mx-[10%] mx-[9%] space-x-3 items-center my-5">
         <h1>Dont have account?</h1>
         <router-link to="register" class="text-primary text-center hover:underline font-bold">
           Register

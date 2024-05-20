@@ -44,7 +44,7 @@
           </div>
         </div>
         <div class="flex space-x-4 mt-4">
-          <Button class="bg-black text-white md:px-40 px-32 py-5 font-extrabold md:text-2xl" style="letter-spacing: 2px;">BUY IT NOW</Button>
+          <Button class="bg-black text-white md:px-40 px-32 py-5 font-extrabold md:text-2xl" style="letter-spacing: 2px;"  @click="Buy">BUY IT NOW</Button>
         </div>
         <div class="flex space-x-10 mt-4">
           <p class="text-sm underline">  <span class="mdi mdi-export-variant"></span>Share</p>
@@ -102,6 +102,10 @@ export default {
     }
   },
   methods: {
+    Buy(){
+      this.addToCart()
+      router.push({name:'payment' })
+    },
     addToCart() {
     this.$store.dispatch('addToCart', this.selectedProduct)
     router.push({ name: 'cart' })

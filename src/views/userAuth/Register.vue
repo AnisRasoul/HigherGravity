@@ -20,7 +20,7 @@
     <Button class="bg-black text-white w-full text-xl font-semibold " type="submit">Sign up</Button>
   </template>
 </DynamicForm>
-<div class="flex md:mx-[10%] mx-[9%] space-x-1 items-center">
+<div class="flex md:mx-[10%] mx-[9%] space-x-3 items-center my-5">
         <h1>Already Have an account?</h1>
         <router-link to="login" class="text-primary text-center hover:underline font-bold">
           Login

@@ -1,141 +1,135 @@
 <template>
   <div>
     <navbar/>
-    <div class="grid grid-cols-2 mx-20 my-10 border-t border-[#A0A0A0]">
-      <div class="border-r border-[#A0A0A0]">
-        <div class="flex items-center space-x-5 mt-24">
-          <button class="rounded px-10 py-3 bg-[#FFD159]"><img src="../assets/icons/paypal.svg"></button>
-          <button class="bg-[#1434CB] rounded px-12 py-3"><img src="../assets/icons/visa.svg"></button>
-          <button class="bg-black rounded px-12 py-2"><img src="../assets/icons/gpay.svg"></button>
+    <div class="md:grid md:grid-cols-2 md:mx-20 mx-10 my-10 border-t border-[#A0A0A0]">
+      <div class="md:border-r md:border-[#A0A0A0]">
+        <div class="md:flex items-center space-x-5 md:mt-24 hidden">
+          <button class="rounded px-10 py-3 bg-[#FFD159]"><img src="../assets/icons/paypal.svg" alt="Paypal"></button>
+          <button class="bg-[#1434CB] rounded px-12 py-3"><img src="../assets/icons/visa.svg" alt="Visa"></button>
+          <button class="bg-black rounded px-12 py-2"><img src="../assets/icons/gpay.svg" alt="Gpay"></button>
         </div>
-    
-        <form class="w-2/3 space-y-6 my-10" @submit="onSubmi">
-          <FormField v-slot="{ componentField }" name="username">
-            <FormItem>
-              <FormLabel class="text-2xl font-[Zabal] font-bold">Contact</FormLabel>
-              <FormControl>
-                <Input type="text" placeholder="Enter input" v-bind="componentField" />
-              </FormControl>
-              <Checkbox id="terms" />
-              <label
-                for="terms"
-                class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              >
-                Email me with news and offers
-              </label>
-              <FormMessage />
-            </FormItem>
-          </FormField>
-        </form>
 
-        <form class="w-2/3 space-y-6 my-10" @submit="onSubmi">
-          <FormField v-slot="{ componentField }" name="username">
-            <FormItem>
-              <FormLabel class="text-2xl font-[Zabal] font-bold">Delivery</FormLabel>
-              <Select v-bind="componentField">
-          <FormControl>
-            <SelectTrigger>
-              <SelectValue placeholder="Country/Region" />
-            </SelectTrigger>
-            <div class="flex space-x-5 items-center">
-              <Input type="text" placeholder="First name" />
-              <Input type="text" placeholder="Last name" />
-            </div>
-            <div class="relative w-full max-w-sm items-center">
-            <Input id="search" type="search" placeholder="Address" class="pl-10" />
-            <span class="absolute start-0 inset-y-0 flex items-center justify-center px-2">
-             <Search class="size-4 text-muted-foreground" />
-             </span>
-             </div>
-
-             <div class="flex space-x-5 items-center">
-              <Input type="email" placeholder="Postal code" />
-              <Input type="email" placeholder="City" />
+        <Form class="md:w-2/3 space-y-6 my-10" @submit="onSubmit" :validation-schema="validationSchema">
+          <div class="space-y-6">
+            <div class="mb-6">
+              <label class="text-2xl font-[Zabal] font-bold">Contact</label>
+              <Field name="contact" type="email" placeholder="Enter input" class="text-xl border border-black px-3 py-2 w-full"/>
+              <ErrorMessage name="contact" class="text-red-700 text-sm" />
+              <div class="flex items-center space-x-2 mt-2">
+                <Field name="newsAndOffers" type="checkbox" id="terms" />
+                <label for="terms" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                  Email me with news and offers
+                </label>
+              </div>
+              <ErrorMessage name="newsAndOffers"  class="text-red-700 text-sm"/>
             </div>
 
-            <div class="relative w-[68%] items-center">
-            <Input type="tel" placeholder="Enter your phone number" class="pl-10" />
-            <span class="absolute start-0 inset-y-0 flex items-center justify-center px-2">
-             <Info class="size-4 text-muted-foreground" />
-             </span>
-             </div>
-          </FormControl>
-          <SelectContent class="bg-white text-black border">
-    <SelectGroup class="border border-[#A0A0A0]">
-      <!-- Iterate over selectItems array using v-for -->
-      <SelectItem v-for="(item, index) in selectItems" :key="index" :value="item.value">
-        {{ item.text }}
-      </SelectItem>
-    </SelectGroup>
-  </SelectContent>
-        </Select>
+            <div>
+              <label class="text-2xl font-[Zabal] font-bold">Delivery</label>
+              <div class="mt-2">
+                <Field name="country" class="text-xl border border-black px-3 py-2 w-full" as="select">
+                  <option value="" disabled selected>Country/Region</option>
+                  <option v-for="(item, index) in selectItems" :key="index" :value="item.value">
+                    {{ item.text }}
+                  </option>
+                </Field>
+                <ErrorMessage name="country" class="text-red-700 text-sm" />
+              </div>
+              <div class="md:flex md:space-x-10 md:space-y-0 space-y-2 md:my-6 my-3">
+                <div class="md:flex items-center space-x-3">
+                <Field name="firstName" type="text" placeholder="First name" class="text-xl border border-black px-3 py-2 w-full" />
+                <ErrorMessage name="firstName" class="text-red-700 text-sm" />
+                </div>
+                <div class="md:flex items-center space-x-3">  
+                  <Field name="lastName" type="text" placeholder="Last name" class="text-xl border border-black px-3 py-2 w-full" />
+                <ErrorMessage name="lastName" class="text-red-700 text-sm" /></div>
+             
+              </div>
+              <div class="md:flex items-center space-x-3  ">
+                <div class="relative w-full max-w-sm items-center mt-2">
+                  <Field name="address" id="search" type="search" placeholder="Address" class="text-xl border border-black px-3 py-2 pl-10 w-full" />
+                  <span class="absolute start-0 inset-y-0 flex items-center justify-center px-2">
+                    <Search class="size-4 text-muted-foreground" />
+                  </span>
+                </div> 
+                <ErrorMessage name="address" class="text-red-700 text-sm" />
+              </div>
+              <div class="md:flex md:space-x-5 mt-2 items-center">
+                <Field name="postalCode" type="text" placeholder="Postal code" class="text-xl border border-black px-3 py-2 w-full" />
+                <ErrorMessage name="postalCode" class="text-red-700 text-sm" />
+                <Field name="city" type="text" placeholder="City" class="text-xl border border-black px-3 py-2 w-full" />
+                <ErrorMessage name="city" class="text-red-700 text-sm" />
+              </div>
+              <div class="relative md:w-[68%] items-center mt-2">
+                <Field name="phoneNumber" type="tel" placeholder="phone number" class="text-xl border border-black px-3 py-2 pl-10 w-full" />
+                <span class="absolute start-0 inset-y-0 flex items-center justify-center px-2">
+                  <Info class="size-4 text-muted-foreground" />
+                </span>
+              </div>
+              <ErrorMessage name="phoneNumber" class="text-red-700 text-sm"/>
+            </div>
+          </div>
 
-            </FormItem>
-          </FormField>
-        </form>
-        <h1 class="font-bold text-2xl">Shipping method</h1>
-        <div class="flex items-center space-x-20 my-5">
-          <p>Enter your shipping address to view available shipping methods.</p>
-          <Info class="size-4 text-muted-foreground" />
-        </div>
-        <h1 class="font-bold text-2xl">Payment</h1>
-        <p class="my-5">All transactions are secure and encrypted.</p>
-      <RadioGroup default-value="comfortable" class="font-[Zabal]">
+          <div class="mt-6">
+            <h1 class="font-bold text-2xl">Shipping method</h1>
+            <div class="flex items-center md:space-x-20 my-5">
+              <p>Enter your shipping address to view available shipping methods.</p>
+              <Info class="md:size-4 size-10 text-muted-foreground" />
+            </div>
+            <h1 class="font-bold text-2xl">Payment</h1>
+            <p class="my-5">All transactions are secure and encrypted.</p>
+            <div class="font-[Zabal]">
+              <div class="border border-[#A0A0A0] flex items-center justify-between md:w-[68%] py-5 px-5">
+                <div class="flex items-center space-x-2">
+                  <input type="radio" id="r1" name="paymentMethod" value="default" />
+                  <label for="r1">Receiving using Yalidine EXPRESS</label>
+                </div>
+                <img src="../assets/icons/yalidine.svg" alt="Yalidine">
+              </div>
 
-    <div class="border border-[#A0A0A0] flex items-center justify-between w-[68%] py-5 px-5">
-    <div class="flex items-center space-x-2">
-      <RadioGroupItem id="r1" value="default" />
-      <Label for="r1">Receiving using Yalidine EXPRESS</Label>
-    </div>
-    <img src="../assets/icons/yalidine.svg" alt="">
-    </div>
+              <div class="border border-[#A0A0A0] flex items-center justify-between md:w-[68%] py-5 px-5">
+                <div class="flex items-center space-x-2">
+                  <input type="radio" id="r2" name="paymentMethod" value="comfortable" checked />
+                  <label for="r2">PayPal</label>
+                </div>
+                <img src="../assets/icons/paypal.svg" class="h-6" alt="PayPal">
+              </div>
 
-    <div class="border border-[#A0A0A0] flex items-center space-x- justify-between w-[68%] py-5 px-5">
-  <div class="flex items-center space-x-2">
-    <RadioGroupItem id="r2" value="comfortable" />
-    <Label for="r2">PayPal</Label>
-  </div>
-  <img src="../assets/icons/paypal.svg" class="h-6">
-</div>
+              <div class="border border-[#A0A0A0] flex items-center justify-between md:w-[68%] py-5 px-5">
+                <div class="flex items-center space-x-2">
+                  <input type="radio" id="r3" name="paymentMethod" value="compact" />
+                  <label for="r3">Home delivery</label>
+                </div>
+                <Home/>
+              </div>
 
-<div class="border border-[#A0A0A0] flex items-center space-x- justify-between w-[68%] py-5 px-5">
-  <div class="flex items-center space-x-2">
-    <RadioGroupItem id="r3" value="compact" />
-    <Label for="r3">Home delivery</Label>
-  </div>
-  <Home class="size-7 text-muted-foreground"/>
-</div>
+              <div class="border border-[#A0A0A0] flex items-center justify-between md:w-[68%] py-5 px-5">
+                <div class="flex items-center space-x-2">
+                  <input type="radio" id="r4" name="paymentMethod" value="Creditcard" />
+                  <label for="r4">Credit card</label>
+                </div>
+                <div class="flex items-center">
+                  <img src="../assets/footer-pay/visa-logo.svg" alt="Visa">
+                  <img src="../assets/footer-pay/obl.svg" alt="OBL">
+                  <img src="../assets/footer-pay/AMEX.svg" alt="AMEX">
+                </div>
+              </div>
+            </div>
+          </div>
 
-
-<div class="border border-[#A0A0A0] flex items-center space-x- justify-between w-[68%] py-5 px-5">
-  <div class="flex items-center space-x-2">
-    <RadioGroupItem id="r4" value="Creditcard" />
-    <Label for="r4">Credit card</Label>
-  </div>
-  <div class="flex items-center">
-    <img src="../assets/footer-pay/visa-logo.svg">
-    <img src="../assets/footer-pay/obl.svg" >
-    <img src="../assets/footer-pay/AMEX.svg" >
-  </div>
-</div>
-
-  </RadioGroup>
-  <div class="my-5">
-    <h1 class="font-bold text-2xl">Remember me</h1>
-    <div class="w-[68%] py-5 px-5 border border-[#A0A0A0] flex  items-center space-x-3 my-3">
-    <Checkbox id="terms" />
-              <label
-                for="terms"
-                class=" font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              >
-              Save my informations for a faster checkout
+          <div class="my-5">
+            <h1 class="font-bold text-2xl">Remember me</h1>
+            <div class="md:w-[68%] py-5 px-5 border border-[#A0A0A0] flex items-center space-x-3 my-3">
+              <input type="checkbox" id="remember" />
+              <label for="remember" class="font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                Save my information for a faster checkout
               </label>
-    </div>
-    <button class="rounded py-5 bg-[#47A6FF] w-[68%] text-white text-2xl">Pay now</button>
-  </div>
+            </div>
+          </div>
+          <button class="rounded py-5 bg-[#47A6FF] md:w-[68%] w-full text-white text-2xl">Pay now</button>
+        </Form>
       </div>
-      
-      
+
       <div class="my-10">
         <div v-if="!cartProduct.length" class="flex flex-col items-center justify-center my-10">
   <h1 class="md:text-6xl text-3xl font-[Zabal] text-center">Empty Cart ...</h1>
@@ -151,13 +145,13 @@
     :cardPrice="item.cardPrice"/>
   </div>
 </div>
-        <div class="flex w-[90%] items-center ml-16 space-x-4 text-[#151516]">
-    <Input type="text" placeholder="Discount code" class="border border-[#A0A0A0] text-2xl py-7" />
-    <Button type="submit" class="border border-[#A0A0A0] rounded py-7 px-12 text-2xl" >
+        <div class="flex md:w-[90%] items-center md:ml-16 space-x-4 text-[#151516]">
+    <Input type="text" placeholder="Discount code" class="border border-[#A0A0A0] md:text-2xl md:py-7 " />
+    <Button type="submit" class="border border-[#A0A0A0] rounded md:py-7 md:px-12 py-2 px-5 md:text-2xl" >
       Apply
     </Button>
   </div>
-  <div class="w-[90%] my-5 space-y-4 flex flex-col justify-center ml-16 space-x-4 text-[#151516]">
+  <div class="md:w-[90%] my-5 space-y-4 flex flex-col justify-center md:ml-16 space-x-4 text-[#151516]">
     <div class="flex items-center justify-between">
       <h1>Subtotal</h1>
       <h1>$65,49 USD</h1>
@@ -173,84 +167,74 @@
   </div>
       </div>
     </div>
-
     <footing/>
   </div>
 </template>
 
 <script>
-import { Home } from 'lucide-vue-next';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
-import navbar from '../components/navbar.vue'
-import footing from '../components/footing.vue'
+import { Home, Phone } from 'lucide-vue-next';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import navbar from '../components/navbar.vue';
+import footing from '../components/footing.vue';
 import CartItem from '@/components/Cards/CartItem.vue';
-import { Search } from 'lucide-vue-next'
-import { Info } from 'lucide-vue-next'
-import { Checkbox } from '@/components/ui/checkbox'
-import { Button } from '@/components/ui/button'
-import {
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
+import { Search } from 'lucide-vue-next';
+import { Info } from 'lucide-vue-next';
+import { Form, Field, ErrorMessage } from 'vee-validate';
+import * as yup from 'yup';
+
+
+
 export default {
   components: {
+    Form,
+    Field,
+    ErrorMessage,
     navbar,
     footing,
     CartItem,
-    Button,
-    FormControl,
-    FormDescription,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
-    Input,
-    Checkbox,
-    Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-  Search,
-  Info,Home,
-  RadioGroup, RadioGroupItem
+    Search,
+    Info,
+    Home,
+    RadioGroup,
+    RadioGroupItem,
   },
   computed: {
     cartProduct() {
       return this.$store.state.cart;
+    },
+    validationSchema() {
+      return yup.object({
+        contact: yup.string().required('Contact information is required').email('Enter a valid email'),
+        newsAndOffers: yup.boolean('required'),
+        country: yup.string().required('Country/Region is required'),
+        firstName: yup.string().required('required'),
+        lastName: yup.string().required('required'),
+        address: yup.string().required('Address is required'),
+        postalCode: yup.string().required('required'),
+        city: yup.string().required('required'),
+        phoneNumber: yup.string().matches(this.PhoneReg, 'Phone number is not valid').required('Required')
+      });
     }
   },
   data() {
     return {
-      selectItems:[
+      selectItems: [
         { value: 'algeria', text: 'Algeria' },
-  { value: 'france', text: 'France' },
-  { value: 'united-states', text: 'United States' },
-  { value: 'united-kingdom', text: 'United Kingdom' },
-  { value: 'germany', text: 'Germany' },
-  { value: 'spain', text: 'Spain' },
-  { value: 'tunisia', text: 'Tunisia' },
-  { value: 'morocco', text: 'Morocco' }
-]
+        { value: 'france', text: 'France' },
+        { value: 'united-states', text: 'United States' },
+        { value: 'united-kingdom', text: 'United Kingdom' },
+        { value: 'germany', text: 'Germany' },
+        { value: 'spain', text: 'Spain' },
+        { value: 'tunisia', text: 'Tunisia' },
+        { value: 'morocco', text: 'Morocco' }
+      ],
+    PhoneReg :  /^(00213|\+213|0)(5|6|7)[0-9]{8}$/
     }
   },
+  methods: {
+    onSubmit(values){
+      console.log(values);
+    }
+  }
 }
 </script>
-
-<style>
-/* Add your styles here */
-</style>
