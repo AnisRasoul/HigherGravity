@@ -12,7 +12,8 @@
         <img :src="image" alt="T-shirt with graphic" class="md:block flex md:w-96 md:h-72 object-cover" style="width: 300px; height: auto;" />
         </div>
       <div class="flex flex-col pl-8">
-        <h1 class="text-3xl font-bold">{{ selectedProduct.cardDesc }}</h1>
+        <router-link :to="{ name: 'productdetails', params: { id: selectedProduct.id } }" > <h1 class="text-3xl font-bold">{{ selectedProduct.cardDesc }}</h1></router-link>
+       
         <p class="mt-4 text-sm text-gray-600"></p>
         <div class="mt-4">
           <p class="text-lg font-extrabold">Price:</p>
@@ -74,13 +75,13 @@ import CounterButton from '../components/ui/CounterButton.vue'
 import router from '@/router/router'
 import navbar from '@/components/navbar.vue';
 import footing from '@/components/footing.vue';
+
 export default {
   components: {
     StoreCard,
     CounterButton,
     navbar,
     footing,
-     
   },
   data() {
     return {
@@ -98,24 +99,33 @@ export default {
         { value: "xl", label: "XL" },
         { value: "2xl", label: "2XL" }
       ],
-      selectedSize: null
+      selectedSize: null,
     }
   },
   methods: {
     Buy(){
+      if(!this.existingProduct) {
       this.addToCart()
-      router.push({name:'payment' })
+      router.push({name:'payment' }) 
+      }
+      else {
+        router.push({name:'payment'})
+      }
     },
     addToCart() {
-    this.$store.dispatch('addToCart', this.selectedProduct)
-    router.push({ name: 'cart' })
-  },
+      if (!this.existingProduct) {
+        this.$store.dispatch('addToCart', this.selectedProduct)
+        alert('added to cart')
+      } else {
+        alert('Product already exists in the cart.');
+      }
+    },
     changeImage(img) {
       this.image = img;
     },
     selectSize(size) {
-    this.selectedSize = size;
-  }
+      this.selectedSize = size;
+    }
   },
   computed: {
     selectedProduct() {
@@ -127,15 +137,19 @@ export default {
           }
         }
       }
+    },
+    existingProduct() {
+      return store.state.cart.find(item => item.id === this.selectedProduct.id);
     }
   },
   mounted() {
-  if (this.selectedProduct.moreImages.length > 0) {
-    this.image = this.selectedProduct.moreImages[0]; // Set the first image as default
-  }
-},
+    if (this.selectedProduct.moreImages.length > 0) {
+      this.image = this.selectedProduct.moreImages[0]; // Set the first image as default
+    }
+  },
 }
 </script>
+
 
 <style>
 body {

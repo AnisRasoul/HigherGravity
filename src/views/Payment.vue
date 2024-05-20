@@ -13,8 +13,8 @@
           <div class="space-y-6">
             <div class="mb-6">
               <label class="text-2xl font-[Zabal] font-bold">Contact</label>
-              <Field name="contact" type="email" placeholder="Enter input" class="text-xl border border-black px-3 py-2 w-full"/>
-              <ErrorMessage name="contact" class="text-red-700 text-sm" />
+              <Field name="email" type="email" placeholder="eg: user@mail.com" class="text-xl border border-black px-3 py-2 w-full"/>
+              <ErrorMessage name="email" class="text-red-700 text-sm" />
               <div class="flex items-center space-x-2 mt-2">
                 <Field name="newsAndOffers" type="checkbox" id="terms" />
                 <label for="terms" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
@@ -37,12 +37,12 @@
               </div>
               <div class="md:flex md:space-x-10 md:space-y-0 space-y-2 md:my-6 my-3">
                 <div class="md:flex items-center space-x-3">
-                <Field name="firstName" type="text" placeholder="First name" class="text-xl border border-black px-3 py-2 w-full" />
-                <ErrorMessage name="firstName" class="text-red-700 text-sm" />
+                <Field name="firstname" type="text" placeholder="First name" class="text-xl border border-black px-3 py-2 w-full" />
+                <ErrorMessage name="firstname" class="text-red-700 text-sm" />
                 </div>
                 <div class="md:flex items-center space-x-3">  
-                  <Field name="lastName" type="text" placeholder="Last name" class="text-xl border border-black px-3 py-2 w-full" />
-                <ErrorMessage name="lastName" class="text-red-700 text-sm" /></div>
+                  <Field name="lastname" type="text" placeholder="Last name" class="text-xl border border-black px-3 py-2 w-full" />
+                <ErrorMessage name="lastname" class="text-red-700 text-sm" /></div>
              
               </div>
               <div class="md:flex items-center space-x-3  ">
@@ -204,14 +204,13 @@ export default {
     },
     validationSchema() {
       return yup.object({
-        contact: yup.string().required('Contact information is required').email('Enter a valid email'),
-        newsAndOffers: yup.boolean('required'),
-        country: yup.string().required('Country/Region is required'),
-        firstName: yup.string().required('required'),
-        lastName: yup.string().required('required'),
+        email: yup.string().required('required field').email('Enter a valid email'),
+        country: yup.string().required('required field'),
+        firstname: yup.string().required('required field').min(2).max(20),
+        lastname: yup.string().required('required field').min(2).max(20),
         address: yup.string().required('Address is required'),
-        postalCode: yup.string().required('required'),
-        city: yup.string().required('required'),
+        postalCode: yup.string().required('required field'),
+        city: yup.string().required('required field'),
         phoneNumber: yup.string().matches(this.PhoneReg, 'Phone number is not valid').required('Required')
       });
     }
