@@ -32,6 +32,10 @@
   <script>
 import CounterButton from '../ui/CounterButton.vue';
 import store from '@/store';
+import { useToast } from '@/components/ui/toast/use-toast';
+import { ToastAction } from '@/components/ui/toast'
+import { Toaster } from '@/components/ui/toast';
+import { h } from 'vue';
 
 export default {
   components: {
@@ -46,7 +50,17 @@ export default {
   methods: {
     removeFromCart() {
       this.$store.dispatch('removeFromCart', this.cardId);
-    }
+         this.showToast('Removed from Cart');
+     
+    },
+    showToast(title, description, action) {
+      const { toast } = useToast();
+      toast({
+        title: title,
+        description: description,
+        action: action,
+      });
+    },
   }
 }
 </script>

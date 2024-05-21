@@ -6,7 +6,7 @@
       <div class="md:flex md:space-x-6 space-x-10 space-y-4 items-center">
         <div class="md:block flex md:space-x-0 space-x-2 md:space-y-3 items-center justify-center">
           <!-- Use v-for to render small images -->
-          <img v-for="(img, index) in selectedProduct.moreImages" :key="index" @mouseover="changeImage(img)" :src="img" alt="product" class="w-[40px] h-[60px] sm:w-[80px] sm:h-[100px] object-cover cursor-pointer" />
+          <img v-for="(img, index) in selectedProduct.moreImages" :key="index" @mouseover="changeImage(img)" :src="img" class="w-[40px] h-[60px] sm:w-[80px] sm:h-[100px] object-cover cursor-pointer" />
         </div>
         <!-- Render the big image -->
         <img :src="image" alt="T-shirt with graphic" class="md:block flex md:w-96 md:h-72 object-cover" style="width: 300px; height: auto;" />
@@ -65,16 +65,22 @@
       </div>
   </div>
     <footing/>
+    <Toaster />
   </div>
 </template>
 
+
 <script>
-import store from '@/store'
-import StoreCard from '@/components/Cards/StoreCard.vue'
-import CounterButton from '../components/ui/CounterButton.vue'
-import router from '@/router/router'
+import store from '@/store';
+import StoreCard from '@/components/Cards/StoreCard.vue';
+import CounterButton from '@/components/ui/CounterButton.vue';
 import navbar from '@/components/navbar.vue';
 import footing from '@/components/footing.vue';
+import { Button } from '@/components/ui/button';
+import { useToast } from '@/components/ui/toast/use-toast';
+import { ToastAction } from '@/components/ui/toast'
+import { Toaster } from '@/components/ui/toast';
+import { h } from 'vue';
 
 export default {
   components: {
@@ -82,15 +88,13 @@ export default {
     CounterButton,
     navbar,
     footing,
+    Button,
+    Toaster
   },
   data() {
     return {
       image: null,
-      cards: [
-        { id: "1", cardImage: "https://i.imgur.com/4VIBsSW.png", hoverImage: "https://i.imgur.com/IR7GgQx.png", cardDesc: "HigherGravity classy light blue shirt.", cardPrice: "$29.99 USD" },
-        { id: "2", cardImage: "https://i.imgur.com/t6Iakck.png", hoverImage: "https://i.imgur.com/HGxFEfE.png", cardDesc: "HigherGravity dark blue ocean jersey.", cardPrice: "$25.00 USD" },
-        { id: "3", cardImage: "https://i.imgur.com/MONyixl.png", hoverImage: "https://i.imgur.com/sb6AqDJ.png", cardDesc: "HigherGravity Retro Sport Beige Shirt.", cardPrice: "$25.00 USD" },
-      ],
+      selectedSize: null,
       sizes: [
         { value: "xs", label: "XS" },
         { value: "s", label: "S" },
@@ -99,32 +103,11 @@ export default {
         { value: "xl", label: "XL" },
         { value: "2xl", label: "2XL" }
       ],
-      selectedSize: null,
-    }
-  },
-  methods: {
-    Buy(){
-      if(!this.existingProduct) {
-      this.addToCart()
-      router.push({name:'payment' }) 
-      }
-      else {
-        router.push({name:'payment'})
-      }
-    },
-    addToCart() {
-      if (!this.existingProduct) {
-        this.$store.dispatch('addToCart', this.selectedProduct)
-        alert('added to cart')
-      } else {
-        alert('Product already exists in the cart.');
-      }
-    },
-    changeImage(img) {
-      this.image = img;
-    },
-    selectSize(size) {
-      this.selectedSize = size;
+      cards: [
+        { id: "1", cardImage: "https://i.imgur.com/4VIBsSW.png", hoverImage: "https://i.imgur.com/IR7GgQx.png", cardDesc: "HigherGravity classy light blue shirt.", cardPrice: 29.99 },
+        { id: "2", cardImage: "https://i.imgur.com/t6Iakck.png", hoverImage: "https://i.imgur.com/HGxFEfE.png", cardDesc: "HigherGravity dark blue ocean jersey.", cardPrice: 25.00 },
+        { id: "3", cardImage: "https://i.imgur.com/MONyixl.png", hoverImage: "https://i.imgur.com/sb6AqDJ.png", cardDesc: "HigherGravity Retro Sport Beige Shirt.", cardPrice: 25.00 },
+      ],
     }
   },
   computed: {
@@ -140,7 +123,60 @@ export default {
     },
     existingProduct() {
       return store.state.cart.find(item => item.id === this.selectedProduct.id);
+    },
+    action() {
+      return h(ToastAction, {
+        altText: 'Remove from cart',
+        onClick: () => {
+          console.log('Undo clicked');
+          this.removeFromCart(this.selectedProduct.id);
+        }
+      }, {
+        default: () => 'Remove from cart',
+      });
+  },
+  mounted() {
+    if (this.selectedProduct.moreImages.length > 0) {
+      this.image = this.selectedProduct.moreImages[0]; // Set the first image as default
     }
+  },
+  },
+  methods: {
+    changeImage(img) {
+      this.image = img;
+    },
+    selectSize(size) {
+      this.selectedSize = size;
+    },
+    addToCart() {
+      if (!this.existingProduct) {
+        this.$store.dispatch('addToCart', this.selectedProduct);
+        this.showToast('Added to your cart', `${this.selectedProduct.cardDesc} is now in your cart`, this.action);
+      } else {
+        this.showToast('Already in your cart', `You can't add a product to your cart more than once`, this.action);
+      }
+    },
+    removeFromCart(id) {
+      console.log(`Removing product with ID ${id} from the cart.`);
+      this.$store.dispatch('removeFromCart', id);
+    },
+    Buy() {
+      if (!this.existingProduct) {
+        this.addToCart();
+        this.$router.push({ name: 'payment' });
+      } else {
+        this.$router.push({ name: 'payment' });
+      }
+    },
+    showToast(title, description, action) {
+      const { toast } = useToast();
+      toast({
+        title: title,
+        description: description,
+        action: action,
+      });
+    },
+
   },
   mounted() {
     if (this.selectedProduct.moreImages.length > 0) {
@@ -149,6 +185,10 @@ export default {
   },
 }
 </script>
+
+
+
+
 
 
 <style>

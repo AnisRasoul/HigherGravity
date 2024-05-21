@@ -1,15 +1,15 @@
 <template>
     <div>
   <navbar/>
-  <div class="md:flex md:justify-between md:mx-14 my-14 items-center ">
+  <div class="md:flex flex flex-col md:justify-between md:mx-14 my-14 items-center ">
   <div class="text-center sm:text-left">
             <h1 class="text-4xl sm:text-5xl font-black">Your Cart </h1>
             <h3 class="text-lg sm:text-2xl mt-3">Fashion Finds Await Checkout in Your Cart!</h3>
   </div>
   <a href="/pants" class="underline font-semibold text-[#5E5E5E] text-center">Continue Shopping</a>
   </div>
-  <div v-if="!cartProduct.length" class="flex flex-col items-center justify-center h-full space-y-5 mb-48 border-t border-[#A0A0A0]">
-  <h1 class="md:text-6xl text-3xl font-[Zabal] text-center">Empty Cart ...</h1>
+  <div v-if="!cartProduct.length" class="flex flex-col items-center justify-center h-full space-y-5 md:my-48 mb-56 md:border-t md:border-[#A0A0A0]">
+  <p class="uppercase font-bold text-xl text-center">Your cart is empty. Explore HigherGravity's best sellers and exclusive offers.</p>
   <HGButton href="/pants" class="mt-4">Shop now</HGButton>
 </div>
 <div v-else class="mb-48 border-t border-[#A0A0A0]">
@@ -23,8 +23,8 @@
     :cardPrice="item.cardPrice"/>
   </div>
 </div>
-
 <footing/>
+<Toaster/>
     </div>
     
 </template>
@@ -35,10 +35,14 @@ import footing from '@/components/footing.vue';
 import CounterButton from '../components/ui/CounterButton.vue'
 import CartItem from '@/components/Cards/CartItem.vue';
 import HGButton from '@/components/ui/HGButton.vue';
+import { useToast } from '@/components/ui/toast/use-toast';
+import { ToastAction } from '@/components/ui/toast'
+import { Toaster } from '@/components/ui/toast';
+import { h } from 'vue';
 
 export default {
 components: {
-    navbar, footing,CounterButton,CartItem,HGButton
+    navbar, footing,CounterButton,CartItem,HGButton,ToastAction,Toaster
 }, 
 mounted() {
   console.log(this.cartProduct);
