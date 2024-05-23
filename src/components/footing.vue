@@ -5,8 +5,8 @@
       <div>
       <h2 class="text-lg font-semibold text-center">Subscribe to our emails:</h2>
       <div class="mt-4 flex border-b border-black ml-20">
-        <Input class="border-r-0 outline-none" placeholder="Email" type="email" />
-        <Button><span class="mdi mdi-arrow-right-circle-outline text-2xl"></span></Button>
+        <input class="border-r-0 outline-none" placeholder="Email" type="email" />
+        <button><span class="mdi mdi-arrow-right-circle-outline text-2xl"></span></button>
       </div>
     </div>
     <!-- icons -->

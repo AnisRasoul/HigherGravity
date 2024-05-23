@@ -11,19 +11,18 @@
           
               <h1>{{ cardDesc }}</h1>
          
-            <p class="text-[#A0A0A0]">${{ cardPrice }} USD</p>
-            <p class="text-[#A0A0A0]">Size: XL</p>
-            <p class="text-[#A0A0A0]">Color: Blue</p>
+            <p class="text-[#A0A0A0] uppercase">Size: {{ cardSize }}</p>
+            <p class="text-[#A0A0A0] uppercase">Color: Blue</p>
           </div>
         </div>
         </router-link>
       </div>
-      <div class="flex space-x-6 justify-center items-center">
-        <CounterButton />
+      <div class="flex space-x-6 justify-center items-center md:ml-0 ml-[60%]">
+       
+        <h1 class="font-extrabold"> ${{ cardPrice }}  USD</h1> 
         <button @click="removeFromCart">
           <span class="mdi mdi-trash-can-outline text-2xl"></span>
         </button>
-        <h1 class="font-extrabold">$35.50 USD</h1>
       </div>
     </div>
   </template>
@@ -46,6 +45,7 @@ export default {
     cardImage: String,
     cardDesc: String,
     cardPrice: Number,
+    cardSize : String,
   },
   methods: {
     removeFromCart() {

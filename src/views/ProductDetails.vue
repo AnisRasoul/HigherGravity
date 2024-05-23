@@ -1,86 +1,143 @@
 <template>
-  <div>
-    <navbar/>
+  <div :key="$route.params.id">
+    <navbar />
     <div class="bg-white my-20">
-    <div class="md:flex justify-center mx-auto items-center">
-      <div class="md:flex md:space-x-6 space-x-10 space-y-4 items-center">
-        <div class="md:block flex md:space-x-0 space-x-2 md:space-y-3 items-center justify-center">
-          <!-- Use v-for to render small images -->
-          <img v-for="(img, index) in selectedProduct.moreImages" :key="index" @mouseover="changeImage(img)" :src="img" class="w-[40px] h-[60px] sm:w-[80px] sm:h-[100px] object-cover cursor-pointer" />
+      <div class="md:flex justify-center mx-auto items-center">
+        <div class="md:flex md:space-x-6 space-x-10 space-y-4 items-center">
+          <div class="md:block flex md:space-x-0 space-x-2 md:space-y-3 items-center justify-center">
+            <!-- Use v-for to render small images -->
+            <img
+              v-for="(img, index) in selectedProduct.moreImages"
+              :key="index"
+              @mouseover="changeImage(img)"
+              :src="img"
+              class="w-[40px] h-[60px] sm:w-[80px] sm:h-[100px] object-cover cursor-pointer"
+            />
+          </div>
+          <!-- Render the big image -->
+          <img
+            :src="image"
+            alt="T-shirt with graphic"
+            class="md:block flex md:w-96 md:h-72 object-cover"
+            style="width: 300px; height: auto;"
+          />
         </div>
-        <!-- Render the big image -->
-        <img :src="image" alt="T-shirt with graphic" class="md:block flex md:w-96 md:h-72 object-cover" style="width: 300px; height: auto;" />
-        </div>
-      <div class="flex flex-col pl-8">
-        <router-link :to="{ name: 'productdetails', params: { id: selectedProduct.id } }" > <h1 class="text-3xl font-bold">{{ selectedProduct.cardDesc }}</h1></router-link>
-       
-        <p class="mt-4 text-sm text-gray-600"></p>
-        <div class="mt-4">
-          <p class="text-lg font-extrabold">Price:</p>
-          <p class="text-lg font-black">${{ selectedProduct.cardPrice.toFixed(2) }} USD</p>
-        </div>
-        <div class="mt-4">
-          <p class="text-lg font-semibold">Select Size:</p>
-          <div class="flex space-x-5 my-1">
-    <Button
-      v-for="size in sizes"
-      :key="size.value"
-      :class="{
-        'bg-black text-white': selectedSize === size.value,
-        'bg-white text-dark': selectedSize !== size.value
-      }"
-      class="p-2 md:px-4 px-2 border border-black rounded hover:bg-black hover:text-white"
-      @click="selectSize(size.value)"
-    >
-      {{ size.label }}
-    </Button>
-  </div>
-
-        </div>
-        <div class="mt-4">
-          <p class="text-lg font-semibold">Quantity:</p>
-          <div class="flex items-center space-x-10">
-              <CounterButton/>
-            <Button @click="addToCart" class="bg-white text-black md:px-16 px-8 md:py-2 py-3 border border-black font-extrabold"> <span class="mdi mdi-cart-outline mr-3 text-lg"></span>Add to Cart</Button>
+        <div class="flex flex-col pl-8">
+          <router-link :to="{ name: 'productdetails', params: { id: selectedProduct.id } }">
+            <h1 class="text-3xl font-bold">{{ selectedProduct.cardDesc }}</h1>
+          </router-link>
+          <p class="mt-4 text-sm text-gray-600"></p>
+          <div class="mt-4">
+            <p class="text-lg font-extrabold">Price:</p>
+            <p class="text-lg font-black">${{ selectedProduct.cardPrice.toFixed(2) }} USD</p>
+          </div>
+          <div class="mt-4">
+            <p class="text-lg font-semibold">Select Size:</p>
+            <div class="flex space-x-5 my-1">
+              <Button
+                v-for="size in sizes"
+                :key="size.value"
+                :class="{
+                  'bg-black text-white': selectedSize === size.value,
+                  'bg-white text-dark': selectedSize !== size.value
+                }"
+                class="p-2 md:px-4 px-2 border border-black rounded hover:bg-black hover:text-white"
+                @click="selectSize(size.value)"
+                v-model="size.value"
+              >
+                {{ size.label }}
+              </Button>
+            </div>
+          </div>
+          <div class="mt-4">
+            <p class="text-lg font-semibold">Quantity:</p>
+            <div class="flex items-center space-x-10">
+              <CounterButton v-model="Quanitity" />
+              <Button
+                @click="addToCart"
+                class="bg-white text-black md:px-16 px-8 md:py-2 py-3 border border-black font-extrabold"
+              >
+                <span class="mdi mdi-cart-outline mr-3 text-lg"></span>Add to Cart
+              </Button>
+            </div>
+          </div>
+          <div class="flex space-x-4 mt-4">
+            <Button
+              class="bg-black text-white md:px-40 px-32 py-5 font-extrabold md:text-2xl"
+              style="letter-spacing: 2px;"
+              @click="Buy();"
+            >
+              BUY IT NOW
+            </Button>
+          </div>
+          <div class="flex space-x-10 mt-4">
+            <p class="text-sm underline">
+              <span class="mdi mdi-export-variant"></span>Share
+            </p>
+            <p class="text-sm underline">SHIPPING POLICY</p>
           </div>
         </div>
-        <div class="flex space-x-4 mt-4">
-          <Button class="bg-black text-white md:px-40 px-32 py-5 font-extrabold md:text-2xl" style="letter-spacing: 2px;"  @click="Buy">BUY IT NOW</Button>
-        </div>
-        <div class="flex space-x-10 mt-4">
-          <p class="text-sm underline">  <span class="mdi mdi-export-variant"></span>Share</p>
-          <p class="text-sm underline">SHIPPING POLICY</p>
-        </div>
+      </div>
+      <h1
+        class="text-black text-3xl underline flex justify-center font-extrabold mt-20 uppercase"
+        style="letter-spacing: 2px;"
+      >
+        You May also like
+      </h1>
+      <div class="flex justify-center items-center my-20 flex-wrap">
+        <swiper
+          :modules="modules"
+          :slides-per-view="1"
+          :space-between="50"
+          :navigation="true"
+          :breakpoints="{
+            640: { slidesPerView: 1, spaceBetween: 20 },
+            768: { slidesPerView: 2, spaceBetween: 30 },
+            1024: { slidesPerView: 3, spaceBetween: 20 },
+          }"
+        >
+          <swiper-slide
+            v-for="card in suggestedProducts"
+            :key="card.id"
+            @click="navigateToDetails(card.id)"
+          >
+            <StoreCard
+              :card-image="card.cardImage"
+              :hover-image="card.hoverImage"
+              :card-desc="card.cardDesc"
+              :card-price="card.cardPrice"
+              class="sm:w-1/2 lg:w-1/3"
+            />
+          </swiper-slide>
+        </swiper>
       </div>
     </div>
-    <h1 class="text-black text-3xl underline flex justify-center font-extrabold mt-20 uppercase" style="letter-spacing: 2px;">You May also like</h1>
-    <div class="flex justify-center items-center my-20 flex-wrap">
-      <StoreCard v-for="card in cards" :key="card.id"
-                  :card-image="card.cardImage"
-                  :hover-image="card.hoverImage" 
-                  :card-desc="card.cardDesc"
-                  :card-price="card.cardPrice"
-                  class="mx-5 my-5 sm:w-1/2 lg:w-1/3"
-              />
-      </div>
-  </div>
-    <footing/>
+    <footing />
     <Toaster />
   </div>
 </template>
 
-
 <script>
-import store from '@/store';
-import StoreCard from '@/components/Cards/StoreCard.vue';
-import CounterButton from '@/components/ui/CounterButton.vue';
-import navbar from '@/components/navbar.vue';
-import footing from '@/components/footing.vue';
-import { Button } from '@/components/ui/button';
-import { useToast } from '@/components/ui/toast/use-toast';
-import { ToastAction } from '@/components/ui/toast'
-import { Toaster } from '@/components/ui/toast';
-import { h } from 'vue';
+import store from "@/store";
+import StoreCard from "@/components/Cards/StoreCard.vue";
+import CounterButton from "@/components/ui/CounterButton.vue";
+import navbar from "@/components/navbar.vue";
+import footing from "@/components/footing.vue";
+import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/ui/toast/use-toast";
+import { ToastAction } from "@/components/ui/toast";
+import { Toaster } from "@/components/ui/toast";
+import { h } from "vue";
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+
+// Import Swiper Vue.js components
+import { Swiper, SwiperSlide } from "swiper/vue";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
 
 export default {
   components: {
@@ -89,57 +146,76 @@ export default {
     navbar,
     footing,
     Button,
-    Toaster
+    Toaster,
+    Swiper,
+    SwiperSlide,
+  },
+  setup() {
+    return {
+      modules: [Navigation, Pagination, Scrollbar, A11y],
+    };
   },
   data() {
     return {
       image: null,
       selectedSize: null,
+      Quanitity: 1,
       sizes: [
         { value: "xs", label: "XS" },
         { value: "s", label: "S" },
         { value: "m", label: "M" },
         { value: "l", label: "L" },
         { value: "xl", label: "XL" },
-        { value: "2xl", label: "2XL" }
+        { value: "2xl", label: "2XL" },
       ],
-      cards: [
-        { id: "1", cardImage: "https://i.imgur.com/4VIBsSW.png", hoverImage: "https://i.imgur.com/IR7GgQx.png", cardDesc: "HigherGravity classy light blue shirt.", cardPrice: 29.99 },
-        { id: "2", cardImage: "https://i.imgur.com/t6Iakck.png", hoverImage: "https://i.imgur.com/HGxFEfE.png", cardDesc: "HigherGravity dark blue ocean jersey.", cardPrice: 25.00 },
-        { id: "3", cardImage: "https://i.imgur.com/MONyixl.png", hoverImage: "https://i.imgur.com/sb6AqDJ.png", cardDesc: "HigherGravity Retro Sport Beige Shirt.", cardPrice: 25.00 },
-      ],
-    }
+    };
   },
   computed: {
     selectedProduct() {
       const id = Number(this.$route.params.id);
-      for (const category of store.state.products) { // loop through the categories of product
-        for (const item of category.items) { // loop in the items
-          if (item.id === id) { // if you find the id return the item's data
+      for (const category of store.state.products) {
+        // loop through the categories of product
+        for (const item of category.items) {
+          // loop in the items
+          if (item.id === id) {
+            // if you find the id return the item's data
             return item;
           }
         }
       }
+      
     },
     existingProduct() {
-      return store.state.cart.find(item => item.id === this.selectedProduct.id);
+      return store.state.cart.find((item) => item.id === this.selectedProduct.id);
     },
     action() {
-      return h(ToastAction, {
-        altText: 'Remove from cart',
-        onClick: () => {
-          console.log('Undo clicked');
-          this.removeFromCart(this.selectedProduct.id);
+      return h(
+        ToastAction,
+        {
+          altText: "Remove from cart",
+          onClick: () => {
+            console.log("Undo clicked");
+            this.removeFromCart(this.selectedProduct.id);
+          },
+        },
+        {
+          default: () => "Remove from cart",
         }
-      }, {
-        default: () => 'Remove from cart',
-      });
-  },
-  mounted() {
-    if (this.selectedProduct.moreImages.length > 0) {
-      this.image = this.selectedProduct.moreImages[0]; // Set the first image as default
-    }
-  },
+      );
+    },
+    suggestedProducts() {
+      // Flatten the products array
+      const allProducts = store.state.products.flatMap((category) => category.items);
+
+      // Filter out the currently selected product
+      const otherProducts = allProducts.filter(
+        (item) => item.id !== this.selectedProduct?.id
+      );
+
+      // Shuffle the array and return the first 10 items
+      const shuffled = otherProducts.sort(() => 0.5 - Math.random());
+      return shuffled.slice(0, 20);
+    },
   },
   methods: {
     changeImage(img) {
@@ -149,23 +225,41 @@ export default {
       this.selectedSize = size;
     },
     addToCart() {
-      if (!this.existingProduct) {
-        this.$store.dispatch('addToCart', this.selectedProduct);
-        this.showToast('Added to your cart', `${this.selectedProduct.cardDesc} is now in your cart`, this.action);
-      } else {
-        this.showToast('Already in your cart', `You can't add a product to your cart more than once`, this.action);
-      }
-    },
+  if (!this.selectedSize) {
+    this.showToast(
+      "Missing details",
+      `Please select a size first`,
+    );
+    return; // Exit early if size is not selected
+  }
+
+  const productToAdd = { ...this.selectedProduct, quantity: this.Quanitity, size: this.selectedSize };
+  if (!this.existingProduct) {
+    this.$store.dispatch("addToCart", productToAdd);
+    this.showToast(
+      "Added to your cart",
+      `${this.selectedProduct.cardDesc} is now in your cart`,
+      this.action
+    );
+    console.log(productToAdd);
+  } else {
+    this.showToast(
+      "Already in your cart",
+      `You can't add a product to your cart more than once`,
+      this.action
+    );
+  }
+},
     removeFromCart(id) {
       console.log(`Removing product with ID ${id} from the cart.`);
-      this.$store.dispatch('removeFromCart', id);
+      this.$store.dispatch("removeFromCart", id);
     },
     Buy() {
       if (!this.existingProduct) {
         this.addToCart();
-        this.$router.push({ name: 'payment' });
+        this.$router.push({ name: "payment" });
       } else {
-        this.$router.push({ name: 'payment' });
+        this.$router.push({ name: "payment" });
       }
     },
     showToast(title, description, action) {
@@ -176,20 +270,28 @@ export default {
         action: action,
       });
     },
-
+    navigateToDetails(id) {
+      this.$router.push({ name: "productdetails", params: { id } });
+      window.scrollTo(0, 0);
+    },
+   
   },
   mounted() {
-    if (this.selectedProduct.moreImages.length > 0) {
-      this.image = this.selectedProduct.moreImages[0]; // Set the first image as default
+    window.scrollTo(0, 0);
+        this.image = this.selectedProduct.moreImages[0];
+  },
+  watch: {
+    '$route': {
+      immediate: true,
+      handler(to, from) {
+          this.image = this.selectedProduct.moreImages[0];
+          this.selectedSize = '';
+      }
     }
   },
-}
+
+};
 </script>
-
-
-
-
-
 
 <style>
 body {

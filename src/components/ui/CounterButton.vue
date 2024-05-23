@@ -1,5 +1,5 @@
 <template>
-  <div class="flex space-x-5 items-center bg-white text-black py-2 border border-black font-extrabold">
+  <div class="flex space-x-5 items-center bg-white text-black  border border-black font-extrabold">
     <button @click="decrement" class="text-black p-2 px-5 rounded">-</button>
     <p class="text-lg">{{ count }}</p>
     <button @click="increment" class="text-black p-2 px-5 rounded">+</button>
