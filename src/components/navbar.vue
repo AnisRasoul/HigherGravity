@@ -1,68 +1,117 @@
 <template>
   <div class="sticky">
-
-    <div class="sticky justify-end md:flex" style="font-family: Zabal;">
-        <div class="flex md:justify-start justify-around md:space-x-0 space-x-52 font-extrabold md:text-base text-xs">
-          <div class="text-black md:px-2 md:py-2">USD $ | United States <span class="mdi mdi-chevron-down md:ml-3"></span></div>
-          <div class="text-black md:px-2 md:py-2">English <span class="mdi mdi-chevron-down md:ml-3"></span></div>
-        </div>
-          <h3 class="py-2 mx-auto font-extrabold md:ml-[28%] ml-24">Welcome to higher gravity store</h3>
+    <div class="sticky justify-end flex bg-white" style="font-family: Zabal;">
+      <h3 class="md:p-2 p-1 mx-auto font-black md:tracking-[1px] md:text-xl">Welcome to higher gravity store</h3>
     </div>
 
-  <nav class="p-1 flex justify-between items-center bg-[#151516]">
-    <div class="md:flex items-center">
-  <span @click="showMenu = !showMenu" class="absolute md:hidden right-2 top-24 cursor-pointer text-white text-5xl">
-    <i class="mdi mdi-menu"></i>
-  </span>
-  <a class="text-white px-6 py-1 mr-9" href="/"> 
-    <img src="../assets/HG logo.svg" alt="">
-  </a>
-  <ul class="md:flex" :class="showMenu ? '' : 'hidden'"> 
-    <li><div class="text-white px-4 py-2 mr-4"><a href="#">MEN</a></div></li>
-    <li><div class="text-white px-4 py-2 mr-4"><a href="#">WOMEN</a></div></li>
-    <li><div class="text-white px-4 py-2 mr-4"><a href="#">ACCESSORY</a></div></li>
-    <li><div class="text-white px-4 py-2 mr-4"><a href="#">GET HELP <span class="mdi mdi-chevron-down ml-3"></span></a></div></li>
-  </ul>
-</div>
+    <nav class="p-1 flex justify-between items-center bg-[#151516]">
+      <div class="md:flex items-center">
+        <span @click="showMenu = !showMenu" class="absolute sm:hidden right-5 top-14 text-[#d3cece]">
+          <Menu class="size-8"/>
+        </span>
+        <a class="text-white md:px-6 md:py-1 md:mr-9" href="/"> 
+          <img src="../assets/HG logo.svg" class="md:h-auto h-16">
+        </a>
 
-
-    <div class="flex items-center">
-      <!--Search input-->
-      <div class="bg-[#333333] p-1 rounded-full items-center w-full max-w-[400px] mx-auto hidden sm:flex">
-        <span class="mdi mdi-magnify mx-3 text-xl text-white"></span>
-        <input class="bg-transparent outline-none border-0 text-white placeholder-gray-400 w-full" placeholder="Search" type="search" />
+        <ul v-if="menuItems.length > 0" class="md:flex hidden uppercase text-white space-x-16"> 
+          <li v-for="(item, index) in menuItems" :key="index">
+            <a :href="item.link">{{ item.text }}</a>
+          </li>
+        </ul>
       </div>
-      <!--Search input-->
+      <div class="flex justify-center items-center md:mr-24 mr-32 mt-4 space-x-4">
+        <div class="md:bg-[#333333] md:p-1 md:rounded-full md:items-center md:w-full md:max-w-[200px] mx-auto sm:flex hidden">
+          <Search class="text-white md:size-4 size-6 mx-2" />
+          <input class="bg-transparent outline-none border-0 text-white placeholder-gray-400 w-full hidden sm:block" placeholder="Search" type="search" />
+        </div>
+        <div class="flex text-white space-x-8 size-8 items-center mb-2">
+          <a href="/cart"><ShoppingBag/></a>
+          <a href="/login"><UserRound/></a>
+        </div>
+      </div>
+    </nav>
 
-      <a href="/cart" class="text-white md:px-4 md:py-2 h-10 mb-2 md:mb-0 w-20"><img src="../assets/icons/Combined-Shape.svg" alt=""></a>
-     <a href="/login" class="text-white md:px-4 md:py-2 mr-8 mb-2 md:mb-0 h-10 w-20"><img src="../assets/icons/PROFIL ICON.svg" alt=""></a>
-     </div>
-  </nav>
+    <!-- Overlay with menu items -->
+    <transition
+      @enter="enter"
+      @leave="leave"
+    >
+      <div v-if="showMenu" class="fixed inset-0 bg-[#151516] bg-opacity-1 mt-10">
+        <span @click="showMenu = false" class="absolute top-12 right-10 cursor-pointer text-white">
+          <X  class="size-6"/>
+        </span> 
+        <div class="md:bg-[#333333] p-1 rounded-[8px] items-center flex w-[70%] my-12 mx-6">
+          <Search class="text-white md:size-4 size-6 mx-2" />
+          <input class="bg-transparent outline-none border-0 text-white placeholder-gray-400 w-full sm:block" placeholder="Search" type="search" />
+        </div>
+        <ul class="space-y-10 my-20 mx-10 uppercase text-white">
+          <li v-for="(item, index) in menuItems" :key="index">
+            <a :href="item.link">{{ item.text }}</a>
+          </li>
+        </ul>
+      </div>
+    </transition>
   </div>
 </template>
 
 <script>
+import { Menu, UserRound, ShoppingBag, Search, ChevronDown, X } from 'lucide-vue-next';
+import { gsap } from 'gsap';
 
 export default {
-  data(){
+  components: { Menu, UserRound, ShoppingBag, Search, ChevronDown, X },
+  data() {
     return {
       showMenu: false,
+      menuItems: [
+        { text: 'Newin', link: '/newin' },
+        { text: 'Shirts', link: '/shirts' },
+        { text: 'Pants', link: '/pants' },
+        { text: 'ACCESSORY', link: '/accessory' },
+        { text: 'GET HELP', link: '/help' }
+      ]
+    };
+  },
+  methods: {
+    enter(el, done) {
+      gsap.fromTo(el, { opacity: 0, x: -300 }, { opacity: 1, x: 0, duration: 0.5, onComplete: done });
+      // Get all the list items within the ul
+      const listItems = el.querySelectorAll('li');
+      // Sequentially fade in each list item
+      gsap.fromTo(
+        listItems,
+        { opacity: 0, y: -20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          delay: (index) => index * 0.1, // Delay each item by 0.1s
+          ease: 'power2.inOut', // Optional easing function
+        }
+      );
+    },
+    leave(el, done) {
+      gsap.fromTo(el, { opacity: 1, x: 0 }, { opacity: 0, x: -300, duration: 0.5, onComplete: done });
     }
   }
-}
+
+};
 </script>
 
-<style>
-  .box input {
-    border: 0;
-    background-color: rgba(0, 255, 255, 0);
-  }
-  .box-container {
-    display: inline-block;
-    border: solid rgba(0, 0, 0, 0) 2px;
-    border-radius: 20px;
-    background-color: #a0a0a02d;
-    text-align: center;
-    justify-content: center;
-  }
+<style scoped>
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.size-8 {
+  width: 2rem;
+  height: 2rem;
+}
+
+.bg-opacity-50 {
+  backdrop-filter: blur(5px);
+}
 </style>

@@ -13,8 +13,8 @@
       <!-- Right side (text) -->
       <div class="flex items-center justify-center text-center sm:order-2"> <!-- Swap order for small screens -->
         <div class="p-8">
-          <h2 class="header md:text-[80px] text-[50px] ">The world of Higher gravity</h2>
-          <HGButton href="/newin">new in</HGButton>
+          <h2 id="typewriter-target" class="header md:text-[70px] text-[50px]"></h2>
+           <HGButton href="/newin">new in</HGButton>
         </div>
       </div>
       <!-- Left side (image) -->
@@ -51,7 +51,7 @@
       <!-- Right side (text) -->
       <div class="flex items-center justify-center text-center md:order-2">
         <div class="p-8">
-          <h2 class="header md:text-[80px] text-[50px] ">Unleash your Style’s Potential</h2>
+          <h2 class="header md:text-[80px] text-[50px]">Unleash your Style’s Potential</h2>
           <p class="py-5 text-2xl" style="font-family: Zabal; letter-spacing:5px; color:#A0A0A0"> Take your closet to the highest level</p>
           <HGButton href="/pants">Pants</HGButton>
         </div>
@@ -65,22 +65,22 @@
         </swiper>
       </div>
     </div>
-<div class="bg-black py-16 pb-32">
 
-    <h1 class="text-center md:text-9xl text-5xl md:my-40 my-20 font-[Anger] font-medium md:tracking-[4rem] tracking-[9px] text-white">Higher gravity</h1>
-    <h1 class="text-center md:text-5xl text-2xl font-[Zabal] font-bold text-white">Frequently Asked Questions</h1>
-    <p class="text-center my-10 text-2xl text-white">Dive into the most asked questions about our stellar clothing line, Higher Gravity, and discover the secrets behind our 
-elevated style!</p>
-    <!-- Accordion -->
-    <Accordion type="single" class="grid grid-cols-1 md:grid-cols-2 md:gap-8 gap-3 md:max-w-[70%] max-w-[95%] mx-auto text-white">
-    <AccordionItem v-for="item in accordionItems" :key="item.value" :value="item.value" class="bg-white text-black md:py-10 py-4  px-10 rounded-[15px]">
-      <AccordionTrigger class="md:text-2xl font-extrabold">{{ item.title }}</AccordionTrigger>
-      <AccordionContent>
-        {{ item.content }}
-      </AccordionContent>
-    </AccordionItem>
-  </Accordion>
-</div>
+    <div class="bg-black py-16 pb-32">
+      <h1 class="text-center md:text-9xl text-5xl md:my-40 my-20 font-[Anger] font-medium md:tracking-[4rem] tracking-[9px] text-white">Higher gravity</h1>
+      <h1 class="text-center md:text-5xl text-2xl font-[Zabal] font-bold text-white">Frequently Asked Questions</h1>
+      <p class="text-center my-10 text-2xl text-white">Dive into the most asked questions about our stellar clothing line, Higher Gravity, and discover the secrets behind our elevated style!</p>
+      <!-- Accordion -->
+      <Accordion type="single" class="grid grid-cols-1 md:grid-cols-2 md:gap-8 gap-3 md:max-w-[70%] max-w-[95%] mx-auto text-white">
+        <AccordionItem v-for="item in accordionItems" :key="item.value" :value="item.value" class="bg-white text-black md:py-10 py-4 px-10 rounded-[15px]">
+          <AccordionTrigger class="md:text-2xl font-extrabold">{{ item.title }}</AccordionTrigger>
+          <AccordionContent>
+            {{ item.content }}
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+    </div>
+
     <footing class="mt-10"/>
   </div>
 </template>
@@ -94,6 +94,8 @@ import navbar from '../components/navbar.vue';
 import footing from '../components/footing.vue';
 import HGButton from '@/components/ui/HGButton.vue';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { gsap } from 'gsap';
+import Typewriter from 'typewriter-effect/dist/core';
 
 export default {
   components: { Swiper, SwiperSlide, navbar, footing, HGButton, Accordion, AccordionContent, AccordionItem, AccordionTrigger },
@@ -102,6 +104,20 @@ export default {
       modules: [Navigation],
     };
   },
+  mounted() {
+    gsap.fromTo(
+      '.hero', 
+      { opacity: 0 }, 
+      { opacity: 1, duration: 3 }
+    );
+    new Typewriter('#typewriter-target', {
+    strings: ['The world of Higher gravity'],
+    autoStart: true,
+    loop: true,
+    delay: 100,
+  });
+
+},
   data() {
     return {
       accordionItems: [
@@ -142,66 +158,60 @@ export default {
 </script>
 
 <style>
-    body{
-        background-color: white ;
-    }
-    li{
-        font-family: Zabal;
-    }
-    @font-face {
-        font-family: Zabal;
-        src: url(../assets/fonts/ZabalDEMO-Regular.otf);
-    }
-    @font-face {
-       font-family: Anger;
-       src: url(../assets/fonts/AngerStyles.ttf)
-    }
-   
-     .hero{
-        height: 100vh;
-        background-image: url('../assets/imgs/bg1.png');
-        background-size: cover ;
-        background-repeat: no-repeat;
-        filter: brightness(65%);
-    }
-    @media (max-width: 1000px) {
+body {
+  background-color: white;
+}
+li {
+  font-family: Zabal;
+}
+@font-face {
+  font-family: Zabal;
+  src: url(../assets/fonts/ZabalDEMO-Regular.otf);
+}
+@font-face {
+  font-family: Anger;
+  src: url(../assets/fonts/AngerStyles.ttf);
+}
+.hero {
+  height: 100vh;
+  background-image: url('../assets/imgs/bg1.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: brightness(65%);
+}
+@media (max-width: 1000px) {
   .hero {
-    height: 50vh; /* Adjust height for smaller screens */
+    background-color: black;
+    height: 95vh; /* Adjust height for smaller screens */
     background-size: cover;
-    background-position: center; /* Change background size for smaller screens if needed */
+    background-position: 60% center; /* Change background size for smaller screens if needed */
     filter: brightness(65%); /* Adjust brightness for smaller screens if needed */
   }
- }
-    .header{
-        font-family: Anger;
-
-        letter-spacing: 2px;
-        
-    }
-    .FAQ{
-      height: 100vh;
-     
-      background-image: url('../assets/imgs/FAQ.png');
-      background-position: center;
-      background-repeat: no-repeat;
-      font-family: Zabal;
-    }
-    .swiper {
+}
+.header {
+  font-family: Anger;
+  letter-spacing: 2px;
+}
+.FAQ {
+  height: 100vh;
+  background-image: url('../assets/imgs/FAQ.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: Zabal;
+}
+.swiper {
   width: 100%;
   height: 100%;
 }
-
 .swiper-slide {
   text-align: center;
   font-size: 18px;
   background: #fff;
-
   /* Center slide text vertically */
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
 .swiper-slide img {
   display: block;
   width: 100%;
@@ -209,27 +219,22 @@ export default {
   object-fit: cover;
 }
 .swiper-button-next,
-          .swiper-button-prev {
-            background-color: rgba(255, 255, 255, 0.772);
-            background-position: center;
-           
-            background-repeat: no-repeat;
-            padding: 25px;
-            border-radius: 100%;
-            
-            color: red;
-          }
-          .swiper-button-prev {
-            background-image: url("../assets/icons/left-arrow.png");
-          }
-
-          .swiper-button-next {
-            background-image: url("../assets/icons/right-arrow.png");
-          }
-
-          .swiper-button-next::after,
-          .swiper-button-prev::after {
-            content: "";
-          }
- 
-</style>../components/ui/HG-Button.vue
+.swiper-button-prev {
+  background-color: rgba(255, 255, 255, 0.772);
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 25px;
+  border-radius: 100%;
+  color: red;
+}
+.swiper-button-prev {
+  background-image: url("../assets/icons/left-arrow.png");
+}
+.swiper-button-next {
+  background-image: url("../assets/icons/right-arrow.png");
+}
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  content: "";
+}
+</style>

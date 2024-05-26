@@ -56,10 +56,48 @@ const router = createRouter({
       name: 'Register',
       component: () => import('@/views/userAuth/Register.vue')
     },
+    {
+      name: 'Dashboard',
+      path: '/dashboard',
+      component:()=> import('../views/Dashboard/Dashboard.vue'),
+      meta: {
+        requiresAuth: true
+      },
+      redirect: '/dashboard/home',
+      children: [
+         {
+          name: 'dashboardhome',
+          path: '/dashboard/home',
+          component:()=> import ('../views/Dashboard/home.vue')
+        },
+        {
+          name: 'profile',
+          path: '/dashboard/profile',
+          component:() => import('../views/Dashboard/profile.vue')
+        },
+        {
+          name: 'create',
+          path: '/dashboard/create',
+          component:() => import('../views/Dashboard/create.vue')
+        }
+      ]
+    },
 
     
 
   ]
 })
+router.beforeEach(async (to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    const token = localStorage.getItem('token');
+    if (token) {
+      // Token exists, consider user authenticated
+      return next();
+    }
+    // Token does not exist, redirect to login
+    return next('/Login');
+  }
+  next();
+});
 
 export default router

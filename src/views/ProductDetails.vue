@@ -95,6 +95,7 @@
             768: { slidesPerView: 2, spaceBetween: 30 },
             1024: { slidesPerView: 3, spaceBetween: 20 },
           }"
+          :loop="true"
         >
           <swiper-slide
             v-for="card in suggestedProducts"

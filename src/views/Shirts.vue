@@ -1,8 +1,8 @@
 <template>
   <div>
     <navbar/>
-    <div class="mx-20 my-10">
-      <StoreTitle :title="pageTitle" :description="pageDescription"/>
+    <div class="mx-10 my-10">
+      <StoreTitle :title="pageTitle" :description="pageDescription" :productscount="shirts.length"/>
 
       <div class="flex justify-center items-center my-20 flex-wrap">
         <StoreCard v-for="shirt in shirts" :key="shirt.id"
