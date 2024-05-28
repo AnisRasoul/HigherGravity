@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import axios from 'axios'
 import Home from '../views/Home.vue'
 import New from '../views/New.vue'
 import Shirts from '../views/Shirts.vue'
@@ -92,7 +93,15 @@ router.beforeEach(async (to, from, next) => {
     const token = localStorage.getItem('token');
     if (token) {
       // Token exists, consider user authenticated
-      return next();
+      // Check if the token is valid
+      try {
+        await axios.post('http://localhost:3000/api/Auth/verifyToken', { token }); // Adjust the endpoint for token verification
+        return next();
+      } catch (error) {
+        console.error('Invalid token:', error);
+        // Token invalid, redirect to login
+        return next('/Login');
+      }
     }
     // Token does not exist, redirect to login
     return next('/Login');

@@ -16,10 +16,10 @@
       </a>
       <h2 class="text-5xl md:w-[70%] mb-3 mx-auto text-primary uppercase text-center font-[Anger] tracking-[8px]">Login to your account</h2>
       <DynamicForm :schema="formSchema" :on-submit="onSubmit">
-  <template #submit-button>
-    <Button class="bg-black text-white w-full text-xl font-semibold" type="submit">Sign in</Button>
-  </template>
-</DynamicForm>
+        <template #submit-button>
+          <Button class="bg-black text-white w-full text-xl font-semibold" type="submit">Sign in</Button>
+        </template>
+      </DynamicForm>
 
       <div class="flex md:mx-[10%] mx-[9%] space-x-3 items-center my-5">
         <h1>Dont have account?</h1>
@@ -76,29 +76,27 @@ export default {
   },
   methods: {
     onSubmit(values) {
-     // Check if form submission is triggered
       this.userEmail = values.email;
       this.userPassword = values.password;
       this.login();
     },
     async login(){
-      console.log(this.userEmail, this.userPassword); // Check if login method is invoked
       try {
-        const res = await axios.post('api here', {
-          email: this.email,
-          password: this.password,
+        const res = await axios.post('http://localhost:3000/api/Auth/login', {
+          email: this.userEmail, // Corrected
+          password: this.userPassword, // Corrected
         });
-        console.log('Post test successful:', res.data);
-        this.$router.push('/')
+        localStorage.setItem('token', res.data.token);
+        console.log('Login successful:', res.data);
+        this.$router.push('/');
       } 
       catch (error) {
-        alert(error);
+        alert(`Error during login: ${error.response?.data?.message || error.message}`);
       }
     }
   }
 };
 </script>
-
 
 <style>
 .Login {

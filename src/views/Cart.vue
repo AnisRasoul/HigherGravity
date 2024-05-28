@@ -10,7 +10,7 @@
   </div>
   <div v-if="!cartProduct.length" class="flex flex-col items-center justify-center h-full space-y-5 md:my-48 mb-56 md:border-t md:border-[#A0A0A0]">
   <p class="uppercase font-bold text-xl text-center">Your cart is empty. Explore HigherGravity's best sellers and exclusive offers.</p>
-  <HGButton href="/pants" class="mt-4">Shop now</HGButton>
+  <HGButton href="/" class="mt-4">Shop now</HGButton>
 </div>
 <div v-else class="mb-48 border-t border-b border-[#A0A0A0]">
   <div>
@@ -53,7 +53,7 @@ computed: {
   cartProduct() {
     return this.$store.state.cart.sort((a, b) => b.id - a.id);
     }
-}
+},
 }
 
 </script>

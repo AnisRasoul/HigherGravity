@@ -92,7 +92,7 @@ export default {
     },
       async register() {
     try {
-      const res = await axios.post('api', {
+      const res = await axios.post('http://localhost:3000/api/Auth/register', {
         username: this.userName,
         email: this.userEmail,
         password: this.userPassword

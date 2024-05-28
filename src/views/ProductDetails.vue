@@ -2,8 +2,8 @@
   <div :key="$route.params.id">
     <navbar />
     <div class="bg-white my-20">
-      <div class="md:flex justify-center mx-auto items-center">
-        <div class="md:flex md:space-x-6 space-x-10 space-y-4 items-center">
+      <div class="md:flex md:justify-center md:items-center">
+        <div class="md:flex md:space-x-6 space-x-10 space-y-4">
           <div class="md:block flex md:space-x-0 space-x-2 md:space-y-3 items-center justify-center">
             <!-- Use v-for to render small images -->
             <img
@@ -11,24 +11,24 @@
               :key="index"
               @mouseover="changeImage(img)"
               :src="img"
-              class="w-[40px] h-[60px] sm:w-[80px] sm:h-[100px] object-cover cursor-pointer"
+              class="w-[50px] h-[70px] sm:w-[80px] sm:h-[100px] object-cover cursor-pointer"
             />
           </div>
           <!-- Render the big image -->
           <img
             :src="image"
             alt="T-shirt with graphic"
-            class="md:block flex md:w-96 md:h-72 object-cover"
-            style="width: 300px; height: auto;"
+            class="md:block md:w-96 md:h-72 object-cover flex"
+            style="width: 320px; height: auto;"
           />
         </div>
-        <div class="flex flex-col pl-8">
+        <div class="flex flex-col md:pl-20 md:items-start items-center md:my-0 my-10">
           <router-link :to="{ name: 'productdetails', params: { id: selectedProduct.id } }">
-            <h1 class="text-3xl font-bold">{{ selectedProduct.cardDesc }}</h1>
+            <h1 class="text-3xl font-bold text-center">{{ selectedProduct.cardDesc }}</h1>
           </router-link>
           <p class="mt-4 text-sm text-gray-600"></p>
-          <div class="mt-4">
-            <p class="text-lg font-extrabold">Price:</p>
+          <div class="mt-4 md:block flex space-x-1">
+            <p class="text-lg font-extrabold">Price :</p>
             <p class="text-lg font-black">${{ selectedProduct.cardPrice.toFixed(2) }} USD</p>
           </div>
           <div class="mt-4">

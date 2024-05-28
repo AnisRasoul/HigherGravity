@@ -13,20 +13,31 @@
           <img src="../assets/HG logo.svg" class="md:h-auto h-16">
         </a>
 
-        <ul v-if="menuItems.length > 0" class="md:flex hidden uppercase text-white space-x-16"> 
-          <li v-for="(item, index) in menuItems" :key="index">
-            <a :href="item.link">{{ item.text }}</a>
-          </li>
-        </ul>
+        <ul  class="md:flex hidden uppercase text-white space-x-16"> 
+          <li><a href="/newin">Newin</a></li>
+          <li><a href="/shirts">Shirts</a></li>
+          <li><a href="/pants">Pants</a></li>
+          <li><a href="/accessory">ACCESSORY</a></li>
+          <li><a href="/help">GET HELP</a></li>
+          <button v-if="isAuthenticated" @click="logout" class="flex space-x-3">
+           <p>Logout</p> <LogOut/>
+          </button>
+         </ul>
       </div>
-      <div class="flex justify-center items-center md:mr-24 mr-32 mt-4 space-x-4">
-        <div class="md:bg-[#333333] md:p-1 md:rounded-full md:items-center md:w-full md:max-w-[200px] mx-auto sm:flex hidden">
+      <div class="flex justify-center items-center md:mr-28 mr-32 mt-4 space-x-4">
+        <div class="md:bg-[#333333] md:p-1 md:rounded-full md:items-center md:w-full md:max-w-[200px] md:mb-1 sm:flex hidden">
           <Search class="text-white md:size-4 size-6 mx-2" />
           <input class="bg-transparent outline-none border-0 text-white placeholder-gray-400 w-full hidden sm:block" placeholder="Search" type="search" />
         </div>
         <div class="flex text-white space-x-8 size-8 items-center mb-2">
           <a href="/cart"><ShoppingBag/></a>
-          <a href="/login"><UserRound/></a>
+          <template v-if="isAuthenticated">
+            <a href="/dashboard"><UserRound/></a>
+          </template>
+          <template v-else>
+            <a href="/login"><UserRound/></a>
+          </template> 
+         
         </div>
       </div>
     </nav>
@@ -45,31 +56,31 @@
           <input class="bg-transparent outline-none border-0 text-white placeholder-gray-400 w-full sm:block" placeholder="Search" type="search" />
         </div>
         <ul class="space-y-10 my-20 mx-10 uppercase text-white">
-          <li v-for="(item, index) in menuItems" :key="index">
-            <a :href="item.link">{{ item.text }}</a>
-          </li>
+          <li><a href="/newin">Newin</a></li>
+          <li><a href="/shirts">Shirts</a></li>
+          <li><a href="/pants">Pants</a></li>
+          <li><a href="/accessory">ACCESSORY</a></li>
+          <li><a href="/help">GET HELP</a></li>
+          <li v-if="isAuthenticated"><a href="/dashboard">Dashboard</a></li>
         </ul>
+        <button class="text-white absolute top-[90%] right-10"  v-if="isAuthenticated">
+            <LogOut class="size-6"  @click="logout" />
+          </button>
       </div>
     </transition>
   </div>
 </template>
 
 <script>
-import { Menu, UserRound, ShoppingBag, Search, ChevronDown, X } from 'lucide-vue-next';
+import { Menu, UserRound, ShoppingBag, Search, ChevronDown, X, LogOut  } from 'lucide-vue-next';
 import { gsap } from 'gsap';
 
 export default {
-  components: { Menu, UserRound, ShoppingBag, Search, ChevronDown, X },
+  components: { Menu, UserRound, ShoppingBag, Search, ChevronDown, X, LogOut  },
   data() {
     return {
       showMenu: false,
-      menuItems: [
-        { text: 'Newin', link: '/newin' },
-        { text: 'Shirts', link: '/shirts' },
-        { text: 'Pants', link: '/pants' },
-        { text: 'ACCESSORY', link: '/accessory' },
-        { text: 'GET HELP', link: '/help' }
-      ]
+      isAuthenticated: false,
     };
   },
   methods: {
@@ -92,9 +103,20 @@ export default {
     },
     leave(el, done) {
       gsap.fromTo(el, { opacity: 1, x: 0 }, { opacity: 0, x: -300, duration: 0.5, onComplete: done });
+    },
+    checkAuthentication() {
+      const token = localStorage.getItem('token');
+      this.isAuthenticated = !!token; // Convert token existence to boolean
+    },
+    logout() {
+      localStorage.removeItem('token');
+      this.isAuthenticated = false;
+      location.reload()
     }
+  },
+ mounted() {
+    this.checkAuthentication();
   }
-
 };
 </script>
 
