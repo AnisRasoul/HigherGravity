@@ -1,7 +1,7 @@
 <template>
     <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md md:shadow-lg dark:bg-gray-800 dark:border-gray-700" style="cursor: pointer;">
       <a>
-        <img class="w-full" :src="currentImage" alt="Card Image" @mouseenter="changeImage" @mouseleave="restoreImage" :style="{ opacity: imageOpacity }">
+        <img class="w-full" :src="currentImage" @mouseenter="changeImage" @mouseleave="restoreImage" :style="{ opacity: imageOpacity }">
       </a>
       <div class="p-5">
         <a href="#">

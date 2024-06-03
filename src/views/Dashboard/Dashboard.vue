@@ -60,9 +60,9 @@ export default {
     return {
       showSide: true,
       sidebarLinks: [
-        { route: '/dashboard/home',  label: 'Profile' },
-        { route: '/dashboard/profile', label: 'products' },
-        { route: '/dashboard/create', label: 'Shooping' },
+        { route: '/dashboard/home',  label: 'dashboard' },
+        { route: '/dashboard/products', label: 'products' },
+        { route: '/dashboard/create', label: 'users' },
       ],
     };
   },

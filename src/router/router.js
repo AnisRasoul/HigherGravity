@@ -73,8 +73,8 @@ const router = createRouter({
         },
         {
           name: 'profile',
-          path: '/dashboard/profile',
-          component:() => import('../views/Dashboard/profile.vue')
+          path: '/dashboard/products',
+          component:() => import('../views/Dashboard/products.vue')
         },
         {
           name: 'create',
@@ -92,18 +92,14 @@ router.beforeEach(async (to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     const token = localStorage.getItem('token');
     if (token) {
-      // Token exists, consider user authenticated
-      // Check if the token is valid
       try {
-        await axios.post('http://localhost:3000/api/Auth/verifyToken', { token }); // Adjust the endpoint for token verification
+        await axios.post('http://localhost:3000/api/Auth/verifyToken', { token });
         return next();
       } catch (error) {
         console.error('Invalid token:', error);
-        // Token invalid, redirect to login
         return next('/Login');
       }
     }
-    // Token does not exist, redirect to login
     return next('/Login');
   }
   next();
