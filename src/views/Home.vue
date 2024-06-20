@@ -113,7 +113,7 @@ export default {
     new Typewriter('#typewriter-target', {
     strings: ['The world of Higher gravity'],
     autoStart: true,
-    loop: true,
+    loop: false,
     delay: 100,
   });
 
