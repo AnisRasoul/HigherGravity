@@ -3,9 +3,9 @@
     <div
       v-for="{ as, name, label, icon, placeholder, type, options, ...attrs } in schema.fields"
       :key="name"
-      class="space-y-5 md:w-[50%] w-full mx-auto my-10"
+      class="space-y-5 md:w-[50%] w-full mx-auto my-5"
     >
-      <div class="flex items-center space-x-3 border border-black px-6 rounded-[5px]">
+      <div class="flex items-center space-x-3 border border-black px-6 py-3 rounded-[5px]">
         <component :is="icon" v-if="icon" />
         <template v-if="as === 'select'">
           <Field as="select" :id="name" :name="name" v-bind="attrs" class="text-xl border-none outline-none w-full">
@@ -20,7 +20,7 @@
     </div>
     <slot name="submit-button">
       <!-- Default button if slot is not provided -->
-      <button class="bg-black text-white text-xl font-semibold w-[40%]" type="submit">Submit</button>
+      <button class="bg-black text-white text-xl font-semibold" type="submit">Submit</button>
     </slot>
   </Form>
 </template>

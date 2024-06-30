@@ -29,7 +29,7 @@
           <p class="mt-4 text-sm text-gray-600"></p>
           <div class="mt-4 md:block flex space-x-1">
             <p class="text-lg font-extrabold">Price :</p>
-            <p class="text-lg font-black">${{ selectedProduct.cardPrice.toFixed(2) }} USD</p>
+            <p class="text-lg font-black">${{ totalPrice }} USD</p>
           </div>
           <div class="mt-4">
             <p class="text-lg font-semibold">Select Size:</p>
@@ -52,7 +52,11 @@
           <div class="mt-4">
             <p class="text-lg font-semibold">Quantity:</p>
             <div class="flex items-center space-x-10">
-              <CounterButton v-model="Quanitity" />
+              <div class="flex space-x-5 items-center bg-white text-black  border border-black font-extrabold">
+                <button @click="decrement" class="text-black p-2 px-5 rounded">-</button>
+                 <p class="text-lg">{{ count }}</p>
+                 <button @click="increment" class="text-black p-2 px-5 rounded">+</button>
+              </div>
               <Button
                 @click="addToCart"
                 class="bg-white text-black md:px-16 px-8 md:py-2 py-3 border border-black font-extrabold"
@@ -89,6 +93,7 @@
           :modules="modules"
           :slides-per-view="1"
           :space-between="50"
+          :centeredSlides="true"
           :navigation="true"
           :breakpoints="{
             640: { slidesPerView: 1, spaceBetween: 20 },
@@ -100,6 +105,7 @@
           <swiper-slide
             v-for="card in suggestedProducts"
             :key="card.id"
+            
             @click="navigateToDetails(card.id)"
           >
             <StoreCard
@@ -130,11 +136,7 @@ import { ToastAction } from "@/components/ui/toast";
 import { Toaster } from "@/components/ui/toast";
 import { h } from "vue";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
-
-// Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from "swiper/vue";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -158,9 +160,9 @@ export default {
   },
   data() {
     return {
+      count: 1 ,
       image: null,
       selectedSize: null,
-      Quanitity: 1,
       sizes: [
         { value: "xs", label: "XS" },
         { value: "s", label: "S" },
@@ -186,6 +188,9 @@ export default {
       }
       
     },
+    totalPrice() {
+    return this.count * this.selectedProduct.cardPrice;
+  },
     existingProduct() {
       return store.state.cart.find((item) => item.id === this.selectedProduct.id);
     },
@@ -219,6 +224,16 @@ export default {
     },
   },
   methods: {
+    increment() {
+      if (this.count < 15) {
+        this.count++;
+      }
+    },
+    decrement() {
+      if (this.count > 1) {
+        this.count--;
+      }
+    },
     changeImage(img) {
       this.image = img;
     },
@@ -234,7 +249,7 @@ export default {
     return; // Exit early if size is not selected
   }
 
-  const productToAdd = { ...this.selectedProduct, quantity: this.Quanitity, size: this.selectedSize };
+  const productToAdd = { ...this.selectedProduct,  quantity: this.count, size: this.selectedSize, totalPrice: this.totalPrice};
   if (!this.existingProduct) {
     this.$store.dispatch("addToCart", productToAdd);
     this.showToast(
@@ -273,6 +288,7 @@ export default {
     },
     navigateToDetails(id) {
       this.$router.push({ name: "productdetails", params: { id } });
+      this.count = 1;
       window.scrollTo(0, 0);
     },
    

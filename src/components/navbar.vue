@@ -1,16 +1,16 @@
 <template>
   <div class="sticky">
-    <div class="sticky justify-end flex bg-white" style="font-family: Zabal;">
-      <h3 class="md:p-2 p-1 mx-auto font-black md:tracking-[1px] md:text-xl">Welcome to higher gravity store</h3>
+    <div class="sticky bg-white" style="font-family: Zabal;">
+      <h3 class="md:p-2 p-1 font-bold md:tracking-[1px] md:text-base text-xs text-center">Welcome to higher gravity store</h3>
     </div>
 
     <nav class="p-1 flex justify-between items-center bg-[#151516]">
       <div class="md:flex items-center">
-        <span @click="showMenu = !showMenu" class="absolute sm:hidden right-5 top-14 text-[#d3cece]">
+        <span @click="showMenu = !showMenu" class="absolute sm:hidden right-5 top-12 text-[#d3cece]">
           <Menu class="size-8"/>
         </span>
         <a class="text-white md:px-6 md:py-1 md:mr-9" href="/"> 
-          <img src="../assets/HG logo.svg" class="md:h-auto h-16">
+          <img src="../assets/HG logo.svg" class="h-16">
         </a>
 
         <ul  class="md:flex hidden uppercase text-white space-x-16"> 
@@ -32,7 +32,7 @@
         <div class="flex text-white space-x-8 size-8 items-center mb-2">
           <a href="/cart"><ShoppingBag/></a>
           <template v-if="isAuthenticated">
-            <a href="/dashboard"><UserRound/></a>
+            <a href="/user/dashboard"><UserRound/></a>
           </template>
           <template v-else>
             <a href="/login"><UserRound/></a>

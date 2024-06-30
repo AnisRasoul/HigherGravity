@@ -1,18 +1,17 @@
 <template>
-  <p>test brk</p>
+  <div>
+    dashboard
+  </div>
 </template>
 
 <script>
 
-
 export default {
 
-  methods: {
- 
-  },
 
-  data() {
-  
-  },
 }
 </script>
+
+<style>
+
+</style>

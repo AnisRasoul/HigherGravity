@@ -58,28 +58,63 @@ const router = createRouter({
       component: () => import('@/views/userAuth/Register.vue')
     },
     {
+      name: 'userdashboard',
+      path: '/user/dashboard',
+      component:()=> import('../views/userDashboard/Dashboard.vue'),
+      children: [
+        {
+          name: 'orders',
+          path: '/user/dashboard/orders',
+          component:()=> import('../views/userDashboard/Orders.vue')
+        },
+        {
+          name: 'userProfile',
+          path: '/user/dashboard/profile',
+          component:()=> import('../views/userDashboard/Profile.vue')
+        },
+        {
+          name: 'purchases',
+          path: '/user/dashboard/purchases',
+          component:()=> import('../views/userDashboard/Purchases.vue')
+        }
+      ]
+    },
+
+
+    // Admin routes
+    {
+      path: '/Admin',
+      name: 'Admin',
+      component: () => import('@/views/AdminAuth/AdminLogin.vue'),
+    },
+    {
       name: 'Dashboard',
       path: '/dashboard',
-      component:()=> import('../views/Dashboard/Dashboard.vue'),
+      component:()=> import('../views/AdminDashboard/Dashboard.vue'),
       meta: {
-        requiresAuth: true
+        requiresAuth: false
       },
       redirect: '/dashboard/home',
       children: [
          {
           name: 'dashboardhome',
           path: '/dashboard/home',
-          component:()=> import ('../views/Dashboard/home.vue')
+          component:()=> import ('../views/AdminDashboard/home.vue')
         },
         {
           name: 'profile',
           path: '/dashboard/products',
-          component:() => import('../views/Dashboard/products.vue')
+          component:() => import('../views/AdminDashboard/products.vue')
         },
         {
-          name: 'create',
-          path: '/dashboard/create',
-          component:() => import('../views/Dashboard/create.vue')
+          name: 'Users',
+          path: '/dashboard/users',
+          component:() => import('../views/AdminDashboard/Users.vue')
+        },
+        {
+          name: 'Orders',
+          path: '/dashboard/orders',
+          component:() => import('../views/AdminDashboard/Orders.vue')
         }
       ]
     },

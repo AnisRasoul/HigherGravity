@@ -8,7 +8,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <DialogTrigger v-bind="props" class="bg-black text-white px-6 py-2 rounded-[25px]">
+  <DialogTrigger v-bind="props" class="bg-black text-white px-6 py-2 rounded-none">
     <slot />
   </DialogTrigger>
 </template>

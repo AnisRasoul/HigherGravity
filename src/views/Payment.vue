@@ -142,7 +142,11 @@
     :cardImage="item.cardImage"
     :cardId="item.id" 
     :cardDesc="item.cardDesc" 
-    :cardPrice="item.cardPrice"/>
+    :cardPrice="item.totalPrice"
+    :cardSize ="item.size"
+    :cardColor="item.color"
+    :cardQuantity="item.quantity"
+    />
   </div>
 </div>
         <div class="flex md:w-[90%] items-center md:ml-16 space-x-4 text-[#151516]">
@@ -152,17 +156,14 @@
     </Button>
   </div>
   <div class="md:w-[90%] my-5 space-y-4 flex flex-col justify-center md:ml-16 space-x-4 text-[#151516]">
-    <div class="flex items-center justify-between">
-      <h1>Subtotal</h1>
-      <h1>$65,49 USD</h1>
-    </div>
+  
     <div class="flex items-center justify-between">
       <h1>Shipping</h1>
       <h1>Enter shipping address</h1>
     </div>
     <div class="flex items-center justify-between">
       <h1>Total</h1>
-      <h1>$65,49 USD</h1>
+      <h1 class="font-bold">${{subtotal}} USD</h1>
     </div>
   </div>
       </div>
@@ -202,6 +203,11 @@ export default {
     cartProduct() {
       return this.$store.state.cart;
     },
+    subtotal() {
+    return this.cartProduct.reduce((total, item) => {
+      return total + item.totalPrice
+    }, 0);
+  },
     validationSchema() {
       return yup.object({
         email: yup.string().required('required field').email('Enter a valid email'),

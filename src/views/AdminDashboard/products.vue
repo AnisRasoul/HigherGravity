@@ -65,7 +65,7 @@
     </div>
     <div class="w-full my-3">
       <table class="min-w-full bg-white rounded-lg overflow-hidden shadow-md text-xs">
-        <thead class="bg-gray-800 text-white">
+        <thead class="bg-[#151516] text-white">
           <tr>
             <th scope="col" class="px-4 py-2 text-left font-medium">Title</th>
             <th scope="col" class="px-4 py-2 text-left font-medium">Description</th>
@@ -75,7 +75,7 @@
             <th scope="col" class="px-4 py-2 text-left font-medium">Actions</th>
           </tr>
         </thead>
-        <tbody class="divide-y divide-gray-200 bg-gray-800 text-white">
+        <tbody class="divide-y divide-gray-200 bg-[#151516] text-white">
           <tr v-for="product in products.allProducts" :key="product._id">
             <td class="px-4 py-2 whitespace-nowrap">{{ product.title }}</td>
             <td class="px-4 py-2 whitespace-nowrap">{{ product.description }}</td>

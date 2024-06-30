@@ -12,7 +12,8 @@
               <h1>{{ cardDesc }}</h1>
          
             <p class="text-[#A0A0A0] uppercase">Size: {{ cardSize }}</p>
-            <p class="text-[#A0A0A0] uppercase">Color: Blue</p>
+            <p class="text-[#A0A0A0] uppercase">Color: </p>
+            <p  class="text-[#A0A0A0] uppercase">Quantity: {{ cardQuantity }}</p>
           </div>
         </div>
         </router-link>
@@ -46,12 +47,13 @@ export default {
     cardDesc: String,
     cardPrice: Number,
     cardSize : String,
+    cardColor: String,
+    cardQuantity: Number
   },
   methods: {
     removeFromCart() {
       this.$store.dispatch('removeFromCart', this.cardId);
          this.showToast('Removed from Cart');
-     
     },
     showToast(title, description, action) {
       const { toast } = useToast();
