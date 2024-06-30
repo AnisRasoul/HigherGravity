@@ -111,6 +111,14 @@ export default {
     );
     this.animateOnScroll();
   },
+    new Typewriter('#typewriter-target', {
+    strings: ['The world of Higher gravity'],
+    autoStart: true,
+    loop: false,
+    delay: 100,
+  });
+
+},
   data() {
     return {
       accordionItems: [
