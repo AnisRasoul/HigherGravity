@@ -66,5 +66,7 @@ computed: {
 </script>
 
 <style>
-
+body{
+    font-family: Zabal;
+}
 </style>

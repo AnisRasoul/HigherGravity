@@ -20,9 +20,11 @@
       </div>
       <div class="flex space-x-6 justify-center items-center md:ml-0 ml-[60%]">
        
-        <h1 class="font-extrabold"> ${{ cardPrice }}  USD</h1> 
+        <h1 class="font-bold"> ${{ cardPrice }}  USD</h1> 
         <button @click="removeFromCart">
-          <span class="mdi mdi-trash-can-outline text-2xl"></span>
+          <button @click="removeFromCart">
+            <Trash class="mdi mdi-trash-can-outline text-2xl"></Trash>
+          </button>
         </button>
       </div>
     </div>
@@ -36,10 +38,12 @@ import { useToast } from '@/components/ui/toast/use-toast';
 import { ToastAction } from '@/components/ui/toast'
 import { Toaster } from '@/components/ui/toast';
 import { h } from 'vue';
+import { Trash } from 'lucide-vue-next';
 
 export default {
   components: {
-    CounterButton
+    CounterButton,
+    Trash
   },
   props: {
     cardId: Number,

@@ -11,6 +11,9 @@ import Toaster from '@/components/ui/toast/Toaster.vue'
   </div>
 </template>
 <style>
+.body {
+  font-family: 'Zabal', sans-serif;
+}
 @font-face {
   font-family: Zabal;
   src: url('@/assets/fonts/ZabalDEMO-Regular.otf');

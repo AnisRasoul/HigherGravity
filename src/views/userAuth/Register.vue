@@ -136,7 +136,7 @@ export default {
   
 <style>
 .Login {
-  background-image: url('@/assets/imgs/login.png');
+  background-image: url('@/assets/imgs/login.webp');
   background-repeat: no-repeat ;
   background-size: cover;
 }

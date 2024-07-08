@@ -57,5 +57,8 @@ export default {
 </script>
 
 <style>
+body{
+    font-family: Zabal;
+}
 /* Add your styles here */
 </style>
