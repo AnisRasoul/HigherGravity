@@ -41,6 +41,7 @@ const store = createStore({
       { id: 24, cardImage: "https://i.imgur.com/MONyixl.png", hoverImage: "https://i.imgur.com/sb6AqDJ.png", cardDesc: "HigherGravity Retro Sport Beige Shirt.", cardPrice: 25.00 },
     ],
     cart: JSON.parse(localStorage.getItem('cart')) || [],
+    purchased: JSON.parse(localStorage.getItem('purchased')) || [],
   },
   mutations: {
     addToCart(state, product) {
@@ -51,6 +52,10 @@ const store = createStore({
       state.cart = state.cart.filter(item => item.id !== id);
       localStorage.setItem('cart', JSON.stringify(state.cart));
     },
+    addToPurchased(state, product) {
+      state.purchased.push(product);
+      localStorage.setItem('purchased', JSON.stringify(state.purchased));
+    },
   },
   actions: {
     addToCart({ commit }, product) {
@@ -58,6 +63,9 @@ const store = createStore({
     },
     removeFromCart({ commit }, id) {
       commit('removeFromCart', id);
+    },
+    addToPurchased({ commit }, product) {
+      commit('addToPurchased', product);
     },
   },
 });

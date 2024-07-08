@@ -102,18 +102,53 @@
                 </div>
                 <Home/>
               </div>
-
-              <div class="border border-[#A0A0A0] flex items-center justify-between md:w-[68%] py-5 px-5">
-                <div class="flex items-center space-x-2">
+              
+              <Collapsible v-model="isOpen" >
+               <div class="border border-[#A0A0A0] flex items-center justify-between md:w-[68%] py-5 px-5">
+               
+               
+                   <CollapsibleTrigger class="flex items-center space-x-2">
                   <input type="radio" id="r4" name="paymentMethod" value="Creditcard" />
                   <label for="r4">Credit card</label>
-                </div>
+                   </CollapsibleTrigger>
                 <div class="flex items-center">
                   <img src="../assets/footer-pay/visa-logo.svg" alt="Visa">
                   <img src="../assets/footer-pay/obl.svg" alt="OBL">
                   <img src="../assets/footer-pay/AMEX.svg" alt="AMEX">
                 </div>
+              </div>  
+                <CollapsibleContent class="border border-[#A0A0A0] md:w-[68%]">
+                <div class="p-4 space-y-3 text-sm">
+                  <div class="relative items-center mt-2">
+                <Field name="phoneNumber" type="tel" placeholder="Card number" class=" border border-black px-3 py-2 pl-10 w-full" />
+                <span class="absolute start-0 inset-y-0 flex items-center justify-center px-2">
+                  <Info class="size-4 text-muted-foreground" />
+                </span>
               </div>
+              <ErrorMessage name="phoneNumber" class="text-red-700 text-sm"/>
+              <div class="md:flex md:space-x-5 md:space-y-0 space-y-3 mt-2 items-center">
+                <Field name="postalCode" type="text" placeholder="Expires on" class=" border border-black px-3 py-2 w-full" />
+                <ErrorMessage name="postalCode" class="text-red-700 text-sm" />
+                <Field name="city" type="text" placeholder="Security code" class=" border border-black px-3 py-2 w-full" />
+                <ErrorMessage name="city" class="text-red-700 text-sm" />
+              </div>
+              <div class="relative items-center mt-2">
+                <Field name="phoneNumber" type="tel" placeholder="Name on card" class=" border border-black px-3 py-2 pl-10 w-full" />
+                <span class="absolute start-0 inset-y-0 flex items-center justify-center px-2">
+                  <Info class="size-4 text-muted-foreground" />
+                </span>
+              </div>
+              <ErrorMessage name="phoneNumber" class="text-red-700 text-sm"/>
+              <div class="flex items-center space-x-2 mt-2">
+                <Field name="newsAndOffers" type="checkbox" id="terms" v-model="newsAndOffers" />
+                <label for="terms" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                 use shipping address as billing address
+                </label>
+              </div>
+            </div>
+               </CollapsibleContent>
+              </Collapsible>
+             
             </div>
           </div>
 
@@ -126,7 +161,7 @@
               </label>
             </div>
           </div>
-          <button class="rounded py-5 bg-[#47A6FF] md:w-[68%] w-full text-white text-2xl">Pay now</button>
+          <button class="rounded py-5 bg-[#47A6FF] md:w-[68%] w-full text-white text-2xl" @click="Purchase">Pay now</button>
         </Form>
       </div>
 
@@ -136,7 +171,7 @@
 </div>
 <div v-else>
   <div>
-    <CartItem v-for="item in cartProduct" class="my-16 ml-10"
+    <CartItem v-for="item in cartProduct" class="my-16 text-sm"
     :key="item.id" 
     :item="item" 
     :cardImage="item.cardImage"
@@ -150,10 +185,10 @@
   </div>
 </div>
         <div class="flex md:w-[90%] items-center md:ml-16 space-x-4 text-[#151516]">
-    <Input type="text" placeholder="Discount code" class="border border-[#A0A0A0] md:text-2xl md:py-7 " />
-    <Button type="submit" class="border border-[#A0A0A0] rounded md:py-7 md:px-12 py-2 px-5 md:text-2xl" >
+    <input type="text" placeholder="Discount code" class="border border-[#A0A0A0] md:text-2xl md:py-7 " />
+    <button type="submit" class="border border-[#A0A0A0] rounded md:py-7 md:px-12 py-2 px-5 md:text-2xl" >
       Apply
-    </Button>
+    </button>
   </div>
   <div class="md:w-[90%] my-5 space-y-4 flex flex-col justify-center md:ml-16 space-x-4 text-[#151516]">
   
@@ -175,6 +210,7 @@
 <script>
 import { Home, Phone } from 'lucide-vue-next';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import navbar from '../components/navbar.vue';
 import footing from '../components/footing.vue';
 import CartItem from '@/components/Cards/CartItem.vue';
@@ -182,8 +218,8 @@ import { Search } from 'lucide-vue-next';
 import { Info } from 'lucide-vue-next';
 import { Form, Field, ErrorMessage } from 'vee-validate';
 import * as yup from 'yup';
-
-
+import { ref } from 'vue';
+import Purchases from './userDashboard/Purchases.vue';
 
 export default {
   components: {
@@ -198,16 +234,19 @@ export default {
     Home,
     RadioGroup,
     RadioGroupItem,
+    Collapsible,
+    CollapsibleContent,
+    CollapsibleTrigger,
   },
   computed: {
     cartProduct() {
       return this.$store.state.cart;
     },
     subtotal() {
-    return this.cartProduct.reduce((total, item) => {
-      return total + item.totalPrice
-    }, 0);
-  },
+      return this.cartProduct.reduce((total, item) => {
+        return total + item.totalPrice;
+      }, 0);
+    },
     validationSchema() {
       return yup.object({
         email: yup.string().required('required field').email('Enter a valid email'),
@@ -217,12 +256,13 @@ export default {
         address: yup.string().required('Address is required'),
         postalCode: yup.string().required('required field'),
         city: yup.string().required('required field'),
-        phoneNumber: yup.string().matches(this.PhoneReg, 'Phone number is not valid').required('Required')
+        phoneNumber: yup.string().matches(this.PhoneReg, 'Phone number is not valid').required('Required'),
       });
-    }
+    },
   },
   data() {
     return {
+      isOpen: ref(false),
       selectItems: [
         { value: 'algeria', text: 'Algeria' },
         { value: 'france', text: 'France' },
@@ -231,15 +271,21 @@ export default {
         { value: 'germany', text: 'Germany' },
         { value: 'spain', text: 'Spain' },
         { value: 'tunisia', text: 'Tunisia' },
-        { value: 'morocco', text: 'Morocco' }
+        { value: 'morocco', text: 'Morocco' },
       ],
-    PhoneReg :  /^(00213|\+213|0)(5|6|7)[0-9]{8}$/
-    }
+      PhoneReg: /^(00213|\+213|0)(5|6|7)[0-9]{8}$/,
+    };
   },
   methods: {
-    onSubmit(values){
+    onSubmit(values) {
       console.log(values);
-    }
-  }
-}
+    },
+    Purchase() {
+    const purchases = this.$store.state.cart; 
+     this.$store.dispatch('addToPurchased', purchases);
+     console.log(this.$store.state.purchased);
+    },
+  },
+};
 </script>
+

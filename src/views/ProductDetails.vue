@@ -92,13 +92,14 @@
         <swiper
           :modules="modules"
           :slides-per-view="1"
-          :space-between="50"
-          :centeredSlides="true"
+          :space-between="10"
+          :auto-height="true"
           :navigation="true"
+          :autoplay="{ delay: 1000, disableOnInteraction: false, }"
           :breakpoints="{
             640: { slidesPerView: 1, spaceBetween: 20 },
             768: { slidesPerView: 2, spaceBetween: 30 },
-            1024: { slidesPerView: 3, spaceBetween: 20 },
+            1024: { slidesPerView: 4, spaceBetween: 20 },
           }"
           :loop="true"
         >
@@ -113,7 +114,7 @@
               :hover-image="card.hoverImage"
               :card-desc="card.cardDesc"
               :card-price="card.cardPrice"
-              class="sm:w-1/2 lg:w-1/3"
+              class="sm:w-1/2 lg:w-full text-start"
             />
           </swiper-slide>
         </swiper>
@@ -135,7 +136,7 @@ import { useToast } from "@/components/ui/toast/use-toast";
 import { ToastAction } from "@/components/ui/toast";
 import { Toaster } from "@/components/ui/toast";
 import { h } from "vue";
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import { Navigation, Pagination,  Autoplay, Scrollbar, A11y } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -155,7 +156,7 @@ export default {
   },
   setup() {
     return {
-      modules: [Navigation, Pagination, Scrollbar, A11y],
+      modules: [Navigation, Pagination, Scrollbar, A11y , Autoplay],
     };
   },
   data() {

@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="./src/assets/HG logo.svg">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@5.9.55/css/materialdesignicons.min.css">   
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Higher Gravity</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="./src/assets/HG logo.svg">
+  <link rel="preload" href="../assets/fonts/ZabalDEMO-Regular.otf" as="font" type="font/otf" crossorigin="anonymous">
+  <link rel="preload" href="../assets/fonts/AngerStyles.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Higher Gravity</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script type="module">
+    if ('fonts' in document) {
+      Promise.all([
+        document.fonts.load('1em ZabalDEMO-Regular'),
+        document.fonts.load('1em AngerStyles')
+      ]).then(function() {
+        document.documentElement.classList.add('fonts-loaded');
+      });
+    }
+  </script>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
 </html>
