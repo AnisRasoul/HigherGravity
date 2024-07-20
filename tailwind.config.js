@@ -1,4 +1,4 @@
-const animate = require("tailwindcss-animate")
+const animate = require("tailwindcss-animate");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -11,7 +11,7 @@ module.exports = {
     './components/**/*.{js,jsx,vue}',
     './app/**/*.{js,jsx,vue}',
     './src/**/*.{js,jsx,vue}',
-	],
+  ],
   
   theme: {
     container: {
@@ -29,8 +29,8 @@ module.exports = {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+          DEFAULT: "#151516",  // Updated primary color
+          foreground: "hsl(var(--primary-foreground))", // You may adjust this if needed
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -58,7 +58,7 @@ module.exports = {
         },
       },
       borderRadius: {
-      	xl: "calc(var(--radius) + 4px)",
+        xl: "calc(var(--radius) + 4px)",
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",

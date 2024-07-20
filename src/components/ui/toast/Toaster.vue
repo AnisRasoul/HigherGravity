@@ -15,7 +15,7 @@ const { toasts } = useToast();
 
 <template>
   <ToastProvider >
-    <Toast v-for="toast in toasts" :key="toast.id" v-bind="toast" class="text-white bg-[#151516] border-[#151516] rounded-[10px]">
+    <Toast v-for="toast in toasts" :key="toast.id" v-bind="toast" class="text-white bg-primary border-primary rounded-[10px]">
       <div class="grid gap-1">
         <ToastTitle v-if="toast.title" >
           {{ toast.title }}

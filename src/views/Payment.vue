@@ -184,13 +184,13 @@
     />
   </div>
 </div>
-        <div class="flex md:w-[90%] items-center md:ml-16 space-x-4 text-[#151516]">
+        <div class="flex md:w-[90%] items-center md:ml-16 space-x-4 text-primary">
     <input type="text" placeholder="Discount code" class="border border-[#A0A0A0] md:text-2xl md:py-7 " />
     <button type="submit" class="border border-[#A0A0A0] rounded md:py-7 md:px-12 py-2 px-5 md:text-2xl" >
       Apply
     </button>
   </div>
-  <div class="md:w-[90%] my-5 space-y-4 flex flex-col justify-center md:ml-16 space-x-4 text-[#151516]">
+  <div class="md:w-[90%] my-5 space-y-4 flex flex-col justify-center md:ml-16 space-x-4 text-primary">
   
     <div class="flex items-center justify-between">
       <h1>Shipping</h1>

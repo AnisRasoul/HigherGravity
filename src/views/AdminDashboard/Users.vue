@@ -5,7 +5,7 @@
     </div>
     <div class="w-full my-3">
       <table class="min-w-full bg-white rounded-lg overflow-hidden shadow-md text-xs">
-        <thead class="bg-[#151516] text-white">
+        <thead class="bg-primary text-white">
           <tr>
             <th scope="col" class="px-4 py-2 text-left font-medium">Username</th>
             <th scope="col" class="px-4 py-2 text-left font-medium">Email</th>
@@ -15,7 +15,7 @@
             <th scope="col" class="px-4 py-2 text-left font-medium">Actions</th>
           </tr>
         </thead>
-        <tbody class="divide-y divide-gray-200 bg-[#151516] text-white">
+        <tbody class="divide-y divide-gray-200 bg-primary text-white">
           <tr v-for="user in users" :key="user._id">
             <td class="px-4 py-2 whitespace-nowrap">{{ user.username || 'empty' }}</td>
             <td class="px-4 py-2 whitespace-nowrap">{{ user.email || 'empty' }}</td>

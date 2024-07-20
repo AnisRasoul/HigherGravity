@@ -4,7 +4,7 @@
       <h3 class="md:p-2 p-1 font-bold md:tracking-[1px] md:text-base text-xs text-center">Welcome to higher gravity store</h3>
     </div>
 
-    <nav class="p-1 flex justify-between items-center bg-[#151516]">
+    <nav class="p-1 flex justify-between items-center bg-primary">
       <div class="md:flex items-center">
         <span @click="showMenu = !showMenu" class="absolute sm:hidden right-5 top-12 text-[#d3cece]">
           <Menu class="size-8"/>
@@ -47,7 +47,7 @@
       @enter="enter"
       @leave="leave"
     >
-      <div v-if="showMenu" class="fixed inset-0 bg-[#151516] bg-opacity-1 mt-10">
+      <div v-if="showMenu" class="fixed inset-0 bg-primary bg-opacity-1 mt-10">
         <span @click="showMenu = false" class="absolute top-12 right-10 cursor-pointer text-white">
           <X  class="size-6"/>
         </span> 
