@@ -57,6 +57,7 @@ methods: {
   removeFromCart() {
     this.$store.dispatch('removeFromCart', this.cardId);
        this.showToast('Removed from Cart');
+       location.reload();
   },
   showToast(title, description, action) {
     const { toast } = useToast();

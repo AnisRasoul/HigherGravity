@@ -55,7 +55,8 @@ export default {
         addToPurchased(state, product) {
           state.purchased.push(product);
           localStorage.setItem('purchased', JSON.stringify(state.purchased));
-        },
+          // remove the purchased product from cart
+          this.commit('removeFromCart', product.id); },
       },
       actions: {
         addToCart({ commit }, product) {

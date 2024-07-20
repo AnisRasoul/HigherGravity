@@ -6,7 +6,7 @@
       <div class="w-[300px] text-black border-r border-black space-y-12 pt-12 mt-1 pr-25">
           <div>
               <p class="uppercase font-[Zabal] font-extrabold text-2xl">good morning</p>
-              <p class="text-sm">example@gmail.com</p>
+              <p class="text-sm">{{ user.email }}</p>
           </div>
             <router-link
               v-for="(link, index) in sidebarLinks"
@@ -30,6 +30,7 @@
   <script>
 import Footing from '@/components/footing.vue';
 import Navbar from '@/components/navbar.vue';
+import user from '@/store/modules/user';
 export default {
   components: {
       Navbar,
@@ -37,6 +38,7 @@ export default {
     },
   data() {
     return {
+      user : user.state.user,
       sidebarLinks: [
         { route: '/user/dashboard/purchases',  label: 'Purchases' },
         { route: '/user/dashboard/orders', label: 'Orders' },

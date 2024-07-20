@@ -9,7 +9,7 @@
           <button class="bg-black rounded px-12 py-2"><img src="../assets/icons/gpay.svg" alt="Gpay"></button>
         </div>
 
-        <Form class="md:w-2/3 space-y-6 my-10" @submit="onSubmit" :validation-schema="validationSchema">
+        <Form  class="md:w-2/3 space-y-6 my-10" @submit="onSubmit" :validation-schema="validationSchema">
           <div class="space-y-6">
             <div class="mb-6">
               <label class="text-2xl font-[Zabal] font-bold">Contact</label>
@@ -161,7 +161,7 @@
               </label>
             </div>
           </div>
-          <button class="rounded py-5 bg-[#47A6FF] md:w-[68%] w-full text-white text-2xl" @click="Purchase">Pay now</button>
+          <button type="submit" class="rounded py-5 bg-[#47A6FF] md:w-[68%] w-full text-white text-2xl">Pay now</button>
         </Form>
       </div>
 
@@ -222,6 +222,8 @@ import * as yup from 'yup';
 import { ref } from 'vue';
 import Purchases from './userDashboard/Purchases.vue';
 import products from '@/store/modules/products';
+import router from '@/router/router';
+
 
 export default {
   components: {
@@ -280,17 +282,20 @@ export default {
   },
   methods: {
     onSubmit(values) {
-      console.log(values);
+      const details = values;
+      this.$store.dispatch('adduserDetails', details);
+      this.Purchase();
+      router.push('/user/dashboard/purchases');
     },
     Purchase() {
-      try {
-    const purchasedProducts = this.cartProduct 
-     this.$store.dispatch('addToPurchased', purchasedProducts);
-     console.log(`added to purchased successfully`, purchasedProducts);
-      } catch (error) {
-        console.log(`there was a problem adding to purchased`, error);
-      }  
-    },
+    try {
+      const purchasedProducts = this.cartProduct
+      this.$store.dispatch('addToPurchased', purchasedProducts);
+      console.log(`Added to purchased successfully`, purchasedProducts);
+    } catch (error) {
+      console.log(`There was a problem adding to purchased`, error);
+    }
+  },
   },
 };
 </script>

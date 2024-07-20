@@ -16,6 +16,9 @@ export default {
             localStorage.removeItem('user')
             axios.defaults.headers.common['Authorization'] = null
             location.reload()
+        },
+        UPDATE_USER_DATA(state, details) {
+             Object.assign(state.user, details);
         }
 
     },
@@ -36,8 +39,10 @@ export default {
         },
         logout ({commit}) {
             commit('CLEAR_USER_DATA')
+        },
+        adduserDetails({commit},details){
+            commit('UPDATE_USER_DATA',details)
         }
-
     },
     getters: {
       loggedIn (state) {
