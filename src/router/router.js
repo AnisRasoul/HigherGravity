@@ -1,106 +1,84 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import axios from 'axios';
 
-const Home = () => import('../views/Home.vue');
-const New = () => import('../views/New.vue');
-const Shirts = () => import('../views/Shirts.vue');
-const Pants = () => import('../views/Pants.vue');
-const ProductDetails = () => import('../views/ProductDetails.vue');
-const Cart = () => import('@/views/Cart.vue');
-const Payment = () => import('../views/Payment.vue');
-const Login = () => import('@/views/userAuth/Login.vue');
-const Register = () => import('@/views/userAuth/Register.vue');
-
-const UserDashboard = () => import('../views/userDashboard/Dashboard.vue');
-const Orders = () => import('../views/userDashboard/Orders.vue');
-const UserProfile = () => import('../views/userDashboard/Profile.vue');
-const Purchases = () => import('../views/userDashboard/Purchases.vue');
-
-const AdminLogin = () => import('@/views/AdminAuth/AdminLogin.vue');
-const AdminDashboard = () => import('../views/AdminDashboard/Dashboard.vue');
-const DashboardHome = () => import('../views/AdminDashboard/home.vue');
-const Products = () => import('../views/AdminDashboard/products.vue');
-const Users = () => import('../views/AdminDashboard/Users.vue');
-const AdminOrders = () => import('../views/AdminDashboard/Orders.vue');
-
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: Home,
+    component: () => import('../views/Home.vue'),
   },
   {
     path: '/newin',
     name: 'newin',
-    component: New,
+    component: () => import('../views/New.vue'),
   },
   {
     path: '/shirts',
     name: 'shirts',
-    component: Shirts,
+    component: () => import('../views/Shirts.vue'),
   },
   {
     path: '/pants',
     name: 'pants',
-    component: Pants,
+    component: () => import('../views/Pants.vue'),
   },
   {
     path: '/details/:id',
     name: 'productdetails',
-    component: ProductDetails,
+    component: () => import('../views/ProductDetails.vue'),
     props: true,
   },
   {
     path: '/cart',
     name: 'cart',
-    component: Cart,
+    component: () => import('@/views/Cart.vue'),
   },
   {
     path: '/payment',
     name: 'payment',
-    component: Payment,
+    component: () => import('../views/Payment.vue'),
   },
   {
     path: '/login',
     name: 'Login',
-    component: Login,
+    component: () => import('@/views/userAuth/Login.vue'),
   },
   {
     path: '/register',
     name: 'Register',
-    component: Register,
+    component: () => import('@/views/userAuth/Register.vue'),
   },
   {
     name: 'userdashboard',
     path: '/user/dashboard',
-    component: UserDashboard,
+    component: () => import('../views/userDashboard/Dashboard.vue'),
     children: [
       {
         name: 'orders',
         path: 'orders',
-        component: Orders,
+        component: () => import('../views/userDashboard/Orders.vue'),
       },
       {
         name: 'userProfile',
         path: 'profile',
-        component: UserProfile,
+        component: () => import('../views/userDashboard/Profile.vue'),
       },
       {
         name: 'purchases',
         path: 'purchases',
-        component: Purchases,
+        component: () => import('../views/userDashboard/Purchases.vue'),
       },
     ],
   },
   {
     path: '/Admin',
     name: 'Admin',
-    component: AdminLogin,
+    component: () => import('@/views/AdminAuth/AdminLogin.vue'),
   },
   {
     name: 'Dashboard',
     path: '/dashboard',
-    component: AdminDashboard,
+    component: () => import('../views/AdminDashboard/Dashboard.vue'),
     meta: {
       requiresAuth: false,
     },
@@ -109,22 +87,22 @@ const routes = [
       {
         name: 'dashboardhome',
         path: 'home',
-        component: DashboardHome,
+        component: () => import('../views/AdminDashboard/home.vue'),
       },
       {
         name: 'profile',
         path: 'products',
-        component: Products,
+        component: () => import('../views/AdminDashboard/products.vue'),
       },
       {
         name: 'Users',
         path: 'users',
-        component: Users,
+        component: () => import('../views/AdminDashboard/Users.vue'),
       },
       {
         name: 'Orders',
         path: 'orders',
-        component: AdminOrders,
+        component: () => import('../views/AdminDashboard/Orders.vue'),
       },
     ],
   },

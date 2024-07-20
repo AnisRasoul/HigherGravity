@@ -36,7 +36,7 @@ import axios from 'axios';
 import * as Yup from 'yup';
 import DynamicForm from '@/components/DynamicForm.vue';
 import { Mail, Lock, User, Phone, MapPin  } from 'lucide-vue-next';
-  
+import store from '@/store/store';
 export default {
   components: {
     Button,
@@ -116,14 +116,13 @@ export default {
     },
     async register() {
       try {
-        const res = await axios.post('http://localhost:3000/api/Auth/register', {
+        store.dispatch('register',{
           username: this.userName,
           email: this.userEmail,
           password: this.userPassword,
           address: this.userAddress,
           phone: this.userPhone
-        });
-  
+        })
         console.log('Post test successful:', res.data);
         this.$router.push('/login');
       } catch (error) {

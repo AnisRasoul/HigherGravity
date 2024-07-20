@@ -200,6 +200,7 @@
       <h1>Total</h1>
       <h1 class="font-bold">${{subtotal}} USD</h1>
     </div>
+    <button @click="Purchase">add to Purchases</button>
   </div>
       </div>
     </div>
@@ -220,6 +221,7 @@ import { Form, Field, ErrorMessage } from 'vee-validate';
 import * as yup from 'yup';
 import { ref } from 'vue';
 import Purchases from './userDashboard/Purchases.vue';
+import products from '@/store/modules/products';
 
 export default {
   components: {
@@ -240,7 +242,7 @@ export default {
   },
   computed: {
     cartProduct() {
-      return this.$store.state.cart;
+      return products.state.cart;
     },
     subtotal() {
       return this.cartProduct.reduce((total, item) => {
@@ -281,9 +283,13 @@ export default {
       console.log(values);
     },
     Purchase() {
-    const purchases = this.$store.state.cart; 
-     this.$store.dispatch('addToPurchased', purchases);
-     console.log(this.$store.state.purchased);
+      try {
+    const purchasedProducts = this.cartProduct 
+     this.$store.dispatch('addToPurchased', purchasedProducts);
+     console.log(`added to purchased successfully`, purchasedProducts);
+      } catch (error) {
+        console.log(`there was a problem adding to purchased`, error);
+      }  
     },
   },
 };

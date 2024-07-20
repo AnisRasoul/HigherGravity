@@ -51,7 +51,6 @@
         <swiper :navigation="true" :centeredSlides="true" :modules="modules" class="mySwiper">
           <swiper-slide><img src="../assets/imgs/slider7.webp" fetchpriority="high" class="max-w-full h-auto"></swiper-slide>
           <swiper-slide><img src="../assets/imgs/slider8.webp" class="max-w-full h-auto"></swiper-slide>
-          <swiper-slide><img src="../assets/imgs/slider9.webp" class="max-w-full h-auto"></swiper-slide>
         </swiper>
       </div>
     </div>
@@ -60,7 +59,7 @@
       <p class="header md:text-[80px] text-[50px] text-center">New in</p>
       <p class="text-center font-[Zabal] my-5 uppercase text-[#A0A0A0] text-xl tracking-[15px] font-bold">Discover what's new in higher gravity</p>
       <swiper :spaceBetween="30" :centeredSlides="true" :autoplay="{ delay: 2000, disableOnInteraction: false }" :navigation="true" :modules="modules">
-        <swiper-slide v-for="card in $store.state.newcards" :key="card.id">
+        <swiper-slide v-for="card in newin" :key="card.id">
           <StoreCard :card-image="card.cardImage" :hover-image="card.hoverImage" :card-desc="card.cardDesc" :card-price="card.cardPrice" class="mx-5 my-5 sm:w-1/2 lg:w-1/3" />
         </swiper-slide>
       </swiper>
@@ -96,6 +95,7 @@ import StoreCard from '@/components/Cards/StoreCard.vue';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import products from '@/store/modules/products';
 gsap.registerPlugin(ScrollTrigger);
 
 export default {
@@ -105,6 +105,11 @@ export default {
     return {
       modules: [Navigation, Autoplay, Pagination],
     };
+  },
+  computed: {
+    newin(){
+      return products.state.newcards
+    }
   },
 
   mounted() {

@@ -25,7 +25,7 @@ import footing from '@/components/footing.vue';
 import StoreCard from '@/components/Cards/StoreCard.vue';
 import StoreTitle from '@/components/StoreTitle.vue';
 import router from '@/router/router';
-import { mapState } from 'vuex';
+import store from '@/store/store';
 
 export default {
   components: {
@@ -41,12 +41,9 @@ export default {
     }
   },
   computed: {
-    ...mapState({
-      products: state => state.products
-    }),
-    shirts() {
-      return this.products.find(category => category.category === 'shirts').items;
-    }
+   shirts(){
+    return store.getters.shirts
+   }
   },
   methods: {
     goToProductPage(id) {

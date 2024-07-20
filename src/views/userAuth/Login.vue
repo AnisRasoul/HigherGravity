@@ -37,6 +37,7 @@ import axios from 'axios';
 import * as Yup from 'yup';
 import DynamicForm from '@/components/DynamicForm.vue';
 import { Mail, Lock, User } from 'lucide-vue-next';
+import store from '@/store/store';
 
 export default {
   components: {
@@ -82,12 +83,11 @@ export default {
     },
     async login(){
       try {
-        const res = await axios.post('http://localhost:3000/api/Auth/login', {
-          email: this.userEmail, // Corrected
-          password: this.userPassword, // Corrected
-        });
-        localStorage.setItem('token', res.data.token);
-        console.log('Login successful:', res.data);
+        store.dispatch('login',{
+          email: this.userEmail,
+          password: this.userPassword,
+        })
+       console.log('Login successful:', res.data);
         this.$router.push('/');
       } 
       catch (error) {

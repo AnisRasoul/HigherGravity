@@ -126,7 +126,7 @@
 </template>
 
 <script>
-import store from "@/store";
+import store from "@/store/store";
 import StoreCard from "@/components/Cards/StoreCard.vue";
 import CounterButton from "@/components/ui/CounterButton.vue";
 import navbar from "@/components/navbar.vue";
@@ -142,6 +142,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import products from "@/store/modules/products";
 
 export default {
   components: {
@@ -177,7 +178,7 @@ export default {
   computed: {
     selectedProduct() {
       const id = Number(this.$route.params.id);
-      for (const category of store.state.products) {
+      for (const category of products.state.products) {
         // loop through the categories of product
         for (const item of category.items) {
           // loop in the items
@@ -193,7 +194,7 @@ export default {
     return this.count * this.selectedProduct.cardPrice;
   },
     existingProduct() {
-      return store.state.cart.find((item) => item.id === this.selectedProduct.id);
+      return products.state.cart.find((item) => item.id === this.selectedProduct.id);
     },
     action() {
       return h(
@@ -212,7 +213,7 @@ export default {
     },
     suggestedProducts() {
       // Flatten the products array
-      const allProducts = store.state.products.flatMap((category) => category.items);
+      const allProducts = products.state.products.flatMap((category) => category.items);
 
       // Filter out the currently selected product
       const otherProducts = allProducts.filter(
