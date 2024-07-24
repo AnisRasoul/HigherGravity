@@ -1,5 +1,3 @@
-import Pants from "@/views/Pants.vue";
-
 export default {
     state: {
         products: [

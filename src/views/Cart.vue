@@ -54,9 +54,6 @@ export default {
 components: {
   navbar, footing,CounterButton,CartItem,HGButton,ToastAction,Toaster
 }, 
-mounted() {
-console.log(this.cartProduct);
-},
 computed: {
 cartProduct() {
   return products.state.cart.sort((a, b) => b.id - a.id);

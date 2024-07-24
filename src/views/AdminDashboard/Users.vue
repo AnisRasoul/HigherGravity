@@ -54,17 +54,14 @@ export default {
       try {
         const response = await axios.get('http://localhost:3000/api/Auth/users');
         this.users = response.data;
-        console.log(this.users);
       } catch (error) {
         console.error('Error fetching users:', error);
       }
     },
     async deleteUser(userId) {
-      console.log(`Attempting to delete user with ID: ${userId}`);
       try {
         const response = await axios.delete(`http://localhost:3000/api/Auth/user/${userId}`);
         alert('User deleted successfully');
-        console.log('User deleted successfully:', response.data);
         this.users = this.users.filter(user => user._id !== userId);
       } catch (error) {
         alert('Error deleting user');

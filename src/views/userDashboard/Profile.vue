@@ -158,7 +158,6 @@ export default {
   },
   methods: {
     onSubmit(values) {
-      console.log(values);
       this.$store.dispatch('updateuserDATA', values);
     }
   },

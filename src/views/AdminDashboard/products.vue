@@ -134,7 +134,6 @@ export default {
       try {
         const response = await axios.get('http://localhost:3000/api/products');
         this.products = response.data;
-        console.log(this.products);
       } catch (error) {
         console.error('Error fetching products:', error);
       }
@@ -149,7 +148,6 @@ export default {
           price: this.price,
         });
         alert('Product created successfully');
-        console.log('Product created successfully:', response.data);
         this.title = '';
         this.description = '';
         this.image = '';
@@ -165,7 +163,6 @@ export default {
       try {
         const response = await axios.delete(`http://localhost:3000/api/product/${productId}`);
         alert('Product deleted successfully')
-        console.log('Product deleted successfully:', response.data);
         this.products.allProducts = this.products.allProducts.filter(product => product._id !== productId);
       } catch (error) {
         alert('Error deleting product')

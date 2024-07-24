@@ -36,7 +36,6 @@ export default {
     }
   },
   created() {
-    console.log(this.purchased);
     this.$store.dispatch('products/fetchProducts');
   }
 };
@@ -44,7 +43,7 @@ export default {
 
 <style scoped>
 .custom-store-card img {
-  width: 100px; /* Adjust the width as needed */
-  height: auto; /* Maintain aspect ratio */
+  width: 100px;
+  height: auto;
 }
 </style>

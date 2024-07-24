@@ -123,7 +123,6 @@ export default {
           address: this.userAddress,
           phone: this.userPhone
         })
-        console.log('Post test successful:', res.data);
         this.$router.push('/login');
       } catch (error) {
         alert(error);

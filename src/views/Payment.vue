@@ -291,9 +291,8 @@ export default {
     try {
       const purchasedProducts = this.cartProduct
       this.$store.dispatch('addToPurchased', purchasedProducts);
-      console.log(`Added to purchased successfully`, purchasedProducts);
     } catch (error) {
-      console.log(`There was a problem adding to purchased`, error);
+      console.log(error);
     }
   },
   },

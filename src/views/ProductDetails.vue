@@ -202,7 +202,6 @@ export default {
         {
           altText: "Remove from cart",
           onClick: () => {
-            console.log("Undo clicked");
             this.removeFromCart(this.selectedProduct.id);
           },
         },
@@ -259,7 +258,6 @@ export default {
       `${this.selectedProduct.cardDesc} is now in your cart`,
       this.action
     );
-    console.log(productToAdd);
   } else {
     this.showToast(
       "Already in your cart",
@@ -269,7 +267,6 @@ export default {
   }
 },
     removeFromCart(id) {
-      console.log(`Removing product with ID ${id} from the cart.`);
       this.$store.dispatch("removeFromCart", id);
     },
     Buy() {

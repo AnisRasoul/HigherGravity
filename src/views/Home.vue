@@ -113,14 +113,8 @@ export default {
   },
 
   mounted() {
-    // Preload the LCP image
     const image = new Image();
     image.src = '../assets/imgs/bg1.webp';
-    image.onload = () => {
-      console.log('Image preloaded:', image.src);
-    };
-
-    // Initiate scroll-triggered animations
     this.animateOnScroll();
   },
 
