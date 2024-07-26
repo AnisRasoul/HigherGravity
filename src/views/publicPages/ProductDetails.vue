@@ -321,11 +321,11 @@ body {
 }
 
 .swiper-button-prev {
-  background-image: url("../assets/icons/left-arrow.png");
+  background-image: url("@/assets/icons/left-arrow.png");
 }
 
 .swiper-button-next {
-  background-image: url("../assets/icons/right-arrow.png");
+  background-image: url("@/assets/icons/right-arrow.png");
 }
 
 .swiper-button-next::after,

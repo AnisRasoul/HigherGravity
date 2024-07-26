@@ -5,38 +5,38 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: () => import('../views/Home.vue'),
+    component: () => import('../views/publicPages/Home.vue'),
   },
   {
     path: '/newin',
     name: 'newin',
-    component: () => import('../views/New.vue'),
+    component: () => import('@/views/publicPages/New.vue'),
   },
   {
     path: '/shirts',
     name: 'shirts',
-    component: () => import('../views/Shirts.vue'),
+    component: () => import('@/views/publicPages/Shirts.vue'),
   },
   {
     path: '/pants',
     name: 'pants',
-    component: () => import('../views/Pants.vue'),
+    component: () => import('@/views/publicPages/Pants.vue'),
   },
   {
     path: '/details/:id',
     name: 'productdetails',
-    component: () => import('../views/ProductDetails.vue'),
+    component: () => import('@/views/publicPages/ProductDetails.vue'),
     props: true,
   },
   {
     path: '/cart',
     name: 'cart',
-    component: () => import('@/views/Cart.vue'),
+    component: () => import('@/views/publicPages/Cart.vue'),
   },
   {
     path: '/payment',
     name: 'payment',
-    component: () => import('../views/Payment.vue'),
+    component: () => import('@/views/publicPages/Payment.vue'),
   },
   {
     path: '/login',
@@ -51,22 +51,22 @@ const routes = [
   {
     name: 'userdashboard',
     path: '/user/dashboard',
-    component: () => import('../views/userDashboard/Dashboard.vue'),
+    component: () => import('@/views/userDashboard/Dashboard.vue'),
     children: [
       {
         name: 'orders',
         path: 'orders',
-        component: () => import('../views/userDashboard/Orders.vue'),
+        component: () => import('@/views/userDashboard/Orders.vue'),
       },
       {
         name: 'userProfile',
         path: 'profile',
-        component: () => import('../views/userDashboard/Profile.vue'),
+        component: () => import('@/views/userDashboard/Profile.vue'),
       },
       {
         name: 'purchases',
         path: 'purchases',
-        component: () => import('../views/userDashboard/Purchases.vue'),
+        component: () => import('@/views/userDashboard/Purchases.vue'),
       },
     ],
   },
@@ -78,7 +78,7 @@ const routes = [
   {
     name: 'Dashboard',
     path: '/dashboard',
-    component: () => import('../views/AdminDashboard/Dashboard.vue'),
+    component: () => import('@/views/AdminDashboard/Dashboard.vue'),
     meta: {
       requiresAuth: false,
     },
@@ -87,22 +87,22 @@ const routes = [
       {
         name: 'dashboardhome',
         path: 'home',
-        component: () => import('../views/AdminDashboard/home.vue'),
+        component: () => import('@/views/AdminDashboard/home.vue'),
       },
       {
         name: 'profile',
         path: 'products',
-        component: () => import('../views/AdminDashboard/products.vue'),
+        component: () => import('@/views/AdminDashboard/products.vue'),
       },
       {
         name: 'Users',
         path: 'users',
-        component: () => import('../views/AdminDashboard/Users.vue'),
+        component: () => import('@/views/AdminDashboard/Users.vue'),
       },
       {
         name: 'Orders',
         path: 'orders',
-        component: () => import('../views/AdminDashboard/Orders.vue'),
+        component: () => import('@/views/AdminDashboard/Orders.vue'),
       },
     ],
   },

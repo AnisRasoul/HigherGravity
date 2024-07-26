@@ -12,7 +12,7 @@
           <Menu class="size-8"/>
         </span>
         <a class="text-white md:px-6 md:py-1 md:mr-9" href="/"> 
-          <img src="../assets/HG logo.svg" class="h-16">
+          <img src="@/assets/HG logo.svg" class="h-16">
         </a>
 
         <ul class="md:flex hidden uppercase text-white space-x-16"> 

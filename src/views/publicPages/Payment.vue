@@ -4,9 +4,9 @@
     <div class="md:grid md:grid-cols-2 md:mx-20 mx-10 my-10 border-t border-[#A0A0A0]">
       <div class="md:border-r md:border-[#A0A0A0]">
         <div class="md:flex items-center space-x-5 md:mt-24 hidden">
-          <button class="rounded px-10 py-3 bg-[#FFD159]"><img src="../assets/icons/paypal.svg" alt="Paypal"></button>
-          <button class="bg-[#1434CB] rounded px-12 py-3"><img src="../assets/icons/visa.svg" alt="Visa"></button>
-          <button class="bg-black rounded px-12 py-2"><img src="../assets/icons/gpay.svg" alt="Gpay"></button>
+          <button class="rounded px-10 py-3 bg-[#FFD159]"><img src="@/assets/icons/paypal.svg" alt="Paypal"></button>
+          <button class="bg-[#1434CB] rounded px-12 py-3"><img src="@/assets/icons/visa.svg" alt="Visa"></button>
+          <button class="bg-black rounded px-12 py-2"><img src="@/assets/icons/gpay.svg" alt="Gpay"></button>
         </div>
 
         <Form  class="md:w-2/3 space-y-6 my-10" @submit="onSubmit" :validation-schema="validationSchema">
@@ -84,7 +84,7 @@
                   <input type="radio" id="r1" name="paymentMethod" value="default" />
                   <label for="r1">Receiving using Yalidine EXPRESS</label>
                 </div>
-                <img src="../assets/icons/yalidine.svg" alt="Yalidine">
+                <img src="@/assets/icons/yalidine.svg" alt="Yalidine">
               </div>
 
               <div class="border border-[#A0A0A0] flex items-center justify-between md:w-[68%] py-5 px-5">
@@ -92,7 +92,7 @@
                   <input type="radio" id="r2" name="paymentMethod" value="comfortable" checked />
                   <label for="r2">PayPal</label>
                 </div>
-                <img src="../assets/icons/paypal.svg" class="h-6" alt="PayPal">
+                <img src="@/assets/icons/paypal.svg" class="h-6" alt="PayPal">
               </div>
 
               <div class="border border-[#A0A0A0] flex items-center justify-between md:w-[68%] py-5 px-5">
@@ -112,9 +112,9 @@
                   <label for="r4">Credit card</label>
                    </CollapsibleTrigger>
                 <div class="flex items-center">
-                  <img src="../assets/footer-pay/visa-logo.svg" alt="Visa">
-                  <img src="../assets/footer-pay/obl.svg" alt="OBL">
-                  <img src="../assets/footer-pay/AMEX.svg" alt="AMEX">
+                  <img src="@/assets/footer-pay/visa-logo.svg" alt="Visa">
+                  <img src="@/assets/footer-pay/obl.svg" alt="OBL">
+                  <img src="@/assets/footer-pay/AMEX.svg" alt="AMEX">
                 </div>
               </div>  
                 <CollapsibleContent class="border border-[#A0A0A0] md:w-[68%]">
@@ -167,7 +167,7 @@
 
       <div class="my-10">
         <div v-if="!cartProduct.length" class="flex flex-col items-center justify-center my-10">
-  <h1 class="md:text-6xl text-3xl font-[Zabal] text-center">Empty Cart ...</h1>
+  <h1 class="md:text-6xl text-3xl font-[Zabal] text-center">Empty Cart @.</h1>
 </div>
 <div v-else>
   <div>
@@ -212,15 +212,15 @@
 import { Home, Phone } from 'lucide-vue-next';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import navbar from '../components/navbar.vue';
-import footing from '../components/footing.vue';
+import navbar from '@/components/navbar.vue';
+import footing from '../../components/footing.vue';
 import CartItem from '@/components/Cards/CartItem.vue';
 import { Search } from 'lucide-vue-next';
 import { Info } from 'lucide-vue-next';
 import { Form, Field, ErrorMessage } from 'vee-validate';
 import * as yup from 'yup';
 import { ref } from 'vue';
-import Purchases from './userDashboard/Purchases.vue';
+import Purchases from '../userDashboard/Purchases.vue';
 import products from '@/store/modules/products';
 import router from '@/router/router';
 

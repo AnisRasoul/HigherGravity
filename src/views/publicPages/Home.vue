@@ -1,7 +1,7 @@
 <template>
   <div class="overflow-x-hidden">
     <navbar />
-    <div class="hero h-screen bg-cover bg-no-repeat bg-center brightness-65" style="background-image: url('../assets/imgs/bg1.webp');">
+    <div class="hero h-screen bg-cover bg-no-repeat bg-center brightness-65" style="background-image: url('@/assets/imgs/bg1.webp');">
       <div class="hero flex justify-center items-center flex-col">
         <a href="#" class="text-white border-2 border-white text-3xl px-10 py-3 bg-opacity-50 bg-black hover:text-black hover:bg-white hover:border-black hover:bg-opacity-40">EXPLORE</a>
       </div>
@@ -16,9 +16,9 @@
       </div>
       <div ref="firstSectionSwiper" class="flex items-center justify-center">
         <swiper :navigation="true" :modules="modules" :centeredSlides="true" class="mySwiper">
-          <swiper-slide><img src="../assets/imgs/slide1.webp" fetchpriority="high" class="max-w-full h-auto"></swiper-slide>
-          <swiper-slide><img src="../assets/imgs/slider2.webp" class="max-w-full h-auto"></swiper-slide>
-          <swiper-slide><img src="../assets/imgs/slider3.webp" class="max-w-full h-auto"></swiper-slide>
+          <swiper-slide><img src="@/assets/imgs/slide1.webp" fetchpriority="high" class="max-w-full h-auto"></swiper-slide>
+          <swiper-slide><img src="@/assets/imgs/slider2.webp" class="max-w-full h-auto"></swiper-slide>
+          <swiper-slide><img src="@/assets/imgs/slider3.webp" class="max-w-full h-auto"></swiper-slide>
         </swiper>
       </div>
     </div>
@@ -32,9 +32,9 @@
       </div>
       <div ref="secondSectionSwiper" class="flex items-center justify-center">
         <swiper :navigation="true" :modules="modules" :centeredSlides="true" class="mySwiper">
-          <swiper-slide><img src="../assets/imgs/slide4.webp" fetchpriority="high" class="max-w-full h-auto"></swiper-slide>
-          <swiper-slide><img src="../assets/imgs/slider5.webp" class="max-w-full h-auto"></swiper-slide>
-          <swiper-slide><img src="../assets/imgs/slider6.webp" class="max-w-full h-auto"></swiper-slide>
+          <swiper-slide><img src="@/assets/imgs/slide4.webp" fetchpriority="high" class="max-w-full h-auto"></swiper-slide>
+          <swiper-slide><img src="@/assets/imgs/slider5.webp" class="max-w-full h-auto"></swiper-slide>
+          <swiper-slide><img src="@/assets/imgs/slider6.webp" class="max-w-full h-auto"></swiper-slide>
         </swiper>
       </div>
     </div>
@@ -49,8 +49,8 @@
       </div>
       <div ref="thirdSectionSwiper" class="flex items-center justify-center md:order-1">
         <swiper :navigation="true" :centeredSlides="true" :modules="modules" class="mySwiper">
-          <swiper-slide><img src="../assets/imgs/slider7.webp" fetchpriority="high" class="max-w-full h-auto"></swiper-slide>
-          <swiper-slide><img src="../assets/imgs/slider8.webp" class="max-w-full h-auto"></swiper-slide>
+          <swiper-slide><img src="@/assets/imgs/slider7.webp" fetchpriority="high" class="max-w-full h-auto"></swiper-slide>
+          <swiper-slide><img src="@/assets/imgs/slider8.webp" class="max-w-full h-auto"></swiper-slide>
         </swiper>
       </div>
     </div>
@@ -88,8 +88,8 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Navigation, Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import navbar from '../components/navbar.vue';
-import footing from '../components/footing.vue';
+import navbar from '@/components/navbar.vue';
+import footing from '@/components/footing.vue';
 import HGButton from '@/components/ui/HGButton.vue';
 import StoreCard from '@/components/Cards/StoreCard.vue';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
@@ -114,7 +114,7 @@ export default {
 
   mounted() {
     const image = new Image();
-    image.src = '../assets/imgs/bg1.webp';
+    image.src = '@/assets/imgs/bg1.webp';
     this.animateOnScroll();
   },
 
@@ -228,19 +228,19 @@ li {
 
 @font-face {
   font-family: Zabal;
-  src: url('../assets/fonts/ZabalDEMO-Regular.otf') format('opentype');
+  src: url('@/assets/fonts/ZabalDEMO-Regular.otf') format('opentype');
   font-display: swap;
 }
 
 @font-face {
   font-family: Anger;
-  src: url('../assets/fonts/AngerStyles.ttf') format('truetype');
+  src: url('@/assets/fonts/AngerStyles.ttf') format('truetype');
   font-display: swap;
 }
 
 .hero {
   height: 100vh;
-  background-image: url('../assets/imgs/bg1.webp');
+  background-image: url('@/assets/imgs/bg1.webp');
   background-size: cover;
   background-repeat: no-repeat;
   filter: brightness(65%);
@@ -293,11 +293,11 @@ li {
 }
 
 .swiper-button-prev {
-  background-image: url("../assets/icons/left-arrow.png");
+  background-image: url("@/assets/icons/left-arrow.png");
 }
 
 .swiper-button-next {
-  background-image: url("../assets/icons/right-arrow.png");
+  background-image: url("@/assets/icons/right-arrow.png");
 }
 
 .swiper-button-next::after,

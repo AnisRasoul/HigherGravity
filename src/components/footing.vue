@@ -21,13 +21,13 @@
        <div class="flex justify-center items-center">
        
   <div class="flex">
-    <img src="../assets/footer-pay/AMEX.svg" class="mx-3">
-    <img src="../assets/footer-pay/ApplePay.svg" class="mx-3">
-    <img src="../assets/footer-pay/GooglePay.svg" class="mx-3">
-    <img src="../assets/footer-pay/PayPal.svg" class="mx-3">
-    <img src="../assets/footer-pay/visa-logo.svg">
-    <img src="../assets/footer-pay/obl.svg" class="mx-3">
-    <img src="../assets/footer-pay/pay.svg" class="mx-3">
+    <img src="@/assets/footer-pay/AMEX.svg" class="mx-3">
+    <img src="@/assets/footer-pay/ApplePay.svg" class="mx-3">
+    <img src="@/assets/footer-pay/GooglePay.svg" class="mx-3">
+    <img src="@/assets/footer-pay/PayPal.svg" class="mx-3">
+    <img src="@/assets/footer-pay/visa-logo.svg">
+    <img src="@/assets/footer-pay/obl.svg" class="mx-3">
+    <img src="@/assets/footer-pay/pay.svg" class="mx-3">
   </div>
 </div>
    <!-- credits -->

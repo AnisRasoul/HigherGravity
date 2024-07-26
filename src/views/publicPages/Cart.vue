@@ -41,13 +41,11 @@
 <script>
 import navbar from '@/components/navbar.vue';
 import footing from '@/components/footing.vue';
-import CounterButton from '../components/ui/CounterButton.vue'
+import CounterButton from '@/components/ui/CounterButton.vue'
 import CartItem from '@/components/Cards/CartItem.vue';
 import HGButton from '@/components/ui/HGButton.vue';
-import { useToast } from '@/components/ui/toast/use-toast';
 import { ToastAction } from '@/components/ui/toast'
 import { Toaster } from '@/components/ui/toast';
-import { h } from 'vue';
 import products from '@/store/modules/products';
 
 export default {
