@@ -73,6 +73,18 @@ export default {
         },
         pants(state) {
             return state.products.find(category => category.category ==='pants').items
-        }
+        },
+        productsById(state) {
+          const map = {};
+          state.products.forEach(category => {
+            category.items.forEach(item => {
+              map[item.id] = item;
+            });
+          });
+          return map;
+        },
+        getProductById: (state, getters) => (id) => {
+          return getters.productsById[id];
+        },
       }
 }

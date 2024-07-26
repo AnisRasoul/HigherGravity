@@ -5,7 +5,6 @@
       <div class="md:flex md:justify-center md:items-center">
         <div class="md:flex md:space-x-6 space-x-10 space-y-4">
           <div class="md:block flex md:space-x-0 space-x-2 md:space-y-3 items-center justify-center">
-            <!-- Use v-for to render small images -->
             <img
               v-for="(img, index) in selectedProduct.moreImages"
               :key="index"
@@ -14,7 +13,6 @@
               class="w-[50px] h-[70px] sm:w-[80px] sm:h-[100px] object-cover cursor-pointer"
             />
           </div>
-          <!-- Render the big image -->
           <img
             :src="image"
             alt="T-shirt with graphic"
@@ -178,16 +176,7 @@ export default {
   computed: {
     selectedProduct() {
       const id = Number(this.$route.params.id);
-      for (const category of products.state.products) {
-        // loop through the categories of product
-        for (const item of category.items) {
-          // loop in the items
-          if (item.id === id) {
-            // if you find the id return the item's data
-            return item;
-          }
-        }
-      }
+      return this.$store.getters.getProductById(id);
       
     },
     totalPrice() {
@@ -247,7 +236,7 @@ export default {
       "Missing details",
       `Please select a size first`,
     );
-    return; // Exit early if size is not selected
+    return; 
   }
 
   const productToAdd = { ...this.selectedProduct,  quantity: this.count, size: this.selectedSize, totalPrice: this.totalPrice};
@@ -258,6 +247,7 @@ export default {
       `${this.selectedProduct.cardDesc} is now in your cart`,
       this.action
     );
+    location.reload()
   } else {
     this.showToast(
       "Already in your cart",
@@ -312,6 +302,35 @@ export default {
 <style>
 body {
   font-family: Zabal;
+}
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  background-color: rgba(255, 255, 255, 0.772);
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 25px;
+  border-radius: 100%;
+  color: red;
+}
+
+.swiper-button-prev {
+  background-image: url("../assets/icons/left-arrow.png");
+}
+
+.swiper-button-next {
+  background-image: url("../assets/icons/right-arrow.png");
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  content: "";
 }
 
 .smallimg {

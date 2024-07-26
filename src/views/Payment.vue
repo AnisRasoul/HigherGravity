@@ -185,8 +185,8 @@
   </div>
 </div>
         <div class="flex md:w-[90%] items-center md:ml-16 space-x-4 text-primary">
-    <input type="text" placeholder="Discount code" class="border border-[#A0A0A0] md:text-2xl md:py-7 " />
-    <button type="submit" class="border border-[#A0A0A0] rounded md:py-7 md:px-12 py-2 px-5 md:text-2xl" >
+    <input type="text" placeholder="Discount code" class="border border-[#A0A0A0] md:text-2xl md:py-4 px-3 " />
+    <button type="submit" class="border border-[#A0A0A0] rounded md:py-4 md:px-12 py-2 px-5 md:text-2xl" >
       Apply
     </button>
   </div>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="overflow-x-hidden">
     <navbar />
     <div class="hero h-screen bg-cover bg-no-repeat bg-center brightness-65" style="background-image: url('../assets/imgs/bg1.webp');">
       <div class="hero flex justify-center items-center flex-col">
@@ -71,7 +71,7 @@
       <p class="text-center my-10 md:text-2xl text-white">Dive into the most asked questions about our stellar clothing line, Higher Gravity, and discover the secrets behind our elevated style!</p>
       <Accordion type="single" class="grid grid-cols-1 md:grid-cols-2 md:gap-8 gap-3 md:max-w-[70%] md:text-base max-w-[90%] mx-auto text-white text-xs">
         <AccordionItem v-for="item in accordionItems" :key="item.value" :value="item.value" class="bg-white text-black md:py-10 py-4 px-10 rounded-[15px]">
-          <AccordionTrigger class="md:text-2xl font-bold">{{ item.title }}</AccordionTrigger>
+          <AccordionTrigger class="md:text-xl font-semibold">{{ item.title }}</AccordionTrigger>
           <AccordionContent>
             {{ item.content }}
           </AccordionContent>
