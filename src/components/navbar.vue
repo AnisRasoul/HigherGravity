@@ -1,6 +1,6 @@
 <template>
   <div class="sticky">
-    <div class="sticky bg-white" style="font-family: Zabal;">
+    <div class="sticky bg-white font-primary">
       <h3 class="md:p-2 p-1 font-bold md:tracking-[1px] md:text-base text-xs text-center">
         Welcome to higher gravity store
       </h3>

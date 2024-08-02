@@ -63,6 +63,6 @@ cartProduct() {
 
 <style>
 body{
-  font-family: Zabal;
+  font-family: 'Zabal DEMO';
 }
 </style>

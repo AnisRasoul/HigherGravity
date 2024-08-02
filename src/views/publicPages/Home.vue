@@ -10,15 +10,15 @@
     <div ref="firstSection" class="grid grid-cols-1 md:grid-cols-2 gap-x-16 mx-10 my-10">
       <div ref="firstSectionContent" class="flex items-center justify-center text-center sm:order-2">
         <div class="p-8">
-          <h2 class="header md:text-[70px] text-[50px]">The world of Higher gravity</h2>
+          <h2 class="font-secondary md:text-[70px] text-[50px]">The world of Higher gravity</h2>
           <HGButton href="/newin">new in</HGButton>
         </div>
       </div>
       <div ref="firstSectionSwiper" class="flex items-center justify-center">
         <swiper :navigation="true" :modules="modules" :centeredSlides="true" class="mySwiper">
           <swiper-slide><img src="@/assets/imgs/slide1.webp" fetchpriority="high" class="max-w-full h-auto"></swiper-slide>
-          <swiper-slide><img src="@/assets/imgs/slider2.webp" class="max-w-full h-auto"></swiper-slide>
-          <swiper-slide><img src="@/assets/imgs/slider3.webp" class="max-w-full h-auto"></swiper-slide>
+          <swiper-slide><img src="@/assets/imgs/slider2.webp" loading="lazy" class="max-w-full h-auto"></swiper-slide>
+          <swiper-slide><img src="@/assets/imgs/slider3.webp" loading="lazy" class="max-w-full h-auto"></swiper-slide>
         </swiper>
       </div>
     </div>
@@ -26,15 +26,15 @@
     <div ref="secondSection" class="grid grid-cols-1 md:grid-cols-2 gap-x-16 mx-10 my-10">
       <div ref="secondSectionContent" class="flex items-center justify-center text-center">
         <div class="p-8">
-          <h2 class="header md:text-[80px] text-[50px] ">Clothes on Cloud Nins9</h2>
+          <h2 class="font-secondary md:text-[80px] text-[50px] ">Clothes on Cloud Nins9</h2>
           <HGButton href="/shirts">T-SHIRTS</HGButton>
         </div>
       </div>
       <div ref="secondSectionSwiper" class="flex items-center justify-center">
         <swiper :navigation="true" :modules="modules" :centeredSlides="true" class="mySwiper">
           <swiper-slide><img src="@/assets/imgs/slide4.webp" fetchpriority="high" class="max-w-full h-auto"></swiper-slide>
-          <swiper-slide><img src="@/assets/imgs/slider5.webp" class="max-w-full h-auto"></swiper-slide>
-          <swiper-slide><img src="@/assets/imgs/slider6.webp" class="max-w-full h-auto"></swiper-slide>
+          <swiper-slide><img src="@/assets/imgs/slider5.webp" loading="lazy" class="max-w-full h-auto"></swiper-slide>
+          <swiper-slide><img src="@/assets/imgs/slider6.webp" loading="lazy" class="max-w-full h-auto"></swiper-slide>
         </swiper>
       </div>
     </div>
@@ -42,7 +42,7 @@
     <div ref="thirdSection" class="grid grid-cols-1 md:grid-cols-2 gap-x-16 mx-10 my-10">
       <div ref="thirdSectionContent" class="flex items-center justify-center text-center md:order-2">
         <div class="p-8">
-          <h2 class="header md:text-[80px] text-[50px]">Unleash your Style’s Potential</h2>
+          <h2 class="font-secondary md:text-[80px] text-[50px]">Unleash your Style’s Potential</h2>
           <p class="py-5 text-2xl" style="font-family: Zabal; letter-spacing:5px; color:#A0A0A0"> Take your closet to the highest level</p>
           <HGButton href="/pants">Pants</HGButton>
         </div>
@@ -56,8 +56,8 @@
     </div>
 
     <div ref="fourthSection" class="my-24">
-      <p class="header md:text-[80px] text-[50px] text-center">New in</p>
-      <p class="text-center font-[Zabal] my-5 uppercase text-[#A0A0A0] text-xl tracking-[15px] font-bold">Discover what's new in higher gravity</p>
+      <p class="font-secondary md:text-[80px] text-[50px] text-center">New in</p>
+      <p class="text-center font-primary my-5 uppercase text-[#A0A0A0] text-xl tracking-[15px] font-bold">Discover what's new in higher gravity</p>
       <swiper :spaceBetween="30" :centeredSlides="true" :autoplay="{ delay: 2000, disableOnInteraction: false }" :navigation="true" :modules="modules">
         <swiper-slide v-for="card in newin" :key="card.id">
           <StoreCard :card-image="card.cardImage" :hover-image="card.hoverImage" :card-desc="card.cardDesc" :card-price="card.cardPrice" class="mx-5 my-5 sm:w-1/2 lg:w-1/3" />
@@ -66,8 +66,8 @@
     </div>
 
     <div class="bg-black md:py-16 md:pb-32 py-5 pb-20">
-      <h1 class="text-center md:text-9xl text-5xl md:my-40 my-12 font-[Anger] font-medium md:tracking-[4rem] tracking-[9px] text-white">Higher gravity</h1>
-      <h1 class="text-center md:text-5xl text-2xl font-[Zabal] font-bold text-white underline">Frequently Asked Questions</h1>
+      <h1 class="text-center md:text-9xl text-5xl md:my-40 my-12 font-secondary font-medium md:tracking-[4rem] tracking-[9px] text-white">Higher gravity</h1>
+      <h1 class="text-center md:text-5xl text-2xl font-primary font-bold text-white underline">Frequently Asked Questions</h1>
       <p class="text-center my-10 md:text-2xl text-white">Dive into the most asked questions about our stellar clothing line, Higher Gravity, and discover the secrets behind our elevated style!</p>
       <Accordion type="single" class="grid grid-cols-1 md:grid-cols-2 md:gap-8 gap-3 md:max-w-[70%] md:text-base max-w-[90%] mx-auto text-white text-xs">
         <AccordionItem v-for="item in accordionItems" :key="item.value" :value="item.value" class="bg-white text-black md:py-10 py-4 px-10 rounded-[15px]">
@@ -223,21 +223,8 @@ body {
 }
 
 li {
-  font-family: Zabal;
+  font-family: "Zabal Demo";
 }
-
-@font-face {
-  font-family: Zabal;
-  src: url('@/assets/fonts/ZabalDEMO-Regular.otf') format('opentype');
-  font-display: swap;
-}
-
-@font-face {
-  font-family: Anger;
-  src: url('@/assets/fonts/AngerStyles.ttf') format('truetype');
-  font-display: swap;
-}
-
 .hero {
   height: 100vh;
   background-image: url('@/assets/imgs/bg1.webp');
@@ -256,10 +243,7 @@ li {
   }
 }
 
-.header {
-  font-family: Anger;
-  letter-spacing: 2px;
-}
+
 
 .swiper {
   width: 100%;

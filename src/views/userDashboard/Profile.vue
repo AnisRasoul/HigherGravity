@@ -2,7 +2,7 @@
   <div>
     <h1 class="text-xl font-medium underline mb-4">Personal Data and Addresses</h1>
     <Form
-      ref="form"
+      ref="formRef"
       class="space-y-4 my-6 text-black"
       @submit="onSubmit"
       :validation-schema="validationSchema"
@@ -87,8 +87,11 @@
 
         <button
           type="submit"
-          
-          class="rounded py-3 bg-primary w-full text-white text-lg"
+          :disabled="!isFormChanged"
+          :class="[
+            'rounded py-3 w-full text-lg',
+            isFormChanged ? 'bg-primary text-white' : 'bg-gray-400 text-gray-700 cursor-not-allowed'
+          ]"
         >
           Update Profile
         </button>
@@ -98,15 +101,27 @@
 </template>
 
 <script>
-import { Form, Field, ErrorMessage, useForm, useField } from 'vee-validate';
+import { Form, Field, ErrorMessage ,useForm ,useIsFormDirty,useIsFormValid   } from 'vee-validate';
 import * as yup from 'yup';
 import user from '@/store/modules/user';
+import isEqual from 'lodash/isEqual';
 
 export default {
+  /* 
+  combine composition api with options api to check if the formisValid if it returns false disable the button
+  setup() {
+    const isDirty = useIsFormDirty();
+    const isValid = useIsFormValid();
+
+    return {
+      isDirty,
+      isValid
+    };
+  },*/
   components: {
     Form,
     Field,
-    ErrorMessage
+    ErrorMessage,
   },
   data() {
     return {
@@ -121,6 +136,7 @@ export default {
         { value: 'morocco', text: 'Morocco' },
       ],
       PhoneReg: /^(00213|\+213|0)(5|6|7)[0-9]{8}$/,
+      initialFormValues: {},
     };
   },
   computed: {
@@ -152,18 +168,32 @@ export default {
       };
     },
     isFormChanged() {
-      const formValues = this.$refs.form?.values || {}; 
-      return JSON.stringify(formValues) !== JSON.stringify(this.initialValues);
-    }
+      return !isEqual(this.$refs.formRef?.values, this.initialFormValues);
+    },
+  },
+  mounted() {
+    this.initialFormValues = { ...this.$refs.formRef.meta.initialValues };
+    this.$watch(
+      () => this.$refs.formRef?.values,
+      (newValues) => {
+        console.log('Form values changed:', this.isFormChanged);
+      },
+      { deep: true }
+    );
+   // console.log(this.isValid);
+   // console.log(this.isDirty);
   },
   methods: {
     onSubmit(values) {
       this.$store.dispatch('updateuserDATA', values);
     }
   },
-
 };
 </script>
+
+
+
+
 
 <style>
 </style>

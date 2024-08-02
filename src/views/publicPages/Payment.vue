@@ -12,7 +12,7 @@
         <Form  class="md:w-2/3 space-y-6 my-10" @submit="onSubmit" :validation-schema="validationSchema">
           <div class="space-y-6">
             <div class="mb-6">
-              <label class="text-2xl font-[Zabal] font-bold">Contact</label>
+              <label class="text-2xl font-primary font-bold">Contact</label>
               <Field name="email" type="email" placeholder="eg: user@mail.com" class="text-xl border border-black px-3 py-2 w-full"/>
               <ErrorMessage name="email" class="text-red-700 text-sm" />
               <div class="flex items-center space-x-2 mt-2">
@@ -25,7 +25,7 @@
             </div>
 
             <div>
-              <label class="text-2xl font-[Zabal] font-bold">Delivery</label>
+              <label class="text-2xl font-primary font-bold">Delivery</label>
               <div class="mt-2">
                 <Field name="country" class="text-xl border border-black px-3 py-2 w-full" as="select">
                   <option value="" disabled selected>Country/Region</option>
@@ -78,7 +78,7 @@
             </div>
             <h1 class="font-bold text-2xl">Payment</h1>
             <p class="my-5">All transactions are secure and encrypted.</p>
-            <div class="font-[Zabal]">
+            <div class="font-primary">
               <div class="border border-[#A0A0A0] flex items-center justify-between md:w-[68%] py-5 px-5">
                 <div class="flex items-center space-x-2">
                   <input type="radio" id="r1" name="paymentMethod" value="default" />
@@ -167,7 +167,7 @@
 
       <div class="my-10">
         <div v-if="!cartProduct.length" class="flex flex-col items-center justify-center my-10">
-  <h1 class="md:text-6xl text-3xl font-[Zabal] text-center">Empty Cart @.</h1>
+  <h1 class="md:text-6xl text-3xl font-primary text-center">Empty Cart @.</h1>
 </div>
 <div v-else>
   <div>

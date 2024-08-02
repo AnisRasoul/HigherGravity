@@ -3,9 +3,9 @@
   <Navbar/>
   <div class="flex px-10 h-screen">
 
-      <div class="w-[300px] text-black border-r border-black space-y-12 pt-12 mt-1 pr-25">
+      <div class="md:w-[300px] md:text-black md:border-r md:border-black md:space-y-12 md:pt-12 md:mt-1 md:pr-25 md:block hidden">
           <div>
-              <p class="uppercase font-[Zabal] font-extrabold text-2xl">good morning</p>
+              <p class="uppercase font-primary font-extrabold text-2xl">good morning</p>
               <p class="text-sm">{{ user.email }}</p>
           </div>
             <router-link
@@ -18,7 +18,7 @@
             </router-link>
       </div>
 
-      <div class="w-full h-full bg-white p-20">
+      <div class="w-full h-full bg-white md:p-20 p-8">
             <router-view></router-view>
       </div>
 
